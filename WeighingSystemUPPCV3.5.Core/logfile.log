@@ -1,0 +1,511 @@
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-14T17:08:19.4304265Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-14T17:08:19.4473675Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-14T17:08:19.4569191Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-14T17:08:20.1889278Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : a
+    DateTime=2021-01-14T17:08:24.7163254Z
+WeighingSystemCore.Controllers.BalingStationsController Critical: 0 : a
+    DateTime=2021-01-14T17:08:24.7295932Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-14T17:16:23.1864228Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-14T17:16:23.2023081Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-14T17:16:23.2130474Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-14T17:16:24.0597252Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : a
+    DateTime=2021-01-14T17:16:26.0805832Z
+WeighingSystemCore.Controllers.BalingStationsController Critical: 0 : a
+    DateTime=2021-01-14T17:16:26.0921536Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-14T17:18:26.9577161Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-14T17:18:26.9738223Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-14T17:18:26.9848213Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-14T17:18:27.9548682Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : a
+    DateTime=2021-01-14T17:18:28.5552934Z
+WeighingSystemCore.Controllers.BalingStationsController Critical: 0 : a
+    DateTime=2021-01-14T17:18:28.5672385Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T02:37:32.5152201Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T02:37:32.5267433Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T02:37:32.5332907Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-15T02:37:33.0371561Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T02:48:28.0068654Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T02:48:28.0316264Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T02:48:28.0460439Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-15T02:48:28.7747024Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T02:59:04.1425187Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T02:59:04.1615465Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T02:59:04.1693875Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-15T02:59:04.6957327Z
+SysDomain.Repositories.SaleTransactionRepository Error: 0 : Invalid column name 'DiffMC10'.
+Invalid column name 'DiffMC12'.
+Invalid column name 'UserAccountFullName'.
+    DateTime=2021-01-15T03:00:05.3461466Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T03:09:20.8596445Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T03:09:20.8714570Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T03:09:20.8790559Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-15T03:09:21.3332907Z
+SysDomain.Repositories.SaleTransactionRepository Error: 0 : Arithmetic overflow error converting numeric to data type numeric.
+The statement has been terminated.
+    DateTime=2021-01-15T03:09:48.9008830Z
+WeighingSystemCore.Controllers.SaleTransactionsController Error: 0 : Arithmetic overflow error converting numeric to data type numeric.
+The statement has been terminated.
+    DateTime=2021-01-15T03:09:54.8781138Z
+SysDomain.Repositories.SaleTransactionRepository Error: 0 : Cannot insert the value NULL into column 'MC14', table 'UPPC.dbo.ReturnedVehicles'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+    DateTime=2021-01-15T03:13:36.1195249Z
+WeighingSystemCore.Controllers.SaleTransactionsController Error: 0 : Cannot insert the value NULL into column 'MC14', table 'UPPC.dbo.ReturnedVehicles'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+    DateTime=2021-01-15T03:13:47.0741722Z
+WeighingSystemCore.Controllers.BalesController Error: 0 : An error occurred while updating the entries. See the inner exception for details.
+    DateTime=2021-01-15T03:17:44.3335878Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T03:31:27.0022635Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T03:31:27.0155309Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T03:31:27.0234588Z
+WeighingSystemCore.Controllers.WeatherForecastController Information: 0 : SAMPLE
+    DateTime=2021-01-15T03:31:27.6745453Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T03:33:28.7720271Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T03:33:28.7798146Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T03:33:28.7859830Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T03:34:37.1431485Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T03:34:37.1558103Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T03:34:37.1624393Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T03:35:16.4831645Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T03:35:16.4965674Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T03:35:16.5042678Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T07:27:50.3528353Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T07:27:50.3845287Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T07:27:50.4034922Z
+Microsoft.AspNetCore.Hosting.Diagnostics Critical: 6 : Application startup exception
+    DateTime=2021-01-15T07:41:07.0162888Z
+Microsoft.AspNetCore.Hosting.Diagnostics Critical: 6 : Application startup exception
+    DateTime=2021-01-15T07:42:04.5348481Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T07:42:49.0757379Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T07:42:49.0919753Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T07:42:49.1011872Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T07:51:29.6951226Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T07:51:29.7069242Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T07:51:29.7130668Z
+WeighingSystemCore.Controllers.BalesController Error: 0 : The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+    DateTime=2021-01-15T07:56:43.3072301Z
+WeighingSystemCore.Controllers.BalesController Error: 0 : The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+    DateTime=2021-01-15T07:57:45.9620972Z
+WeighingSystemCore.Controllers.BalesController Error: 0 : The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+    DateTime=2021-01-15T07:59:04.2722168Z
+WeighingSystemCore.Controllers.BalesController Error: 0 : The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+    DateTime=2021-01-15T07:59:07.2160869Z
+WeighingSystemCore.Controllers.BalesController Error: 0 : The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+    DateTime=2021-01-15T08:01:19.1534024Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-15T08:06:30.8380225Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-15T08:06:30.8657029Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-15T08:06:30.8813850Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T04:17:36.0753501Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T04:17:36.0941102Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T04:17:36.1050092Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T04:33:45.6765903Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T04:33:45.6911800Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T04:33:45.7029917Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : No database provider has been configured for this DbContext. A provider can be configured by overriding the 'DbContext.OnConfiguring' method or by using 'AddDbContext' on the application service provider. If 'AddDbContext' is used, then also ensure that your DbContext type accepts a DbContextOptions<TContext> object in its constructor and passes it to the base constructor for DbContext.
+    DateTime=2021-01-19T04:33:46.9725929Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : No database provider has been configured for this DbContext. A provider can be configured by overriding the 'DbContext.OnConfiguring' method or by using 'AddDbContext' on the application service provider. If 'AddDbContext' is used, then also ensure that your DbContext type accepts a DbContextOptions<TContext> object in its constructor and passes it to the base constructor for DbContext.
+    DateTime=2021-01-19T04:34:07.2421432Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : No database provider has been configured for this DbContext. A provider can be configured by overriding the 'DbContext.OnConfiguring' method or by using 'AddDbContext' on the application service provider. If 'AddDbContext' is used, then also ensure that your DbContext type accepts a DbContextOptions<TContext> object in its constructor and passes it to the base constructor for DbContext.
+    DateTime=2021-01-19T04:34:08.8199187Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T04:34:29.5276520Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T04:34:29.5682991Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T04:34:29.6002455Z
+WeighingSystemCore.Controllers.BalingStationsController Error: 0 : No database provider has been configured for this DbContext. A provider can be configured by overriding the 'DbContext.OnConfiguring' method or by using 'AddDbContext' on the application service provider. If 'AddDbContext' is used, then also ensure that your DbContext type accepts a DbContextOptions<TContext> object in its constructor and passes it to the base constructor for DbContext.
+    DateTime=2021-01-19T04:34:30.7027846Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T04:36:22.5221581Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T04:36:22.5411766Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T04:36:22.5520870Z
+Microsoft.AspNetCore.Hosting.Diagnostics Critical: 6 : Application startup exception
+    DateTime=2021-01-19T05:50:27.8690052Z
+Microsoft.AspNetCore.Hosting.Diagnostics Critical: 6 : Application startup exception
+    DateTime=2021-01-19T05:53:02.3953214Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T05:54:41.0293903Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T05:54:41.0470076Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T05:54:41.0576551Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T05:55:20.9595743Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T05:55:20.9760674Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T05:55:20.9872229Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:00:20.2651391Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:00:20.2801325Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:00:20.2880349Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:00:51.2698801Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:00:51.2882198Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:00:51.3008233Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:02:52.7006796Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:02:52.7170310Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:02:52.7274846Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-19T06:40:35.9206065Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-19T06:41:01.7838299Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5001
+    DateTime=2021-01-19T06:41:47.8385987Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5000
+    DateTime=2021-01-19T06:41:47.8431271Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:41:47.8487231Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:41:47.8537830Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:41:47.8576625Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5001
+    DateTime=2021-01-19T06:42:14.5102212Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5000
+    DateTime=2021-01-19T06:42:14.5170729Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:42:14.5243586Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:42:14.5301904Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:42:14.5353109Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5001
+    DateTime=2021-01-19T06:42:58.0378949Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5000
+    DateTime=2021-01-19T06:42:58.0434379Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:42:58.0497409Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:42:58.0558174Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:42:58.0605212Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-19T06:44:22.0580309Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5001
+    DateTime=2021-01-19T06:59:32.4373845Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5000
+    DateTime=2021-01-19T06:59:32.4440006Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:59:32.4508787Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:59:32.4638953Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:59:32.4698677Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5001
+    DateTime=2021-01-19T06:59:54.3022466Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5000
+    DateTime=2021-01-19T06:59:54.3536869Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T06:59:54.4013629Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T06:59:54.4489577Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T06:59:54.5170672Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5001
+    DateTime=2021-01-19T07:01:15.8000179Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5000
+    DateTime=2021-01-19T07:01:15.8076076Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:01:15.8155972Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:01:15.8212918Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:01:15.8274027Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-19T07:24:00.6982913Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-19T07:24:36.0746911Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://0.0.0.0:5010
+    DateTime=2021-01-19T07:26:09.7244768Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://0.0.0.0:5011
+    DateTime=2021-01-19T07:26:09.7316161Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:26:09.7401381Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:26:09.7471215Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:26:09.7528135Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://0.0.0.0:5010
+    DateTime=2021-01-19T07:27:17.2790878Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://0.0.0.0:5011
+    DateTime=2021-01-19T07:27:17.2852663Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:27:17.2926549Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:27:17.2989335Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:27:17.3054384Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-19T07:27:26.0509181Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://0.0.0.0:5010
+    DateTime=2021-01-19T07:27:41.4058657Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://0.0.0.0:5011
+    DateTime=2021-01-19T07:27:41.4114721Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:27:41.4170801Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:27:41.4220054Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:27:41.4269456Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5010
+    DateTime=2021-01-19T07:36:26.0842928Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5011
+    DateTime=2021-01-19T07:36:26.0886106Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:36:26.0933650Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:36:26.0977484Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:36:26.1031509Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://localhost:5010
+    DateTime=2021-01-19T07:39:06.0427450Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://localhost:5011
+    DateTime=2021-01-19T07:39:06.0499007Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:39:06.0564324Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:39:06.0614561Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:39:06.0666067Z
+Microsoft.AspNetCore.Server.Kestrel Warning: 0 : Overriding address(es) 'https://localhost:5010, http://localhost:5011'. Binding to endpoints defined in UseKestrel() instead.
+    DateTime=2021-01-19T07:44:56.5875467Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://127.0.0.1:5000
+    DateTime=2021-01-19T07:44:56.6448776Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:44:56.6549881Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:44:56.6650788Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:44:56.6724242Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:5010
+    DateTime=2021-01-19T07:47:26.4012384Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:5011
+    DateTime=2021-01-19T07:47:26.4061520Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-19T07:47:26.4124914Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-19T07:47:26.4175771Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-19T07:47:26.4236059Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:5010
+    DateTime=2021-01-20T05:22:39.6500659Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:5011
+    DateTime=2021-01-20T05:22:39.6584094Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T05:22:39.6644225Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T05:22:39.6688616Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T05:22:39.6729612Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-20T05:23:16.8001241Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:5010
+    DateTime=2021-01-20T05:23:34.6306772Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:5011
+    DateTime=2021-01-20T05:23:34.6365709Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T05:23:34.6429895Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T05:23:34.6474632Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T05:23:34.6531738Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:5001
+    DateTime=2021-01-20T05:28:08.7657535Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:5000
+    DateTime=2021-01-20T05:28:08.7712655Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T05:28:08.7773546Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T05:28:08.7833224Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T05:28:08.7895991Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-20T05:37:24.1571469Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-20T05:37:39.2340456Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-20T05:37:58.4506058Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-20T05:39:09.3232987Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T05:39:53.4668923Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T05:39:53.4725738Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T05:39:53.4802705Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T05:39:53.4864238Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T05:39:53.4932683Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T05:52:42.0148406Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T05:52:42.0200815Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T05:52:42.0261809Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T05:52:42.0308659Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T05:52:42.0360255Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T06:11:47.6986507Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T06:11:47.7028056Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T06:11:47.7073065Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T06:11:47.7125201Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T06:11:47.7196974Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-20T06:29:09.2350007Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T06:34:46.3065270Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T06:34:46.3166565Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T06:34:46.3283270Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T06:34:46.3390295Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T06:34:46.3497765Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-20T07:22:50.6421443Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T07:23:05.7213268Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T07:23:05.7300729Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T07:23:05.7392192Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T07:23:05.7485870Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T07:23:05.7582452Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T07:37:35.6952769Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T07:37:35.7016348Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T07:37:35.7085680Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T07:37:35.7151015Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T07:37:35.7218297Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T08:21:54.6976611Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T08:21:54.7078685Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T08:21:54.7179974Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T08:21:54.7273711Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T08:21:54.7366420Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-20T13:51:41.0863959Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-20T13:51:41.1006196Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-20T13:51:41.1139571Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-20T13:51:41.1278695Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemCore
+    DateTime=2021-01-20T13:51:41.1375587Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T03:17:11.3919215Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T03:17:11.4055160Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemCore\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T03:17:11.4143529Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T03:27:35.5841534Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T03:27:35.5969540Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T03:27:35.6039278Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T03:30:26.6459174Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T03:30:26.6607972Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T03:30:26.6723870Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T03:30:26.6820188Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T03:30:26.7334451Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-21T03:30:54.4071915Z
