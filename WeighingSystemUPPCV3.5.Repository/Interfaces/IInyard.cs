@@ -27,15 +27,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Interfaces
         string WeigherOutId { get; set; }
         long SignatoryId { get; set; }
         long MoistureSettingsId { get; set; }
+        Nullable<long> VehicleTypeId { get; set; }
         string TimeZoneIn { get; set; }
         string TimeZoneOut { get; set; }
-        string BaleTypeDesc { get; set; }
         string WeigherInName { get; set; }
 
-        public string MoistureReaderDesc { get; set; }
-
         public string BalingStationCode { get; set; }
-
         public string BalingStationName { get; set; }
 
     }

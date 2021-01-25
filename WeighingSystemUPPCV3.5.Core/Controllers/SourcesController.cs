@@ -29,11 +29,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                return Ok(repository.Get(parameters).ToList()
-                    .Select(a =>
-                    {
-                        a.SourceCategoryDesc = (a.SourceCategory ?? new SourceCategory()).Description; return a;
-                    }));
+                return Ok(repository.Get(parameters));
             }
             catch (Exception ex)
             {

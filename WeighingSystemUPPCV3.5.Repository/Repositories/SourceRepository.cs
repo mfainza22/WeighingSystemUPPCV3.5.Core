@@ -24,7 +24,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             dbContext.Sources.Add(model);
             model.SourceCategory = dbContext.SourceCategories.Find(model.SourceCategoryId);
-            model.SourceCategoryDesc = (model.SourceCategory ?? new SourceCategory()).Description;
+            //model.SourceCategoryDesc = (model.SourceCategory ?? new SourceCategory()).Description;
             dbContext.SaveChanges();
             return model;
         }
@@ -52,7 +52,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             var sqlRawParams = GetSqlRawParameter(parameters);
             if (sqlRawParams.SqlParameters.Count == 0) return dbContext.Sources.Include(a => a.SourceCategory).AsNoTracking();
-            return dbContext.Sources.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).Include(a => a.SourceCategory).AsNoTracking();
+            return dbContext.Sources.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).Include(a => a.SourceCategory).DefaultIfEmpty().AsNoTracking();
 
         }
 
@@ -81,7 +81,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             dbContext.Sources.Update(entity);
 
             entity.SourceCategory = dbContext.SourceCategories.Find(entity.SourceCategoryId);
-            entity.SourceCategoryDesc = (entity.SourceCategory ?? new SourceCategory()).Description;
+            //entity.SourceCategoryDesc = (entity.SourceCategory ?? new SourceCategory()).Description;
             dbContext.SaveChanges();
             return entity;
         }

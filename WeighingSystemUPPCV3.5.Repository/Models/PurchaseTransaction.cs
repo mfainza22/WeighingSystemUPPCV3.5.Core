@@ -131,6 +131,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DefaultValue(0)]
         public int PrintCount { get; set; }
 
+        public Nullable<long> VehicleTypeId { get; set; }
+
+        [MaxLength(25, ErrorMessage = "Vehicle Type must not exceed to 25 characters")]
+        public string VehicleTypeCode { get; set; }
+
         [Required(ErrorMessage = " SourceName is required ", AllowEmptyStrings = false)]
         [MaxLength(50, ErrorMessage = "SourceName length must not exceed to 50 characters")]
         public string SourceName { get; set; }
@@ -179,5 +184,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateOut { get; set; }
+
+        public virtual RawMaterial RawMaterial { get; set; }
     }
 }

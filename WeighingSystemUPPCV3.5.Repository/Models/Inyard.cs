@@ -180,10 +180,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string SealNum { get; set; }
         #endregion
 
+        public Nullable<long> VehicleTypeId { get; set; }
+        [MaxLength(25, ErrorMessage = "Vehicle Type must not exceed to 25 characters")]
+        public string VehicleTypeCode { get; set; }
+
         public string MoistureReaderDesc { get; set; }
         public string BalingStationCode { get; set; }
         public string BalingStationName { get; set; }
 
+        public string CategoryDesc { get; set; }
         public string SourceName { get; set; }
         public string SourceCategoryDesc { get; set; }
         public string CommodityDesc { get; set; }

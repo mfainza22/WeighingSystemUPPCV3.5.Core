@@ -217,6 +217,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 repository.MigrateOldDb(dtFrom, dtTo);
                 return Ok("MERGE COMPLETE");
             }
+
             catch (Exception ex)
             {
                 logger.LogError(ex.GetExceptionMessage());

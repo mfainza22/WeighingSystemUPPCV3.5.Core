@@ -46,9 +46,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public virtual CalibrationType CalibrationType { get; set; }
 
         [NotMapped]
-        public string CalibrationTypeDesc { get; set; }
-
-        [NotMapped]
         public CalibrationLog LastLog { get; set; }
 
     }

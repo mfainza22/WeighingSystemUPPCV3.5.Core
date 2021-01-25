@@ -102,7 +102,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.BaleNum = model.BaleNum;
             entity.IsReject = model.IsReject;
             var categoryId = dbContext.Products.AsNoTracking().Where(a => a.ProductId == model.ProductId).Select(a => a.CategoryId).FirstOrDefault();
-            entity.CategoryId = categoryId ?? 0;
+            entity.CategoryId = categoryId;
             dbContext.Bales.Update(entity);
             dbContext.SaveChanges();
             var invAge = entity.InStock ? (DateTime.Now - entity.DT).TotalDays : 0d;
@@ -228,7 +228,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public void GenerateBaleCode(Bale model, out Bale outModel)
         {
             var product = productRepository.Get().AsNoTracking().Where(a => a.ProductId == model.ProductId).Select(a => new { a.ProductDesc, a.CategoryId }).FirstOrDefault();
-            model.CategoryId = product.CategoryId ?? 0;
+            model.CategoryId = product.CategoryId;
             model.ProductDesc = product.ProductDesc;
 
             var catcode = catRepository.Get().AsNoTracking().Where(a => a.CategoryId == model.CategoryId).Select(a => a.CategoryCode).FirstOrDefault();

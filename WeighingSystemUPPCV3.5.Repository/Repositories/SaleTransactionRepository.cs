@@ -253,6 +253,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var products = dbContext.Products.Include(a => a.Category).AsNoTracking().ToList();
             var haulers = dbContext.Haulers.AsNoTracking().ToList();
             var weighers = dbContext.UserAccounts.AsNoTracking().ToList();
+            var vehicles = dbContext.Vehicles.AsNoTracking().ToList();
+            var vehicleTypes = dbContext.VehicleTypes.AsNoTracking().ToList();
 
             dtFrom = dtFrom.Date;
             dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
@@ -267,6 +269,28 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 saleTrans.DateTimeIn = sale.DateTimeIn.Value;
                 saleTrans.DateTimeOut = sale.DateTimeOut;
                 saleTrans.VehicleNum = sale.PlateNo;
+
+                var vehicle = vehicles.Where(a => a.VehicleNum == saleTrans.VehicleNum).FirstOrDefault();
+                if (vehicle != null)
+                {
+                    var vehicleType = vehicleTypes.FirstOrDefault(a => a.VehicleTypeId == vehicle.VehicleTypeId);
+                    if (vehicleType != null)
+                    {
+                        saleTrans.VehicleTypeId = vehicleType.VehicleTypeId;
+                        saleTrans.VehicleTypeCode = vehicleType.VehicleTypeCode;
+                    }
+                }
+
+                //var truck = trucks.Where(a => a.PlateNo == sale.PlateNo).FirstOrDefault();
+                //if (truck != null)
+                //{
+                //    var vehicleType = vehicleTypes.Where(a => a.VehicleTypeCode == truck.TruckCode).FirstOrDefault();
+                //    if (vehicleType != null)
+                //    {
+                //        purchaseTrans.VehicleTypeId = vehicleType.VehicleTypeId;
+                //        purchaseTrans.VehicleTypeCode = vehicleType.VehicleTypeCode;
+                //    }
+                //};
                 var customer = customers.FirstOrDefault(a => a.CustomerIdOld == sale.CustomerId);
                 if (customer != null)
                 {

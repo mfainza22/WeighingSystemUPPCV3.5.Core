@@ -509,3 +509,1769 @@ Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\P
     DateTime=2021-01-21T03:30:26.7334451Z
 Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
     DateTime=2021-01-21T03:30:54.4071915Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T05:19:33.0261922Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T05:19:33.0347107Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:19:33.0426565Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:19:33.0521214Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:19:33.0599849Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-21T05:20:35.7220375Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T05:20:48.3545802Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T05:20:48.3632715Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:20:48.3694932Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:20:48.3752191Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:20:48.3812765Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T05:22:21.9015978Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T05:22:21.9139436Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:22:21.9226184Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:22:21.9326668Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:22:21.9411268Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T05:22:49.5204615Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T05:22:49.5248007Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:22:49.5298229Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:22:49.5340964Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:22:49.5384828Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:23:30.8200959Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:23:30.8306932Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:23:30.8372831Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T05:24:06.9382574Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T05:24:06.9429421Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:24:06.9485494Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:24:06.9538234Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:24:06.9582998Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-21T05:25:05.6898250Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T05:26:10.4270347Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T05:26:10.4340592Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T05:26:10.4417512Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T05:26:10.4466596Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T05:26:10.4524085Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-21T05:26:14.3624161Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-21T06:37:39.0337926Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-21T06:38:53.8803672Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-21T06:39:36.2735326Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T06:40:08.2469832Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T06:40:08.2525398Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T06:40:08.2580834Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T06:40:08.2634344Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T06:40:08.2686092Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-21T06:40:21.7049142Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T06:40:28.1248710Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T06:40:28.1301638Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T06:40:28.1372258Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T06:40:28.1435374Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T06:40:28.1494341Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-21T06:43:15.4606227Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T06:50:00.8945852Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T06:50:00.9001820Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T06:50:00.9057225Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T06:50:00.9104903Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T06:50:00.9147021Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T07:36:28.8549150Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T07:36:28.8604476Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T07:36:28.8675226Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T07:36:28.8733198Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T07:36:28.8789899Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T07:43:27.9053551Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T07:43:27.9113988Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T07:43:27.9197798Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T07:43:27.9270241Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T07:43:27.9331208Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-21T08:11:47.6022600Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-21T08:11:47.6085798Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-21T08:11:47.6148535Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-21T08:11:47.6199480Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-21T08:11:47.6248723Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-21T08:11:49.5488202Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T02:19:43.7930447Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T02:19:43.8109663Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T02:19:43.8291110Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T02:19:43.8448596Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T02:19:43.8616389Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T02:55:55.2605588Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T02:55:55.2651986Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T02:55:55.2705829Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T02:55:55.2747479Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T02:55:55.2786196Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T02:57:04.5579592Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T02:57:04.5660083Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T02:57:04.5761871Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T02:57:04.5835230Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T02:57:04.5933545Z
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware Error: 1 : An unhandled exception has occurred while executing the request.
+    DateTime=2021-01-22T04:02:35.6346782Z
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware Error: 1 : An unhandled exception has occurred while executing the request.
+    DateTime=2021-01-22T04:02:35.6390764Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:27:31.7581640Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:27:31.7632780Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:27:31.7689693Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:27:31.7743349Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:27:31.7792865Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:28:51.5872490Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:28:51.5954259Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:28:51.6055539Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:28:51.6109605Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:28:51.6161655Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The wait operation timed out.
+    DateTime=2021-01-22T04:29:38.7314470Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The wait operation timed out.
+    DateTime=2021-01-22T04:29:38.7371897Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The wait operation timed out.
+    DateTime=2021-01-22T04:29:38.7433713Z
+WeighingSystemUPPCV3_5_Core.Controllers.BalingStationsController Error: 0 : The wait operation timed out.
+    DateTime=2021-01-22T04:29:48.7861661Z
+WeighingSystemUPPCV3_5_Core.Controllers.BalingStationsController Error: 0 : The wait operation timed out.
+    DateTime=2021-01-22T04:29:48.7930493Z
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware Error: 1 : An unhandled exception has occurred while executing the request.
+    DateTime=2021-01-22T04:29:48.9663233Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:34:13.6684546Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:34:13.6737467Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:34:13.6802240Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:34:13.6882356Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:34:13.6946144Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:36:46.3318010Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:36:46.3373770Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:36:46.3439654Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:36:46.3487899Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:36:46.3533389Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-22T04:38:49.7105644Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:39:06.9018303Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:39:06.9092042Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:39:06.9290252Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:39:06.9359495Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:39:06.9470418Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:42:53.6646394Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:42:53.6749155Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:42:53.6821417Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:42:53.6874557Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:42:53.6944196Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Value cannot be null. (Parameter 'source')
+    DateTime=2021-01-22T04:48:11.9246941Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:51:50.9644650Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:51:50.9704103Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:51:50.9756492Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:51:50.9798740Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:51:50.9860562Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T04:54:20.7400714Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T04:54:20.7463641Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T04:54:20.7523571Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T04:54:20.7583680Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T04:54:20.7639417Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-22T04:57:07.8943443Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-22T05:33:08.9375208Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T05:33:30.4503407Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T05:33:30.4609395Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T05:33:30.4754300Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T05:33:30.4908723Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T05:33:30.5017852Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-22T05:33:53.4064179Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T05:34:10.7999118Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T05:34:10.8041739Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T05:34:10.8092493Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T05:34:10.8141326Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T05:34:10.8186965Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-22T05:51:15.7808361Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T05:51:29.4658395Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T05:51:29.4702520Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T05:51:29.4756157Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T05:51:29.4802212Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T05:51:29.4849367Z
+WeighingSystemUPPCV3_5_Core.Controllers.BalingStationsController Error: 0 : Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+    DateTime=2021-01-22T05:52:19.2801849Z
+WeighingSystemUPPCV3_5_Core.Controllers.BalingStationsController Error: 0 : Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+    DateTime=2021-01-22T05:52:29.2770392Z
+Microsoft.AspNetCore.Server.Kestrel Critical: 0 : Unable to start Kestrel.
+    DateTime=2021-01-22T07:17:19.6350886Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T07:19:30.9197104Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T07:19:30.9246571Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T07:19:30.9298336Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T07:19:30.9347645Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T07:19:30.9393838Z
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware Error: 1 : An unhandled exception has occurred while executing the request.
+    DateTime=2021-01-22T07:20:42.3608169Z
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware Error: 1 : An unhandled exception has occurred while executing the request.
+    DateTime=2021-01-22T07:22:34.3211362Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T07:37:53.2117150Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T07:37:53.2179654Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T07:37:53.2253612Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T07:37:53.2306053Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T07:37:53.2383675Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T13:08:49.9571264Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T13:08:49.9631042Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T13:08:49.9696454Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T13:08:49.9763955Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T13:08:49.9820106Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T13:12:28.4585298Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T13:12:28.4686415Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T13:12:28.4792980Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T13:12:28.4898140Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T13:12:28.5002437Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T13:23:05.3971717Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T13:23:05.4058066Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T13:23:05.4158487Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T13:23:05.4247378Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T13:23:05.4343820Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T13:42:27.8370522Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T13:42:27.8474159Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T13:42:27.8601014Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T13:42:27.8707180Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T13:42:27.8806090Z
+WeighingSystemUPPCV3_5_Core.Controllers.VehiclesController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-22T13:43:34.1770664Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T13:55:51.4840552Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T13:55:51.4926365Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T13:55:51.5058718Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T13:55:51.5154069Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T13:55:51.5253267Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T15:41:40.1613780Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T15:41:40.1685471Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T15:41:40.1769926Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T15:41:40.1875119Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T15:41:40.1943110Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-22T16:04:58.0183418Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-22T16:04:58.0292267Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-22T16:04:58.0426593Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-22T16:04:58.0562880Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-22T16:04:58.0690545Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T01:14:52.0312038Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T01:14:52.0460880Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T01:14:52.0631282Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T01:14:52.0779534Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T01:14:52.0923568Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Invalid column name 'SourceName'.
+    DateTime=2021-01-25T01:19:28.6192100Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T01:21:33.5625058Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T01:21:33.5681234Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T01:21:33.5738896Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T01:21:33.5786933Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T01:21:33.5847593Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Invalid column name 'VehicleTypeCode'.
+    DateTime=2021-01-25T01:21:36.6041178Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Invalid column name 'VehicleTypeCode'.
+    DateTime=2021-01-25T01:21:41.9204778Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T01:22:26.0107334Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T01:22:26.0156846Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T01:22:26.0213079Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T01:22:26.0262875Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T01:22:26.0308259Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T01:23:38.0805856Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T01:23:38.0874005Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T01:23:38.0946527Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T01:23:38.1004747Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T01:23:38.1062348Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(p => p.DateTimeIn >= __dtFrom_0 && p.DateTimeIn <= __dtTo_1)
+    .OrderBy(p => p.ReceiptNo)
+    .Join(
+        inner: DbSet<RawMaterial>(), 
+        outerKeySelector: p => p.MaterialId, 
+        innerKeySelector: r => r.RawMaterialIdOld, 
+        resultSelector: (p, r) => new TransparentIdentifier<Purchase, RawMaterial>(
+            Outer = p, 
+            Inner = r
+        ))
+    .Join(
+        inner: DbSet<Vehicle>(), 
+        outerKeySelector: ti => ti.Outer.PlateNo, 
+        innerKeySelector: v => v.VehicleNum, 
+        resultSelector: (ti, v) => new TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Vehicle>(
+            Outer = ti, 
+            Inner = v
+        ))
+    .Join(
+        inner: DbSet<UserAccount>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: ti0 => ti0.Outer.Outer.WeigherIn, 
+        innerKeySelector: u => u.UserAccountIdOld, 
+        resultSelector: (ti0, u) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Vehicle>, UserAccount>(
+            Outer = ti0, 
+            Inner = u
+        ))
+    .Join(
+        inner: DbSet<UserAccount>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: ti1 => ti1.Outer.Outer.Outer.WeigherOut, 
+        innerKeySelector: u0 => u0.UserAccountIdOld, 
+        resultSelector: (ti1, u0) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Vehicle>, UserAccount>, UserAccount>(
+            Outer = ti1, 
+            Inner = u0
+        ))
+    .Join(
+        inner: DbSet<Source>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: ti2 => ti2.Outer.Outer.Outer.Outer.SelectedSourceCat
+            .DefaultIfEmpty(), 
+        innerKeySelector: s => s.SourceDesc, 
+        resultSelector: (ti2, s) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Vehicle>, UserAccount>, UserAccount>, Source>(
+            Outer = ti2, 
+            Inner = s
+        ))' could not be translated. Additional information: Translation of method 'SysUtility.Extensions.StringExtensions.DefaultIfEmpty' failed. If this method can be mapped to your custom function, see https://go.microsoft.com/fwlink/?linkid=2132413 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T01:52:39.8119371Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T01:56:59.4926597Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T01:56:59.4968857Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T01:56:59.5032319Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T01:56:59.5084612Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T01:56:59.5133491Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T01:57:18.6489093Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T01:57:45.4113685Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T01:57:45.4170688Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T01:57:45.4234290Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T01:57:45.4296941Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T01:57:45.4352089Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T02:18:18.4791214Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T02:18:18.4868307Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T02:18:18.4939006Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T02:18:18.5021463Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T02:18:18.5117264Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T02:21:33.0737807Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T02:21:33.0818454Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T02:21:33.0889715Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T02:21:33.0950456Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T02:21:33.1005321Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T02:24:25.4682543Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T02:24:25.9553433Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T02:24:25.9633628Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T02:24:25.9727018Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T02:24:25.9813754Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T02:24:25.9891316Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T02:24:32.6029808Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T02:24:32.6097766Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T02:24:32.6174868Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T02:24:32.6253355Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T02:24:32.6332022Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(a => a.DateTimeIn >= __dtFrom_0 && a.DateTimeIn <= __dtTo_1)
+    .OrderBy(a => a.ReceiptNo)
+    .Join(
+        inner: DbSet<RawMaterial>()
+            .Include(a => a.Category), 
+        outerKeySelector: purchase => purchase.MaterialId, 
+        innerKeySelector: material => material.RawMaterialIdOld, 
+        resultSelector: (purchase, material) => new { 
+            purchase = purchase, 
+            material = material
+         })
+    .Join(
+        inner: DbSet<Vehicle>()
+            .Include(a => a.VehicleType), 
+        outerKeySelector: purchase => purchase.purchase.PlateNo, 
+        innerKeySelector: vehicle => vehicle.VehicleNum, 
+        resultSelector: (purchase, vehicle) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            vehicle = vehicle
+         })
+    .Join(
+        inner: DbSet<UserAccount>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: purchase => purchase.purchase.WeigherIn, 
+        innerKeySelector: user => user.UserAccountIdOld, 
+        resultSelector: (purchase, user) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            vehicle = purchase.vehicle, 
+            userIn = user
+         })
+    .Join(
+        inner: DbSet<UserAccount>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: purchase => purchase.purchase.WeigherOut, 
+        innerKeySelector: user => user.UserAccountIdOld, 
+        resultSelector: (purchase, user) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            vehicle = purchase.vehicle, 
+            userIn = purchase.userIn, 
+            userOut = user
+         })
+    .GroupJoin(
+        inner: DbSet<Source>(), 
+        outerKeySelector: purchase => purchase.purchase.SelectedSourceCat, 
+        innerKeySelector: source => source.SourceDesc, 
+        resultSelector: (purchase, ss) => new { 
+            purchase = purchase, 
+            ss = ss
+         })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T02:24:58.7872783Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(a => a.DateTimeIn >= __dtFrom_0 && a.DateTimeIn <= __dtTo_1)
+    .OrderBy(a => a.ReceiptNo)
+    .Join(
+        inner: DbSet<RawMaterial>()
+            .Include(a => a.Category), 
+        outerKeySelector: purchase => purchase.MaterialId, 
+        innerKeySelector: material => material.RawMaterialIdOld, 
+        resultSelector: (purchase, material) => new { 
+            purchase = purchase, 
+            material = material
+         })
+    .Join(
+        inner: DbSet<Vehicle>()
+            .Include(a => a.VehicleType), 
+        outerKeySelector: purchase => purchase.purchase.PlateNo, 
+        innerKeySelector: vehicle => vehicle.VehicleNum, 
+        resultSelector: (purchase, vehicle) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            vehicle = vehicle
+         })
+    .Join(
+        inner: DbSet<UserAccount>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: purchase => purchase.purchase.WeigherIn, 
+        innerKeySelector: user => user.UserAccountIdOld, 
+        resultSelector: (purchase, user) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            vehicle = purchase.vehicle, 
+            userIn = user
+         })
+    .Join(
+        inner: DbSet<UserAccount>()
+            .DefaultIfEmpty(), 
+        outerKeySelector: purchase => purchase.purchase.WeigherOut, 
+        innerKeySelector: user => user.UserAccountIdOld, 
+        resultSelector: (purchase, user) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            vehicle = purchase.vehicle, 
+            userIn = purchase.userIn, 
+            userOut = user
+         })
+    .GroupJoin(
+        inner: DbSet<Source>(), 
+        outerKeySelector: purchase => purchase.purchase.SelectedSourceCat, 
+        innerKeySelector: source => source.SourceDesc, 
+        resultSelector: (purchase, ss) => new { 
+            purchase = purchase, 
+            ss = ss
+         })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T02:25:27.3323915Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T02:29:59.7591315Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T02:29:59.7660080Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T02:29:59.7743677Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T02:29:59.7821881Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T02:29:59.7898778Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T03:05:03.8993238Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T03:05:03.9040741Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T03:05:03.9092278Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T03:05:03.9150633Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T03:05:03.9209184Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(a => a.DateTimeIn >= __dtFrom_0 && a.DateTimeIn <= __dtTo_1)
+    .OrderBy(a => a.ReceiptNo)
+    .GroupJoin(
+        inner: DbSet<RawMaterial>()
+            .Include(a => a.Category), 
+        outerKeySelector: purchase => purchase.MaterialId, 
+        innerKeySelector: material => material.RawMaterialIdOld, 
+        resultSelector: (purchase, material) => new { 
+            purchase = purchase, 
+            material = material
+         })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T03:05:56.8938917Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(a => a.DateTimeIn >= __dtFrom_0 && a.DateTimeIn <= __dtTo_1)
+    .OrderBy(a => a.ReceiptNo)
+    .GroupJoin(
+        inner: DbSet<RawMaterial>()
+            .Include(a => a.Category), 
+        outerKeySelector: purchase => purchase.MaterialId, 
+        innerKeySelector: material => material.RawMaterialIdOld, 
+        resultSelector: (purchase, material) => new { 
+            purchase = purchase, 
+            material = material
+         })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T03:06:25.6542386Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(a => a.DateTimeIn >= __dtFrom_0 && a.DateTimeIn <= __dtTo_1)
+    .OrderBy(a => a.ReceiptNo)
+    .GroupJoin(
+        inner: DbSet<RawMaterial>()
+            .Include(a => a.Category), 
+        outerKeySelector: purchase => purchase.MaterialId, 
+        innerKeySelector: material => material.RawMaterialIdOld, 
+        resultSelector: (purchase, material) => new { 
+            purchase = purchase, 
+            material = material
+         })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T03:08:20.0332201Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(a => a.DateTimeIn >= __dtFrom_0 && a.DateTimeIn <= __dtTo_1)
+    .OrderBy(a => a.ReceiptNo)
+    .LeftJoin(
+        inner: DbSet<RawMaterial>()
+            .Include(a => a.Category)
+            .AsQueryable(), 
+        outerKeySelector: purchase => purchase.MaterialId, 
+        innerKeySelector: material => material.RawMaterialIdOld, 
+        resultSelector: (purchase, material) => new { 
+            purchase = purchase, 
+            material = material
+         })
+    .GroupJoin(
+        inner: DbSet<Supplier>(), 
+        outerKeySelector: t => t.purchase.ClientId, 
+        innerKeySelector: supplier => supplier.SupplierIdOld, 
+        resultSelector: (purchase, supplier) => new { 
+            purchase = purchase.purchase, 
+            material = purchase.material, 
+            supplier = supplier
+         })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T03:08:31.5873317Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:09:07.1478718Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:09:07.1531715Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:09:07.1587507Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:09:07.1628812Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:09:07.1674767Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T04:09:37.7859603Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:09:50.4737594Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:09:50.4786704Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:09:50.4843260Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:09:50.4892155Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:09:50.4953265Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:10:57.0033019Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:10:57.0098838Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:10:57.0172614Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:10:57.0227183Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:10:57.0287398Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:12:24.3139465Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:12:24.3196232Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:12:24.3258247Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:12:24.3315296Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:12:24.3385068Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:13:17.5161652Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:13:17.5210517Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:13:17.5268000Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:13:17.5316313Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:13:17.5366841Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:14:19.1160338Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:14:19.1223224Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:14:19.1278637Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:14:19.1333153Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:14:19.1401938Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:16:54.7317078Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:16:54.7361463Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:16:54.7417937Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:16:54.7467841Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:16:54.7518612Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:18:05.8594918Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:18:05.8693275Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:18:05.8787162Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:18:05.8859617Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:18:05.8915622Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T04:30:17.0336375Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T04:30:17.0387156Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T04:30:17.0463437Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T04:30:17.0518063Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T04:30:17.0567391Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T04:30:54.4106568Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:04:57.6446282Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:04:57.6496757Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:04:57.6572106Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:04:57.6636742Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:04:57.6696274Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:05:45.3634922Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:07:27.2399671Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:07:27.2469955Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:07:27.2545360Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:07:27.2623518Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:07:27.2685937Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:08:21.5547277Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:08:21.5589556Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:08:21.5645754Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:08:21.5697967Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:08:21.5751770Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Conversion failed when converting the varchar value 'ONLINE' to data type bit.
+    DateTime=2021-01-25T05:09:34.0425304Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:10:35.5817931Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:10:35.5923918Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:10:35.6012891Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:10:35.6075687Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:10:35.6135188Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:11:29.7372965Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:11:29.7477013Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:11:29.7549103Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:11:29.7617209Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:11:29.7683500Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:11:55.8633597Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:12:59.1695577Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:15:08.0043890Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:15:08.0092421Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:15:08.0145530Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:15:08.0188359Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:15:08.0234438Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:15:13.2310984Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:15:13.2356731Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:15:13.2418824Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:15:13.2475490Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:15:13.2528386Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:15:26.8475681Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:15:26.8530687Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:15:26.8588811Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:15:26.8648398Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:15:26.8704073Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:15:55.1742632Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T05:16:48.2312035Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:18:34.8323781Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:18:34.8364966Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:18:34.8434152Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:18:34.8491615Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:18:34.8538100Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:19:51.5089973Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:19:51.5149503Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:19:51.5214531Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:19:51.5286649Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:19:51.5344159Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:20:48.7360952Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:21:37.6186552Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:21:37.6228944Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:21:37.6276228Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:21:37.6323646Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:21:37.6363774Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:24:16.8286883Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:24:16.8340288Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:24:16.8410606Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:24:16.8461105Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:24:16.8510678Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:26:48.5264216Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:26:48.5330610Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:26:48.5402329Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:26:48.5465950Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:26:48.5530808Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:29:42.6349885Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:29:42.6403869Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:29:42.6457390Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:29:42.6503569Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:29:42.6547882Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:37:38.5085637Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:37:38.5135339Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:37:38.5184906Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:37:38.5237045Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:37:38.5283005Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:39:14.7483116Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:39:14.7559925Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:39:14.7676981Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:39:14.7756162Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:39:14.7847493Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:39:43.6447903Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:39:43.6511598Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:39:43.6575245Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:39:43.6638300Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:39:43.6698715Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:40:09.3134215Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:40:09.3187780Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:40:09.3253142Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:40:09.3321360Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:40:09.3373891Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:41:13.1509777Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:41:13.1600460Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:41:13.1677812Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:41:13.1736904Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:41:13.1786679Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:41:43.7679122Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:41:43.7728768Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:41:43.7779416Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:41:43.7822692Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:41:43.7877459Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:42:50.8505127Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:42:50.8590146Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:42:50.8671469Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:42:50.8741983Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:42:50.8799706Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:43:17.9748025Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:43:17.9827177Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:43:17.9904640Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:43:17.9973445Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:43:18.0026977Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:44:16.2232378Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:44:16.2286768Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:44:16.2349131Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:44:16.2419025Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:44:16.2486825Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:44:38.9143003Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:44:38.9212905Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:44:38.9332457Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:44:38.9417472Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:44:38.9496553Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:45:42.7311752Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:45:42.7357441Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:45:42.7405139Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:45:42.7465402Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:45:42.7523745Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:46:52.2166523Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:46:52.2224769Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:46:52.2310901Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:46:52.2379760Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:46:52.2444163Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:48:40.8125641Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:48:40.8202582Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:48:40.8309629Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:48:40.8421155Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:48:40.8498387Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:49:31.7812328Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:49:31.7866241Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:49:31.7930393Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:49:31.7981434Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:49:31.8026671Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:50:18.9398273Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:50:18.9489863Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:50:18.9582128Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:50:18.9672944Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:50:18.9866830Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:51:41.2432813Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:51:41.2499990Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:51:41.2578271Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:51:41.2653915Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:51:41.2746129Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:52:18.3165394Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:52:18.3296056Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:52:18.3394192Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:52:18.3528967Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:52:18.3613565Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:53:46.6836663Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:54:08.6916070Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:54:28.6965299Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:54:28.7029757Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:54:28.7088982Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:54:28.7227172Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:54:28.7286513Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:55:00.7231281Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:55:00.7271815Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:55:00.7319492Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:55:00.7364045Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:55:00.7413556Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T05:55:42.5284594Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T05:55:42.5335997Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T05:55:42.5393293Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T05:55:42.5446026Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T05:55:42.5491770Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:58:11.7522539Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T05:59:08.8237750Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:02:33.9924571Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:02:34.0022169Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:02:34.0141133Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:02:34.0220107Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:02:34.0298929Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:04:12.4152933Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:04:12.4230507Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:04:12.4325603Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:04:12.4391112Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:04:12.4496043Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:05:01.3486485Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:06:31.7140992Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:06:31.7209232Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:06:31.7287004Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:06:31.7352668Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:06:31.7418763Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:07:54.0824281Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:07:54.0872134Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:07:54.0936825Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:07:54.0996891Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:07:54.1058304Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:08:32.2213681Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:08:32.2262772Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:08:32.2326443Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:08:32.2388350Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:08:32.2441162Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:09:25.4597100Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:09:25.4719027Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:09:25.4825529Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:09:25.4927327Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:09:25.5010809Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:10:55.1726753Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:11:34.5710015Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:11:34.5782391Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:11:34.5863234Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:11:34.5923210Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:11:34.5976215Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:13:05.0048124Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:13:05.0133446Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:13:05.0209590Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:13:05.0383790Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:13:05.0456621Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:13:53.4241000Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:13:53.4294439Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:13:53.4370010Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:13:53.4431036Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:13:53.4505987Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:16:39.2217775Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:16:51.5362944Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:20:18.0926724Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:20:18.0982834Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:20:18.1048255Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:20:18.1099640Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:20:18.1146266Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:21:10.4282944Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:21:10.4344839Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:21:10.4424347Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:21:10.4483929Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:21:10.4544271Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:21:55.6929140Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:21:55.7006226Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:21:55.7072430Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:21:55.7122887Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:21:55.7175146Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:22:07.2682051Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:22:07.2806219Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:22:07.2938826Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:22:07.3027259Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:22:07.3126019Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:23:35.9152377Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:23:35.9208007Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:23:35.9271960Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:23:35.9326123Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:23:35.9371187Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:24:51.2193351Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:24:51.2238377Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:24:51.2303700Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:24:51.2362155Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:24:51.2414925Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:26:13.7070746Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:26:13.7125733Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:26:13.7180237Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:26:13.7222012Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:26:13.7267247Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:28:10.1160159Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:28:10.1210473Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:28:10.1264204Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:28:10.1312440Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:28:10.1356063Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:35:36.5652999Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:35:36.5729145Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:35:36.5807675Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:35:36.5867612Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:35:36.5921009Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:40:04.7926964Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:40:04.7974292Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:40:04.8020035Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:40:04.8057942Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:40:04.8104891Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:40:27.2195161Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:40:27.2239063Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:40:43.4959135Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The instance of entity type 'RawMaterial' cannot be tracked because another instance with the key value '{RawMaterialId: 70000006}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+    DateTime=2021-01-25T06:41:27.3262195Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The instance of entity type 'RawMaterial' cannot be tracked because another instance with the key value '{RawMaterialId: 70000006}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+    DateTime=2021-01-25T06:41:59.9112560Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:42:57.1220718Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:44:24.0198222Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:45:16.0427055Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:48:29.1959027Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:48:29.2015364Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:48:29.2095505Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:48:29.2196300Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:48:29.2260024Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 's' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T06:49:25.8084578Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 's' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T06:50:23.4578027Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 's' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T06:50:45.5126146Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T06:52:17.7997533Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T06:53:27.0794087Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T06:53:27.0860681Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T06:53:27.0916971Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T06:53:27.0958428Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T06:53:27.1001213Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T07:29:32.0503338Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T07:29:32.0566192Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T07:29:32.0641218Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T07:29:32.0718127Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T07:29:32.0792485Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'DbSet<Purchase>()
+    .Where(p => p.DateTimeIn >= __dtFrom_0 && p.DateTimeIn <= __dtTo_1)
+    .OrderBy(p => p.ReceiptNo)
+    .LeftJoin(
+        inner: DbSet<RawMaterial>(), 
+        outerKeySelector: p => p.MaterialId, 
+        innerKeySelector: r => r.RawMaterialIdOld, 
+        resultSelector: (p, r) => new TransparentIdentifier<Purchase, RawMaterial>(
+            Outer = p, 
+            Inner = r
+        ))
+    .LeftJoin(
+        inner: DbSet<Supplier>(), 
+        outerKeySelector: ti => ti.Outer.ClientId, 
+        innerKeySelector: s => s.SupplierIdOld, 
+        resultSelector: (ti, s) => new TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Supplier>(
+            Outer = ti, 
+            Inner = s
+        ))
+    .LeftJoin(
+        inner: DbSet<Source>(), 
+        outerKeySelector: ti0 => ti0.Outer.Outer.SubCat, 
+        innerKeySelector: s0 => s0.SourceDesc, 
+        resultSelector: (ti0, s0) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Supplier>, Source>(
+            Outer = ti0, 
+            Inner = s0
+        ))
+    .LeftJoin(
+        inner: DbSet<UserAccount>(), 
+        outerKeySelector: ti1 => ti1.Outer.Outer.Outer.WeigherIn, 
+        innerKeySelector: u => u.UserAccountIdOld, 
+        resultSelector: (ti1, u) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Supplier>, Source>, UserAccount>(
+            Outer = ti1, 
+            Inner = u
+        ))
+    .LeftJoin(
+        inner: DbSet<UserAccount>(), 
+        outerKeySelector: ti2 => ti2.Outer.Outer.Outer.Outer.WeigherOut, 
+        innerKeySelector: u0 => u0.UserAccountIdOld, 
+        resultSelector: (ti2, u0) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Supplier>, Source>, UserAccount>, UserAccount>(
+            Outer = ti2, 
+            Inner = u0
+        ))
+    .LeftJoin(
+        inner: DbSet<BaleType>(), 
+        outerKeySelector: ti3 => ti3.Outer.Outer.Outer.Outer.Outer.BalesId, 
+        innerKeySelector: b => b.BaleTypeIdOld, 
+        resultSelector: (ti3, b) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Supplier>, Source>, UserAccount>, UserAccount>, BaleType>(
+            Outer = ti3, 
+            Inner = b
+        ))
+    .LeftJoin(
+        inner: DbSet<Vehicle>(), 
+        outerKeySelector: ti4 => ti4.Outer.Outer.Outer.Outer.Outer.Outer.PlateNo, 
+        innerKeySelector: v => v.VehicleNum, 
+        resultSelector: (ti4, v) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<Purchase, RawMaterial>, Supplier>, Source>, UserAccount>, UserAccount>, BaleType>, Vehicle>(
+            Outer = ti4, 
+            Inner = v
+        ))
+    .Where(ti5 => DbSet<PurchaseTransaction>()
+        .Select(p0 => p0.ReceiptNum)
+        .Any(p => p == ti5.Outer.Outer.Outer.Outer.Outer.Outer.Outer.ReceiptNo) == False)
+    .OrderBy(ti5 => new { 
+        DateTimeIn = ti5.Outer.Outer.Outer.Outer.Outer.Outer.Outer.DateTimeIn.Value, 
+        ReceiptNum = ti5.Outer.Outer.Outer.Outer.Outer.Outer.Outer.ReceiptNo
+     })' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T07:33:11.8812942Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The LINQ expression 'a' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+    DateTime=2021-01-25T07:35:35.7163403Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T07:37:58.1612157Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T07:37:58.1661442Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T07:37:58.1712057Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T07:37:58.1755503Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T07:37:58.1809983Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T07:38:42.9773325Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T07:39:05.0328892Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T07:39:15.4483730Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T07:42:26.0830051Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T07:48:11.0311113Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T07:54:32.8362593Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T07:54:32.8422288Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T07:54:32.8491157Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T07:54:32.8539194Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T07:54:32.8595646Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T07:57:33.5003829Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T07:57:45.0271927Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T07:57:45.0376680Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T07:57:45.0511412Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T07:57:45.0585430Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T07:57:45.0646157Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T07:57:58.5856787Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T07:58:07.3321778Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T07:59:24.6443302Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T07:59:24.6498414Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T07:59:24.6561846Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T07:59:24.6609527Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T07:59:24.6658502Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T08:02:49.9187336Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Nullable object must have a value.
+    DateTime=2021-01-25T08:03:07.1933769Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:03:55.7471120Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:04:02.2426472Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:04:25.1328077Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:05:00.2251786Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:05:29.4493934Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:05:51.5737483Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:06:53.3448827Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:07:34.6671957Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:07:45.1252014Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:09:12.2887068Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:09:30.7629181Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:10:09.7797297Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:10:25.4708029Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:13:05.4587026Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Cannot insert the value NULL into column 'Trip', table 'UPPC.dbo.PurchaseTransactions'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+    DateTime=2021-01-25T08:13:45.6247982Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:14:43.2508667Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:14:49.6753135Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:18:01.4157240Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:18:20.0155029Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:18:58.3260005Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:20:11.7025875Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:21:10.3817806Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:21:47.2836341Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:21:47.2885806Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:21:47.2942453Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:21:47.2994022Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:21:47.3079191Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:23:35.4956702Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:23:58.2260443Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:25:26.8663978Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:25:26.8742127Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:25:26.8819013Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:25:26.8879961Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:25:26.8945816Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:25:45.1682848Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Argument types do not match
+    DateTime=2021-01-25T08:25:53.9979278Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:27:46.3440396Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:27:46.3497187Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:27:46.3567489Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:27:46.3633844Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:27:46.3702871Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:29:19.7972159Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:29:19.8085506Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:29:19.8223977Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:29:19.8300348Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:29:19.8390095Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : The entity type '<>f__AnonymousType13<Purchase, RawMaterial, Supplier, Source, UserAccount, UserAccount, BaleType, Vehicle>' was not found. Ensure that the entity type has been added to the model.
+    DateTime=2021-01-25T08:31:25.8822041Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T08:31:39.8183227Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:32:12.6659163Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:32:12.6713082Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:32:12.6772620Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:32:12.6814515Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:32:12.6858668Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Cannot insert the value NULL into column 'TimeZoneIn', table 'UPPC.dbo.PurchaseTransactions'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+    DateTime=2021-01-25T08:34:55.8885847Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Cannot insert the value NULL into column 'TimeZoneIn', table 'UPPC.dbo.PurchaseTransactions'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+    DateTime=2021-01-25T08:37:47.5188348Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:43:43.1381177Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:43:43.1439311Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:43:43.1498009Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:43:43.1545844Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:43:43.1597388Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T08:45:20.2246175Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T08:45:20.2307126Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T08:45:20.2374508Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T08:45:20.2432306Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T08:45:20.2483733Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-01-25T08:58:49.0810325Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T09:00:27.8558448Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T09:00:27.8610688Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T09:00:27.8706936Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T09:00:27.8765473Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T09:00:27.8816099Z
+WeighingSystemUPPCV3_5_Core.Controllers.PurchaseTransactionsController Error: 0 : Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+    DateTime=2021-01-25T09:01:46.6004777Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T09:02:11.4208268Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T09:02:11.4267136Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T09:02:11.4338497Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T09:02:11.4407068Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T09:02:11.4464051Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-01-25T09:10:27.5731134Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-01-25T09:10:27.5798260Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-01-25T09:10:27.5873774Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-01-25T09:10:27.5926538Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-01-25T09:10:27.5987192Z

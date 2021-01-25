@@ -170,6 +170,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DefaultValue(0)]
         public int PrintCount { get; set; }
 
+        public Nullable<long> VehicleTypeId { get; set; }
+
+        [MaxLength(25, ErrorMessage = "Vehicle Type must not exceed to 25 characters")]
+        public string VehicleTypeCode { get; set; }
+
 
         [MaxLength(50, ErrorMessage = "BaleTypeDesc length must not exceed to 50 characters")]
         public string BaleTypeDesc { get; set; }
@@ -181,6 +186,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [MaxLength(50, ErrorMessage = "ProductDesc length must not exceed to 50 characters")]
         public string ProductDesc { get; set; }
+
+        [MaxLength(50, ErrorMessage = "CategoryDesc length must not exceed to 50 characters")]
+        public string CategoryDesc { get; set; }
 
 
         [MaxLength(50, ErrorMessage = "Hauler Name length must not exceed to 50 characters")]

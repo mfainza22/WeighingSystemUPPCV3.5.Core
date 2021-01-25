@@ -22,9 +22,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [Range(0, 9999999, ErrorMessage = "Source Category is required.")]
         public long SourceCategoryId { get; set; }
 
-        [NotMapped]
-        public string SourceCategoryDesc { get; set; }
-
         public Nullable<bool> IsActive { get; set; }
 
         [ForeignKey("SourceCategoryId")]

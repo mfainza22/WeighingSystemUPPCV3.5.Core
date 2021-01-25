@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,9 +30,25 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.Get(parameters);
-                if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
-                return Ok(model.ToList().Select(a => { a.CalibrationTypeDesc = (a.CalibrationType?.CalibrationTypeDesc); a.CalibrationType = null; return a; }));
+                var model = repository.Get(parameters).Select(a => new
+                {
+                    a.CalibratedBy,
+                    a.CalibrationId,
+                    a.CalibrationTypeId,
+                    CalibrationTypeDesc = a.CalibrationType == null ? null : a.CalibrationType.CalibrationTypeDesc,
+                    a.Description,
+                    a.DTLastActualCalibration,
+                    a.DTLastCalibration,
+                    a.DTLastConfirmed,
+                    a.DTNextCalibration,
+                    a.DTReminder,
+                    a.Frequency,
+                    a.ItemNum,
+                    a.Owner
+                });
+
+                if (model.Count() == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
+                return Ok(model);
             }
             catch (Exception ex)
             {
@@ -46,7 +63,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.Get(new Calibration() { CalibrationId = id });
+                var model = repository.Get().FirstOrDefault(a=>a.CalibrationId == id);
                 if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 return Ok(model);
             }
@@ -140,11 +157,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.Get(new Calibration() { CalibrationId = id }).FirstOrDefault();
-                if (model == null)
-                {
-                    return BadRequest(Constants.ErrorMessages.NotFoundEntity);
-                }
+                var model = repository.Get().FirstOrDefault(a=>a.CalibrationId == id);
+                if (model == null) return BadRequest(Constants.ErrorMessages.NotFoundEntity);
                 repository.Delete(model);
                 return Accepted(Constants.ErrorMessages.DeleteSucess(1));
             }
@@ -164,15 +178,12 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 var arrayIds = ids.Split(",");
                 if (arrayIds.Length == 0) return BadRequest(Constants.ErrorMessages.NoEntityOnDelete);
-
                 repository.BulkDelete(arrayIds);
-
                 return Ok(Constants.ErrorMessages.DeleteSucess(arrayIds.Count()));
             }
             catch (Exception ex)
             {
                 logger.LogError(ex.GetExceptionMessage());
-                logger.LogDebug(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }

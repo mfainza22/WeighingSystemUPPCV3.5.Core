@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,7 +30,19 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.Get(parameters);
+                var model = repository.Get(parameters)
+                   .Include(a => a.Category).DefaultIfEmpty()
+                   .Select(a => new
+                   {
+                       a.RawMaterialId,
+                       a.RawMaterialCode,
+                       a.RawMaterialDesc,
+                       a.CategoryId,
+                       CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc,
+                       a.IsActive,
+                       a.Price
+                   });
+
                 return Ok(model);
             }
             catch (Exception ex)
@@ -104,13 +117,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.GetById(id);
-
-                if (model == null)
-                {
-                    return BadRequest(Constants.ErrorMessages.NotFoundEntity);
-                }
-
+                var model = repository.Get().Where(a => a.RawMaterialId == id).ToList().FirstOrDefault();
+                if (model == null) return BadRequest(Constants.ErrorMessages.NotFoundEntity);
                 repository.Delete(model);
 
                 return Accepted(Constants.ErrorMessages.DeleteSucess(1));

@@ -46,15 +46,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 return true;
         }
 
-        public Product GetById(long id)
-        {
-            return dbContext.Products.Find(id);
-        }
+        public Product GetById(long id) => Get().Include(a => a.Category).DefaultIfEmpty().FirstOrDefault();
 
-        public Product GetById(string id)
-        {
-            return dbContext.Products.Find(id);
-        }
+        public Product GetById(string id) => throw new NotImplementedException();
 
         public Product Update(Product model)
         {

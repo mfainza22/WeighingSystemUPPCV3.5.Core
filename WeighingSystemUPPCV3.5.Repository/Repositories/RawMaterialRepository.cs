@@ -53,16 +53,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.RawMaterials.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).Include(a => a.Category).AsNoTracking();
         }
 
-        public RawMaterial GetById(long id)
-        {
-            return dbContext.RawMaterials.Find(id);
-        }
+        public RawMaterial GetById(long id) => Get().Include(a => a.Category).DefaultIfEmpty().FirstOrDefault();
 
-        public RawMaterial GetById(string id)
-        {
-            return dbContext.RawMaterials.Find(id);
-        }
-
+        public RawMaterial GetById(string id) => throw new NotImplementedException();
+   
         public RawMaterial Update(RawMaterial model)
         {
             var entity = dbContext.RawMaterials.Find(model.RawMaterialId);

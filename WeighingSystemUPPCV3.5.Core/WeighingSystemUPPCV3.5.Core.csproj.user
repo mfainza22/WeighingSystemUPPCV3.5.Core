@@ -4,6 +4,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>WeghingSystemCore</ActiveDebugProfile>
+    <ActiveDebugProfile>WeghingSystemUPPCV3.5.Core</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>UPPC_CORE_x86</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

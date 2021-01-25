@@ -27,8 +27,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public Vehicle Create(Vehicle model)
         {
-            model.VehicleType = dbContext.VehicleTypes.Find(model.VehicleTypeId);
-            model.VehicleTypeDesc = (model.VehicleType ?? new VehicleType()).VehicleTypeDesc;
             dbContext.Vehicles.Add(model);
             dbContext.SaveChanges();
             return model;
@@ -65,9 +63,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public Vehicle GetById(long id)
         {
             var vehicle = dbContext.Vehicles.Find(id);
-
-            dbContext.Entry(vehicle).Reference(nameof(Vehicle.VehicleType)).Load();
-
+            //dbContext.Entry(vehicle).Reference(nameof(Vehicle.VehicleType)).Load();
             return vehicle;
         }
 
@@ -88,20 +84,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.VehicleNum = model.VehicleNum;
             entity.VehicleTypeId = model.VehicleTypeId;
             entity.HaulerId = model.HaulerId;
-            entity.HaulerIdOld = model.HaulerIdOld;
             entity.CustomerId = model.CustomerId;
-            entity.CustomerIdOld = model.CustomerIdOld;
             entity.SupplierId = model.SupplierId;
-            entity.SupplierIdOld = model.SupplierIdOld;
-            entity.HaulerId = model.HaulerId;
-            entity.HaulerIdOld = model.HaulerIdOld;
             entity.IsActive = model.IsActive;
-
+            var vehicleTypeCode = dbContext.VehicleTypes.Where(a => a.VehicleTypeId == entity.VehicleTypeId).Select(a => a.VehicleTypeCode).FirstOrDefault();
             dbContext.Vehicles.Update(entity);
             dbContext.SaveChanges();
 
-            entity.VehicleType = dbContext.VehicleTypes.Find(entity.VehicleTypeId);
-            entity.VehicleTypeDesc = (entity.VehicleType ?? new VehicleType()).VehicleTypeDesc;
+          
             return entity;
         }
 
@@ -124,15 +114,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var whereClauses = new List<string>();
             var sqlParams = new List<SqlParameter>();
             if (parameters == null) return new SqlRawParameter() { SqlParameters = sqlParams, SqlQuery = sqlQry.ToString() };
-            if (!parameters.VehicleTypeId.IsNullOrZero())
+            if (parameters.VehicleTypeId.IsNullOrZero()==false)
             {
                 sqlParams.Add(new SqlParameter(nameof(parameters.VehicleTypeId).Parametarize(), parameters.VehicleTypeId));
                 whereClauses.Add($"{nameof(parameters.VehicleTypeId)} = {nameof(parameters.VehicleTypeId).Parametarize()}");
             }
-            if (String.IsNullOrEmpty(parameters.VehicleNum) == false )
+            if (parameters.VehicleNum.IsNull()==false)
             {
-                sqlParams.Add(new SqlParameter(nameof(parameters.VehicleTypeId).Parametarize(), parameters.VehicleTypeId));
-                whereClauses.Add($"{nameof(parameters.VehicleTypeId)} = {nameof(parameters.VehicleTypeId).Parametarize()}");
+                sqlParams.Add(new SqlParameter(nameof(parameters.VehicleNum).Parametarize(), parameters.VehicleNum));
+                whereClauses.Add($"{nameof(parameters.VehicleNum)} = {nameof(parameters.VehicleNum).Parametarize()}");
             }
             if (!parameters.IsActive.IsNull())
             {
@@ -150,7 +140,42 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public Vehicle GetByName(string name)
         {
-            return Get().FirstOrDefault(a => a.VehicleNum == name.DefaultIfEmpty());
+            return Get().Where(a=>a.VehicleNum == name).Include(a=>a.VehicleType).AsNoTracking().ToList().FirstOrDefault(a => a.VehicleNum == name.DefaultIfEmpty());
         }
-    }
+
+        public void MigrateOldDb()
+        {
+            var trucks = dbContext.Trucks.AsNoTracking().ToList();
+            var suppliers = dbContext.Suppliers.AsNoTracking().ToList();
+            var customers = dbContext.Suppliers.AsNoTracking().ToList();
+            var haulers = dbContext.Suppliers.AsNoTracking().ToList();
+            var vehicleTypes = dbContext.VehicleTypes.AsNoTracking().ToList();
+
+            for (var i =0; i <= trucks.Count-1; i++)
+            {
+                var truck = trucks[i];
+                var exists = dbContext.Vehicles.Count(a => a.VehicleNum == trucks[i].PlateNo);
+                if (exists > 0) continue;
+
+                var vehicle = new Vehicle();
+                vehicle.VehicleNum = truck.PlateNo;
+                var vehicleTypeId = vehicleTypes.Where(a => a.VehicleTypeCode == truck.TruckCode).Select(a => a.VehicleTypeId).FirstOrDefault();
+                vehicle.VehicleTypeId = vehicleTypeId;
+
+                var customerId = dbContext.Customers.Where(a => a.CustomerIdOld == truck.CustomerId).AsNoTracking().Select(a=>a.CustomerId).FirstOrDefault();
+                vehicle.CustomerId = customerId;
+
+                var supplierId = dbContext.Suppliers.Where(a => a.SupplierIdOld == truck.SupplierId).AsNoTracking().Select(a => a.SupplierId).FirstOrDefault();
+                vehicle.SupplierId = supplierId;
+
+                var haulerId = dbContext.Haulers.Where(a => a.HaulerIdOld == truck.HaulerID).AsNoTracking().Select(a => a.HaulerId).FirstOrDefault();
+                vehicle.HaulerId = haulerId;
+                vehicle.IsActive = true;
+                dbContext.Vehicles.Add(vehicle);
+                dbContext.SaveChanges();
+
+            }
+        }
+
+        }
 }

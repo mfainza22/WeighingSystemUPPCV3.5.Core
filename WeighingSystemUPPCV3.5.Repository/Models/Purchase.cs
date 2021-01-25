@@ -242,5 +242,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public decimal? MC30 { get; set; }
 
         public DateTime? MC30DT { get; set; }
+
     }
 }

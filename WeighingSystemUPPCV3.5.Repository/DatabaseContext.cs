@@ -77,6 +77,8 @@ namespace WeighingSystemUPPCV3_5_Repository
 
         public DbSet<Models.ReportDay> ReportDays { get; set; }
         public DbSet<Models.TVFInventory> TVFInventories { get; set; }
+        public DbSet<Models.AuditLog> AuditLogs { get; set; }
+        public DbSet<Models.AuditLogEvent> AuditLogEvents { get; set; }
         /// <summary>
         /// OLD Tables
         /// </summary>
@@ -84,8 +86,7 @@ namespace WeighingSystemUPPCV3_5_Repository
         public DbSet<Models.Sale> Sales { get; set; }
         public DbSet<Models.Tbl_PO> Tbl_POs { get; set; }
         public DbSet<Models.BalesInv> BalesInvs { get; set; }
-        public DbSet<Models.AuditLog> AuditLogs { get; set; }
-        public DbSet<Models.AuditLogEvent> AuditLogEvents { get; set; }
+        public DbSet<Models.Truck> Trucks{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

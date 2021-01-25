@@ -27,10 +27,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public Nullable<bool> IsActive { get; set; }
 
-        public Nullable<long> CategoryId { get; set; }
-
-        [NotMapped]
-        public string CategoryDesc { get; set; }
+        public long CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
     }

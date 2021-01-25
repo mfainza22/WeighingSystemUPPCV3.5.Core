@@ -82,8 +82,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public IQueryable<Calibration> Get(Calibration parameters = null)
         {
+
             var sqlRawParams = GetSqlRawParameter(parameters);
+            if (sqlRawParams.SqlParameters.Count == 0) return dbContext.Calibrations.Include(a => a.CalibrationType).AsNoTracking();
             return dbContext.Calibrations.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).Include(a => a.CalibrationType).AsNoTracking();
+
         }
 
         public Calibration Update(Calibration model)

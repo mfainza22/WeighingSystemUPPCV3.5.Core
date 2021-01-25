@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,11 +30,20 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                return Ok(repository.Get(parameters).ToList().Select(a =>
-                {
-                    a.VehicleTypeDesc = (a.VehicleType ?? new VehicleType()).VehicleTypeDesc;
-                    return a;
-                }));
+                //var result = repository.Get(parameters)
+                //    .Include(a => a.VehicleType)
+                //    .Include(a => a.Customer)
+                //    .Include(a => a.Hauler).DefaultIfEmpty();
+
+                var result = repository.Get()
+               .Where(a => a.VehicleNum == parameters.VehicleNum)
+               .Include(a => a.VehicleType).DefaultIfEmpty()
+               .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
+
+
+                var newVehicle = new Vehicle();
+                newVehicle.VehicleTypeId = result.VehicleTypeId;
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -164,6 +174,16 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 return Accepted(true);
             }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status422UnprocessableEntity)]
+        public IActionResult MigrateOldDb()
+        {
+            repository.MigrateOldDb();
+            return Accepted(true);
         }
 
         private bool validateEntity(Vehicle model)

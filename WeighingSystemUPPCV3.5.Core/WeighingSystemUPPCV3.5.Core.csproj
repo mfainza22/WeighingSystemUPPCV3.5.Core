@@ -16,15 +16,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="SysUtility.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -40,6 +35,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\..\utils\SysUtility\SysUtility.csproj" />
     <ProjectReference Include="..\WeighingSystemUPPCV3.5.Repository\WeighingSystemUPPCV3.5.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="sys.file">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 
