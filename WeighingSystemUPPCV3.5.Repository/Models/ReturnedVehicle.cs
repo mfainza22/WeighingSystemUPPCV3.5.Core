@@ -12,14 +12,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ReturnedVehicleId { get; set; }
 
-        public long SaleId { get; set; }
-
         public DateTime DTArrival { get; set; }
 
         public decimal PlantNetWt { get; set; }
 
         public decimal MC { get; set; }
-
 
         public decimal Corrected10 { get; set; }
 
@@ -41,7 +38,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public decimal DiffCorrected12 { get; set; }
 
-        public decimal BaleCount { get; set; }
+        public int BaleCount { get; set; }
 
         public int DiffDay { get; set; }
 
@@ -71,6 +68,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [MaxLength(60, ErrorMessage = "User Account Full Name length must not exceed to 60 characters")]
         public string UserAccountFullName { get; set; }
+
+        public long SaleId { get; set; }
+        
+        [ForeignKey("SaleId")]
+        public virtual SaleTransaction SaleTransaction{ get; set; }
 
     }
 

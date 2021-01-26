@@ -24,7 +24,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public SaleTransactionRepository(DatabaseContext dbContext,
             IPrintLogRepository printLogRepository,
-            IBaleRepository baleRepository, 
+            IBaleRepository baleRepository,
             IReturnedVehicleRepository returnedVehicleRepository,
             ILogger<SaleTransactionRepository> logger)
         {
@@ -73,26 +73,26 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public bool Delete(SaleTransaction model)
         {
-                dbContext.SaleTransactions.Remove(model);
-                var qry = $"UPDATE Bales SET ";
-                qry += $"{nameof(Bale.SaleId)}=${model.SaleId}, ";
-                qry += $"{nameof(Bale.DTDelivered)}=null ";
-                qry += $"WHERE SaleId = {model.SaleId}";
-                dbContext.Database.ExecuteSqlRaw(qry);
-                dbContext.SaveChanges();
-                return true;
+            dbContext.SaleTransactions.Remove(model);
+            var qry = $"UPDATE Bales SET ";
+            qry += $"{nameof(Bale.SaleId)}=${model.SaleId}, ";
+            qry += $"{nameof(Bale.DTDelivered)}=null ";
+            qry += $"WHERE SaleId = {model.SaleId}";
+            dbContext.Database.ExecuteSqlRaw(qry);
+            dbContext.SaveChanges();
+            return true;
         }
 
         public bool BulkDelete(string[] id)
         {
-                if (id == null) return false;
-                if (id.Length == 0) return false;
+            if (id == null) return false;
+            if (id.Length == 0) return false;
 
-                var entitiesToDelete = dbContext.SaleTransactions.Where(a => id.Contains(a.SaleId.ToString()));
+            var entitiesToDelete = dbContext.SaleTransactions.Where(a => id.Contains(a.SaleId.ToString()));
 
-                dbContext.SaleTransactions.RemoveRange(entitiesToDelete);
-                dbContext.SaveChanges();
-                return true;
+            dbContext.SaleTransactions.RemoveRange(entitiesToDelete);
+            dbContext.SaveChanges();
+            return true;
         }
 
         public IQueryable<SaleTransaction> GetByFilter(TransactionFilter parameters = null)
@@ -139,8 +139,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             if (parameters.Returned.HasValue)
             {
-                sqlParams.Add(new SqlParameter(nameof(parameters.Returned).Parametarize(), parameters.Returned));
-                whereClauses.Add($"{nameof(SaleTransaction.Returned)} = {nameof(parameters.Returned).Parametarize()}");
+                if (parameters.Returned.Value)
+                {
+                    whereClauses.Add($"(SELECT COUNT(*) FROM ReturnedVehicles Where ReturnedVehicles.SaleId = SaleTransactions.SaleId) > 0");
+                } else
+                {
+                    whereClauses.Add($"(SELECT COUNT(*) FROM ReturnedVehicles Where ReturnedVehicles.SaleId = SaleTransactions.SaleId) = 0");
+                }
             }
 
             if (whereClauses.Count > 0)
@@ -248,154 +253,150 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
         {
-            var baleTypes = dbContext.BaleTypes.AsNoTracking().ToList();
-            var customers = dbContext.Customers.AsNoTracking().ToList();
-            var products = dbContext.Products.Include(a => a.Category).AsNoTracking().ToList();
-            var haulers = dbContext.Haulers.AsNoTracking().ToList();
-            var weighers = dbContext.UserAccounts.AsNoTracking().ToList();
-            var vehicles = dbContext.Vehicles.AsNoTracking().ToList();
-            var vehicleTypes = dbContext.VehicleTypes.AsNoTracking().ToList();
-
+            #region Old Sale Migration
             dtFrom = dtFrom.Date;
             dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
-            var sales = dbContext.Sales.Where(a => a.DateTimeIn >= dtFrom && a.DateTimeIn <= dtTo).AsNoTracking().ToList();
-            foreach (var sale in sales)
+            var sales = dbContext.Sales.Where(a => a.DateTimeIn >= dtFrom && a.DateTimeIn <= dtTo).OrderBy(a => a.ReceiptNo)
+                .GroupJoin(dbContext.Products.Include(a => a.Category).Where(a => a.ProductIdOld != null),
+                    sale => sale.ProductId,
+                    product => product.ProductIdOld,
+                    (sale, product) => new { sale, product })
+                .SelectMany(a => a.product.DefaultIfEmpty(),
+                (sale, product) => new { sale.sale, product })
+                .GroupJoin(dbContext.Customers,
+                    t => t.sale.CustomerId,
+                    customer => customer.CustomerIdOld,
+                    (sale, customer) => new { sale.sale, sale.product, customer })
+                 .SelectMany(a => a.customer.DefaultIfEmpty(),
+                (sale, customer) => new { sale.sale, sale.product, customer })
+                  .GroupJoin(dbContext.Haulers,
+                    t => t.sale.HaulerID,
+                    hauler => hauler.HaulerIdOld,
+                    (sale, hauler) => new { sale.sale, sale.product, sale.customer, hauler })
+                 .SelectMany(a => a.hauler.DefaultIfEmpty(),
+                (sale, hauler) => new { sale.sale, sale.product, sale.customer, hauler })
+                 .GroupJoin(dbContext.UserAccounts,
+                    t => t.sale.WeigherIn,
+                    user => user.UserAccountIdOld,
+                    (sale, user) => new { sale.sale, sale.product, sale.customer, sale.hauler, user })
+                 .SelectMany(a => a.user.DefaultIfEmpty(),
+                (sale, user) => new { sale.sale, sale.product, sale.customer, sale.hauler, userIn = user })
+                 .GroupJoin(dbContext.UserAccounts,
+                    t => t.sale.WeigherOut,
+                    user => user.UserAccountIdOld,
+                    (sale, user) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, user })
+                 .SelectMany(a => a.user.DefaultIfEmpty(),
+                (sale, user) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, userOut = user })
+                  .GroupJoin(dbContext.BaleTypes,
+                    t => t.sale.BalesId,
+                    baleType => baleType.BaleTypeIdOld,
+                    (sale, baleType) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, baleType })
+                 .SelectMany(a => a.baleType.DefaultIfEmpty(),
+                (sale, baleType) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, baleType })
+                 .GroupJoin(dbContext.Vehicles.Include(a => a.VehicleType),
+                    t => t.sale.PlateNo,
+                    vehicle => vehicle.VehicleNum,
+                    (sale, vehicle) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, vehicle })
+                 .SelectMany(a => a.vehicle.DefaultIfEmpty(),
+                (sale, vehicle) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, vehicle })
+                 .GroupJoin(dbContext.UserAccounts.Select(a=>new { a.UserAccountId,a.UserAccountIdOld, a.FullName }).DefaultIfEmpty(),
+                    t => t.sale.Plant_User,
+                    plantUser => plantUser.UserAccountIdOld,
+                    (sale, plantUser) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, sale.vehicle,plantUser })
+                 .SelectMany(a => a.plantUser.DefaultIfEmpty(),
+                (sale, plantUser) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, sale.vehicle,plantUser })
+                 .AsNoTracking().ToList();
+
+
+            var allSale = sales.Select(a => new SaleTransaction
             {
-                var exist = dbContext.SaleTransactions.Where(a => a.VehicleNum == sale.PlateNo && a.DateTimeIn == sale.DateTimeIn).AsNoTracking().Count();
-                if (exist > 0) continue;
+                SaleId = 0,
+                BaleCount = Convert.ToInt32(a.sale.NoOfBales ?? 0),
+                BaleTypeId = a.baleType == null ? 0 : a.baleType.BaleTypeId,
+                BaleTypeDesc = a.baleType == null ? null : a.baleType.BaleTypeDesc,
+                BalingStationCode = null,
+                BalingStationName = null,
+                CategoryId = a.product == null ? 0 : a.product.CategoryId,
+                CategoryDesc = a.product == null ? null : a.product.Category == null ? null : a.product.Category.CategoryDesc,
+                Corrected10 = a.sale.Corrected_10 ?? 0,
+                Corrected12 = a.sale.Corrected_12 ?? 0,
+                Corrected14 = a.sale.Corrected_14 ?? 0,
+                Corrected15 = a.sale.Corrected_15 ?? 0,
+                DateTimeIn = a.sale.DateTimeIn.Value,
+                DateTimeOut = a.sale.DateTimeOut,
+                DriverName = a.sale.DriverName,
+                FirstDay = a.sale.FirstDay.Value,
+                GrossWt = a.sale.Gross ?? 0,
+                TareWt = a.sale.Tare ?? 0,
+                NetWt = a.sale.net ?? 0,
+                IsOfflineIn = a.sale.Processed_In == "OFFLINE",
+                IsOfflineOut = a.sale.Processed_In == "OFFLINE",
+                LastDay = a.sale.LastDay.Value,
+                MoistureReaderId = null,
+                MC = a.sale.Moisture ?? 0,
+                MCStatus = Convert.ToInt32(a.sale.MoistureStatus ?? 0),
+                MoistureReaderDesc = null,
+                MoistureSettingsId = 1,
+                OT = a.sale.OutThrow ?? 0,
+                PM = a.sale.PM ?? 0,
+                Price = 0,
+                PrintCount = Convert.ToInt32(a.sale.NoOfPrinting ?? 0),
+                ProductId = a.product == null ? 0 : a.product.ProductId,
+                ProductDesc = a.product == null ? "" : a.product.ProductDesc,
+                ReceiptNum = a.sale.ReceiptNo,
+                Remarks = a.sale.Remarks,
+                SealNum = a.sale.SealNo,
+                SignatoryId = 1,
+                CustomerId = a.customer == null ? 0 : a.customer.CustomerId,
+                CustomerName = a.customer == null ? null : a.customer.CustomerName,
+                HaulerId = a.hauler == null ? 0 : a.hauler.HaulerId,
+                HaulerName = a.hauler == null ? null : a.hauler.HaulerName,
+                TimeZoneIn = a.sale.tz_in == null ? "GMT+08:00 PH" : a.sale.tz_in,
+                TimeZoneOut = a.sale.tz_out == null ? "GMT+08:00 PH" : a.sale.tz_out,
+                Trip = a.sale.TypeOfTrip,
+                VehicleNum = a.sale.PlateNo,
+                VehicleTypeId = a.vehicle == null ? null : (Nullable<long>)a.vehicle.VehicleTypeId,
+                VehicleTypeCode = a.vehicle == null ? null : a.vehicle.VehicleType == null ? null : a.vehicle.VehicleType.VehicleTypeCode,
+                WeekDay = Convert.ToInt32(a.sale.Weekday ?? "0"),
+                WeekNum = Convert.ToInt32(a.sale.WeekNo??0),
+                WeigherInId = a.userIn == null ? null : a.userIn.UserAccountId,
+                WeigherInName = a.userIn == null ? null : a.userIn.FullName,
+                WeigherOutId = a.userOut == null ? null : a.userOut.UserAccountId,
+                WeigherOutName = a.userOut == null ? null : a.userOut.FullName,
+                ReturnedVehicle = a.sale.Returned ?? false == true ? null : new ReturnedVehicle()
+                {
+                    BaleCount = Convert.ToInt32(a.sale.Plant_BaleCount ?? 0),
+                    Corrected10 = a.sale.Plant_MC10 ?? 0,
+                    Corrected12 = a.sale.Plant_MC12 ?? 0,
+                    Corrected14 = 0,
+                    DiffCorrected10 = a.sale.Plant_DiffMC10 ?? 0,
+                    DiffCorrected12 = a.sale.Plant_DiffMC12 ?? 0,
+                    DiffDay = Convert.ToInt32(a.sale.Plant_DayInterval ?? 0),
+                    DiffTime = a.sale.Plant_TimeInterval ?? 0,
+                    DiffNet = a.sale.Plant_DiffNet ?? 0,
+                    DTArrival = a.sale.DTArrival?? DateTime.Now,
+                    DTGuardIn = a.sale.Plant_Guard_in,
+                    DTGuardOut = a.sale.Plant_Guard_out,
+                    DTOutToPlant = null,
+                    MC = a.sale.Plant_Moisture ?? 0,
+                    PM = a.sale.PM ?? 0,
+                    PlantNetWt = a.sale.Plant_NetWt ?? 0,
+                    PMAdjustedWt = (a.sale.PM ?? 0) > 5 ? (Math.Round(((a.sale.PM ?? 0) - 0.5M) * a.sale.Plant_NetWt ?? 0) / 100) : 0,
+                    OT = a.sale.OutThrow ?? 0,
+                    OTAdjustedWt = (a.sale.OutThrow ?? 0) > 5 ? (Math.Round(((a.sale.OutThrow ?? 0) - 0.5M) * a.sale.Plant_NetWt ?? 0) / 100) : 0,
+                    Remarks = a.sale.Plant_Remarks??String.Empty,
+                    TimeVarianceRemarks = a.sale.time_variance_remarks??String.Empty,
+                    UserAccountId = a.plantUser != null ? a.plantUser.UserAccountId : null,
+                    UserAccountFullName = null,
+                    VehicleOrigin = a.sale.Plant_TruckOrigin??String.Empty,
+                }
+            }).OrderBy(a => a.DateTimeIn).ToList();
 
-                var saleTrans = new SaleTransaction();
-                saleTrans.ReceiptNum = sale.ReceiptNo;
-                saleTrans.DateTimeIn = sale.DateTimeIn.Value;
-                saleTrans.DateTimeOut = sale.DateTimeOut;
-                saleTrans.VehicleNum = sale.PlateNo;
-
-                var vehicle = vehicles.Where(a => a.VehicleNum == saleTrans.VehicleNum).FirstOrDefault();
-                if (vehicle != null)
-                {
-                    var vehicleType = vehicleTypes.FirstOrDefault(a => a.VehicleTypeId == vehicle.VehicleTypeId);
-                    if (vehicleType != null)
-                    {
-                        saleTrans.VehicleTypeId = vehicleType.VehicleTypeId;
-                        saleTrans.VehicleTypeCode = vehicleType.VehicleTypeCode;
-                    }
-                }
-
-                //var truck = trucks.Where(a => a.PlateNo == sale.PlateNo).FirstOrDefault();
-                //if (truck != null)
-                //{
-                //    var vehicleType = vehicleTypes.Where(a => a.VehicleTypeCode == truck.TruckCode).FirstOrDefault();
-                //    if (vehicleType != null)
-                //    {
-                //        purchaseTrans.VehicleTypeId = vehicleType.VehicleTypeId;
-                //        purchaseTrans.VehicleTypeCode = vehicleType.VehicleTypeCode;
-                //    }
-                //};
-                var customer = customers.FirstOrDefault(a => a.CustomerIdOld == sale.CustomerId);
-                if (customer != null)
-                {
-                    saleTrans.CustomerId = customer.CustomerId;
-                    saleTrans.CustomerName = customer.CustomerName;
-                }
-                var hauler = haulers.FirstOrDefault(a => a.HaulerIdOld == sale.HaulerID);
-                if (hauler != null)
-                {
-                    saleTrans.HaulerId = hauler.HaulerId;
-                    saleTrans.HaulerName = hauler.HaulerName;
-                }
-                var product = products.FirstOrDefault(a => a.ProductIdOld == sale.ProductId);
-                if (product != null)
-                {
-                    saleTrans.ProductId = product.ProductId;
-                    saleTrans.ProductDesc = product.ProductDesc;
-                    saleTrans.CategoryId = product.Category.CategoryId;
-                }
-                var baleType = baleTypes.FirstOrDefault(a => a.BaleTypeIdOld == sale.BalesId);
-                if (baleType != null)
-                {
-                    saleTrans.BaleTypeId = baleType.BaleTypeId;
-                    saleTrans.BaleTypeDesc = baleType.BaleTypeDesc;
-                }
-                saleTrans.BaleCount = (int)sale.NoOfBales;
-                saleTrans.GrossWt = sale.Gross ?? 0;
-                saleTrans.TareWt = sale.Tare ?? 0;
-                saleTrans.NetWt = sale.net ?? 0;
-                saleTrans.Corrected10 = sale.Corrected_10 ?? 0;
-                saleTrans.Corrected12 = sale.Corrected_12 ?? 0;
-                saleTrans.Corrected14 = sale.Corrected_14 ?? 0;
-                saleTrans.Corrected15 = sale.Corrected_15 ?? 0;
-                saleTrans.MC = sale.Moisture ?? 0;
-                saleTrans.MCStatus = 1;
-                saleTrans.PM = sale.PM ?? 0;
-                saleTrans.OT = sale.OutThrow ?? 0;
-                saleTrans.Remarks = sale.Remarks;
-                saleTrans.SealNum = sale.SealNo;
-                saleTrans.DriverName = sale.DriverName;
-                var weigher = weighers.FirstOrDefault(a => a.UserAccountIdOld == sale.WeigherIn.Trim());
-                if (weigher != null)
-                {
-                    saleTrans.WeigherInId = weigher.UserAccountId;
-                    saleTrans.WeigherInName = weigher.FullName;
-                }
-                weigher = weighers.FirstOrDefault(a => a.UserAccountIdOld == sale.WeigherOut.Trim());
-                if (weigher != null)
-                {
-                    saleTrans.WeigherOutId = weigher.UserAccountId;
-                    saleTrans.WeigherOutName = weigher.FullName;
-                }
-                saleTrans.IsOfflineIn = sale.Processed_In == "OFFLINE";
-                saleTrans.IsOfflineOut = sale.Processed_Out == "OFFLINE";
-                saleTrans.PrintCount = (int)(sale.NoOfPrinting ?? 0);
-                saleTrans.WeekDay = Convert.ToInt32(sale.Weekday);
-                saleTrans.WeekNum = Convert.ToInt32(sale.WeekNo);
-                saleTrans.FirstDay = sale.FirstDay ?? DateTime.Now;
-                saleTrans.LastDay = sale.LastDay ?? DateTime.Now;
-                saleTrans.Trip = sale.TypeOfTrip;
-                saleTrans.MoistureSettingsId = 1;
-                saleTrans.SignatoryId = 1;
-
-                saleTrans.Returned = sale.Returned ?? false;
-
-                saleTrans.TimeZoneIn = sale.tz_in ?? sale.DateTimeIn.GetTimeZone();
-                saleTrans.TimeZoneOut = sale.tz_out ?? sale.DateTimeOut.GetTimeZone();
-
-                dbContext.SaleTransactions.Add(saleTrans);
+            for (var i = 0; i <= allSale.Count - 1; i++)
+            {
+                dbContext.AddRange(allSale[i]);
                 dbContext.SaveChanges();
-
-                if (saleTrans.Returned)
-                {
-                    var returnedVehicle = new ReturnedVehicle();
-                    returnedVehicle.BaleCount = Convert.ToDecimal(sale.Plant_BaleCount ?? 0);
-                    returnedVehicle.PMAdjustedWt = Convert.ToDecimal(sale.Plant_DedWt ?? 0);
-                    returnedVehicle.DiffDay = Convert.ToInt32(sale.Plant_DayInterval ?? 0);
-                    returnedVehicle.DiffTime = Convert.ToInt32(sale.Plant_TimeInterval ?? 0);
-                    returnedVehicle.DiffCorrected10 = Convert.ToInt32(sale.Plant_DiffMC10 ?? 0);
-                    returnedVehicle.DiffCorrected12 = Convert.ToInt32(sale.Plant_DiffMC12 ?? 0);
-                    returnedVehicle.DiffNet = Convert.ToInt32(sale.Plant_DiffNet ?? 0);
-                    returnedVehicle.DTArrival = sale.DTArrival ?? DateTime.Now;
-                    returnedVehicle.DTGuardIn = sale.Plant_Guard_in ?? DateTime.Now;
-                    returnedVehicle.DTGuardOut = sale.Plant_Guard_out ?? DateTime.Now;
-                    returnedVehicle.MC = sale.Plant_Moisture ?? 0;
-                    returnedVehicle.Corrected10 = sale.Plant_MC10 ?? 0;
-                    returnedVehicle.Corrected12 = sale.Plant_MC12 ?? 0;
-                    returnedVehicle.OT = sale.OutThrow ?? 0;
-                    returnedVehicle.PM = sale.PM ?? 0;
-                    returnedVehicle.PlantNetWt = sale.Plant_NetWt ?? 0;
-                    returnedVehicle.PMAdjustedWt = returnedVehicleRepository.GetPMAdjustedWt(returnedVehicle);
-                    returnedVehicle.OTAdjustedWt = returnedVehicleRepository.GetOTAdjustedWt(returnedVehicle);
-                    returnedVehicle.Remarks = sale.Plant_Remarks;
-                    returnedVehicle.VehicleOrigin = sale.Plant_TruckOrigin;
-                    returnedVehicle.TimeVarianceRemarks = sale.time_variance_remarks;
-                    var plantUser = weighers.FirstOrDefault(a => a.UserAccountIdOld == sale.Plant_User);
-                    if (plantUser != null)
-                    {
-                        returnedVehicle.UserAccountId = plantUser.UserAccountId;
-                          returnedVehicle.UserAccountFullName = plantUser.FullName;
-                        }
-                    returnedVehicle.SaleId = saleTrans.SaleId;
-                    dbContext.ReturnedVehicles.Add(returnedVehicle);
-                    dbContext.SaveChanges();
-                }
+                dbContext.Entry(allSale[i]).State = EntityState.Detached;
             }
         }
     }

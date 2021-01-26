@@ -179,7 +179,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                       && (a.CustomerId == reportParameters.ClientId || reportParameters.ClientId == 0)
                       && (a.ProductId == reportParameters.CommodityId || reportParameters.CommodityId == 0)
                       && (a.CategoryId == reportParameters.CategoryId || reportParameters.CategoryId == 0)
-                      && (a.Returned == isReturned || isReturned == null)
+                      //&& (a.ReturnedVehicle > 0 || isReturned == null)
                       );
 
             query = efquery.ToQueryString();
@@ -314,8 +314,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             if (saleIds == null || saleIds.Count() == 0) return;
 
-            var query = dbContext.ReturnedVehicles
-                    .Where(a => saleIds.Contains(a.SaleId)).ToQueryString();
+            var query = dbContext.SaleTransactions.Include(a=>a.ReturnedVehicle)
+                    .Where(a => saleIds.Contains(a.SaleId))
+                    .Select(a=>a.ReturnedVehicle).ToQueryString();
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.ReturnedVehicles));
             sa.Dispose();

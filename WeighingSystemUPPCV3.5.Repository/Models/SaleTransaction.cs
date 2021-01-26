@@ -104,6 +104,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public decimal Corrected15 { get; set; }
 
 
+        public decimal Price { get; set; }
+
+
         [Required(ErrorMessage = " Driver Name is required ", AllowEmptyStrings = false)]
         [MaxLength(50, ErrorMessage = "Driver Name length must not exceed to 50 characters")]
         public string DriverName { get; set; }
@@ -211,20 +214,17 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(50, ErrorMessage = "Baling Station Name length must not exceed to 50 characters")]
         public string BalingStationName { get; set; }
 
-        [DefaultValue(false)]
-        public bool Returned { get; set; }
-
-
         [ForeignKey("SaleId")]
         public virtual ICollection<Bale> Bales { get; set; }
-
-
 
         [NotMapped]
         public long InyardId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateOut { get; set; }
+
+        public virtual ReturnedVehicle ReturnedVehicle { get; set; }
+
     }
 
 }

@@ -17,7 +17,7 @@ namespace WeighingSystemUPPCV3_5_Repository
       });
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
-    
+
         public DbSet<Models.Customer> Customers { get; set; }
         public DbSet<Models.Supplier> Suppliers { get; set; }
 
@@ -86,7 +86,7 @@ namespace WeighingSystemUPPCV3_5_Repository
         public DbSet<Models.Sale> Sales { get; set; }
         public DbSet<Models.Tbl_PO> Tbl_POs { get; set; }
         public DbSet<Models.BalesInv> BalesInvs { get; set; }
-        public DbSet<Models.Truck> Trucks{ get; set; }
+        public DbSet<Models.Truck> Trucks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -102,6 +102,18 @@ namespace WeighingSystemUPPCV3_5_Repository
 
             modelBuilder.Entity<RawMaterial>().Property(a => a.Price).HasPrecision(8, 3);
             modelBuilder.Entity<PurchaseTransaction>().Property(a => a.Price).HasPrecision(8, 3);
+
+
+            //modelBuilder.Entity<SaleTransaction>(entity =>
+            //{
+            //    entity.HasIndex(a => a.ReceiptNum).IsUnique(true);
+            //});
+
+            //        modelBuilder.Entity<SaleTransaction>()
+            //.HasOne(e => e.ReturnedVehicle)
+            //.WithOne(a=>a.SaleTransaction)
+            //.OnDelete(DeleteBehavior.ClientCascade);
+
             //modelBuilder.Entity<Inyard>(entity =>
             //{
 

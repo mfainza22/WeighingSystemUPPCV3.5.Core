@@ -27,7 +27,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public ReturnedVehicle GetBySaleId(long saleId)
         {
-            return dbContext.ReturnedVehicles.AsNoTracking().Where(a => a.SaleId == saleId).FirstOrDefault();
+            return dbContext.SaleTransactions.Where(a => a.SaleId == saleId).Include(a => a.ReturnedVehicle).Select(a => a.ReturnedVehicle).AsNoTracking().FirstOrDefault();
         }
 
         public ReturnedVehicle Create(ReturnedVehicle model)
@@ -39,10 +39,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             model.Corrected14 = correctedMC.Corrected14;
             //model.Corrected15 = correctedMC.Corrected15;
 
-            var sale = dbContext.SaleTransactions.Where(a=>a.SaleId == model.SaleId).AsNoTracking().FirstOrDefault();
             dbContext.ReturnedVehicles.Add(model);
-            sale.Returned = true;
-            dbContext.SaleTransactions.Update(sale);
             dbContext.SaveChanges();
             return model;
         }
@@ -51,7 +48,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
 
 
-            var entity = GetBySaleId(model.SaleId);
+            var entity = GetBySaleId(model.ReturnedVehicleId);
             entity.MC = model.MC;
             entity.BaleCount = model.BaleCount;
             entity.PMAdjustedWt = model.PMAdjustedWt;
@@ -87,36 +84,32 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public Dictionary<string, string> Validate(ReturnedVehicle model)
         {
             var modelStateErrors = new Dictionary<string, string>();
-            var saleTransaction = dbContext.SaleTransactions.Where(a => a.SaleId == model.SaleId).AsNoTracking().ToList().FirstOrDefault();
+            var saleTransaction = dbContext.SaleTransactions.Where(a => a.SaleId == model.SaleId).Include(a => a.ReturnedVehicle).AsNoTracking().ToList().FirstOrDefault();
 
-            if (model.ReturnedVehicleId == 0)
+            if (saleTransaction?.ReturnedVehicle != null)
             {
-                if (saleTransaction.Returned) modelStateErrors.Add(nameof(model.SaleId), "Selected Vehicle already returned to truck");
+                modelStateErrors.Add(nameof(model.ReturnedVehicleId), "Selected Vehicle already returned to truck");
+                return modelStateErrors;
             }
 
             if ((saleTransaction.NetWt - model.PlantNetWt) <= -500)
             {
-                if (model.Remarks.IsNull())
-                {
-                    modelStateErrors.Add(nameof(model.Remarks), "Remarks is required for weight validation report");
-                }
+                if (model.Remarks.IsNull()) modelStateErrors.Add(nameof(model.Remarks), "Remarks is required for weight validation report");
             }
 
             var reqTimeVariance = appconfigRepo.AppConfig.TransactionOption.ReturnedVehicleVarianceTime;
             if (model.DiffTime > reqTimeVariance)
             {
-                if (model.TimeVarianceRemarks.IsNull())
-                {
-                    modelStateErrors.Add(nameof(model.Remarks), $"Time variance Remarks is required if arrival takes longer than {reqTimeVariance} hours");
-                }
+                if (model.TimeVarianceRemarks.IsNull()) modelStateErrors.Add(nameof(model.Remarks), $"Time variance Remarks is required if arrival takes longer than {reqTimeVariance} hours");
             }
+
 
             return modelStateErrors;
         }
 
         public DataSet PrintReturnedSlip(long saleId)
         {
- 
+
             var serverDataSet = new DataSet();
             serverDataSet.EnforceConstraints = false;
             serverDataSet.Tables.Add(new DataTable(nameof(dbContext.PurchaseTransactions)));
@@ -128,13 +121,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 var query = string.Empty;
                 var sa = new SqlDataAdapter();
 
-                query = dbContext.SaleTransactions
-                    .Where(a => a.SaleId == saleId).ToQueryString();
+                query = dbContext.SaleTransactions.Where(a => a.SaleId == saleId).ToQueryString();
                 sa = new SqlDataAdapter(query.ToString(), sqlConn);
                 sa.Fill(serverDataSet, nameof(dbContext.PurchaseTransactions));
                 sa.Dispose();
 
-                query = dbContext.ReturnedVehicles.Where(a => a.SaleId == saleId).ToQueryString();
+                query = dbContext.SaleTransactions.Where(a => a.SaleId == saleId).Include(a=>a.ReturnedVehicle).Select(a=>a.ReturnedVehicle).ToQueryString();
                 sa = new SqlDataAdapter(query.ToString(), sqlConn);
                 sa.Fill(serverDataSet, nameof(dbContext.ReturnedVehicles));
                 sa.Dispose();
@@ -152,14 +144,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public decimal GetOTAdjustedWt(ReturnedVehicle model)
         {
             var result = model.PlantNetWt;
-            if (model.OT >= 10) result = model.PlantNetWt - Math.Round((model.OT-10) * model.PlantNetWt) / 100;
+            if (model.OT >= 10) result = model.PlantNetWt - Math.Round((model.OT - 10) * model.PlantNetWt) / 100;
             return result;
         }
 
         public decimal GetPMAdjustedWt(ReturnedVehicle model)
         {
             var result = model.PlantNetWt;
-            if (model.PM >= 0.05m) result = model.PlantNetWt - Math.Round((model.PM-0.05m) * model.PlantNetWt) / 100;
+            if (model.PM >= 0.05m) result = model.PlantNetWt - Math.Round((model.PM - 0.05m) * model.PlantNetWt) / 100;
             return result;
         }
     }
