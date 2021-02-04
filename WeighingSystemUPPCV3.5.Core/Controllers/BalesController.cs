@@ -31,7 +31,31 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             try
             {
                 var model = repository.Get(parameters);
-                return Ok(model);
+                if (parameters.AsListView)
+                {
+                    var modelAsList= model.Select(a => new
+                    {
+                        a.BaleId,
+                        a.BaleCode,
+                        a.BaleNum,
+                        a.BaleWt,
+                        a.BaleWt10,
+                        a.CategoryId,
+                        a.CategoryDesc,
+                        a.DT,
+                        a.DTCreated,
+                        a.FIFORemarks,
+                        InStock = a.BaleInventoryView.InStock,
+                        InventoryAge = a.BaleInventoryView.InventoryAge,
+                        a.IsReject,
+                        a.ProductId,
+                        a.ProductDesc,
+                        a.Remarks
+                    }); return Ok(modelAsList.ToList());
+                }
+
+                return Ok(model.ToList());
+               
             }
             catch (Exception ex)
             {

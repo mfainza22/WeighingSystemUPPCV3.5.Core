@@ -65,9 +65,23 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 throw new Exception("Selected Record does not exists.");
             }
 
+            if (entity.Description.Trim() != model.Description?.Trim())
+            {
+                var qry = $@"UPDATE PurchaseTransactions SET 
+                    {nameof(PurchaseTransaction.MoistureReaderDesc)} = '{model.Description}' 
+                    WHERE {nameof(PurchaseTransaction.MoistureReaderId)} = {entity.MoistureReaderId}";
+                dbContext.Database.ExecuteSqlRaw(qry);
+
+                qry = $@"UPDATE SaleTransactions SET
+                    { nameof(SaleTransaction.MoistureReaderDesc)} = '{model.Description}'
+                    WHERE { nameof(SaleTransaction.MoistureReaderId)} = { entity.MoistureReaderId}";
+                dbContext.Database.ExecuteSqlRaw(qry);
+            }
+
             entity.Description = (model.Description ?? "").ToUpper();
 
             dbContext.MoistureReaders.Update(entity);
+
             dbContext.SaveChanges();
             return entity;
         }

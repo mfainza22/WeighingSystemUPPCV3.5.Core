@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -172,6 +173,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string tz_out { get; set; }
 
         public string time_variance_remarks { get; set; }
+
+        [ForeignKey("SalesId")]
+        public virtual ICollection<BalesInv> BalesInv{ get; set; } 
 
     }
 }

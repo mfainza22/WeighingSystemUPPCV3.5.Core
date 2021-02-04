@@ -9,9 +9,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
     [Table("PurchaseSaleMCComparisonViews")]
     public class PurchaseSalesMCComparisonView
     {
-        [Key]
-        public long? Id { get; set; }
 
+        [Key]
         public DateTime DateTimeOut { get; set; }
 
         public long? CategoryId { get; set; }

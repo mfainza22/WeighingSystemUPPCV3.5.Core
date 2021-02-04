@@ -13,13 +13,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long RefId { get; set; }
 
+
         public string BaleId { get; set; }
 
-      
         public string CatId { get; set; }
 
       
-        public string ProductId { get; set; }
+        public string? ProductId { get; set; }
 
         public DateTime? FirstDay { get; set; }
 
@@ -67,6 +67,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public DateTime? DTCREATED { get; set; }
 
         public DateTime? DTDELIVERED { get; set; }
+
+        public Nullable<long> BaleIdNew { get; set; }
 
     }
 

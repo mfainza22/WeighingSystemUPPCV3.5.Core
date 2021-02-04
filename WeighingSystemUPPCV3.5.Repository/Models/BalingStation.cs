@@ -41,11 +41,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public Nullable<DateTime> DateModified { get; set; }
         public bool Selected { get; set; }
         public Nullable<bool> IsActive { get; set; }
-
-
-        [NotMapped]
-        public int CalibrationDay { get; set; }
-
         public bool ReceivingLocked { get; set; }
+
+        [ForeignKey(nameof(BalingStationNum))]
+
+        public virtual BalingStationStatusView BalingStationStatusView { get; set; }
     }
 }

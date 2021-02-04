@@ -50,7 +50,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
             get; set;
         }
 
-        [Range(1, 999999999, ErrorMessage = "Category is required.")]
         public long CategoryId { get; set; }
 
 
@@ -137,7 +136,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
 
         [DefaultValue(false)]
-        public bool IsOfflineOut { get; set; }
+        public bool? IsOfflineOut { get; set; }
 
 
         [MaxLength(100, ErrorMessage = "WeigherInId length must not exceed to 100 characters")]
@@ -208,14 +207,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(50, ErrorMessage = "Moisture Reader Description length must not exceed to 50 characters")]
         public string MoistureReaderDesc { get; set; }
 
+        [MaxLength(3, ErrorMessage = "Baling Station Num length must not exceed to 3 characters")]
+        public string BalingStationNum { get; set; }
         [MaxLength(50, ErrorMessage = "Baling Station Code length must not exceed to 50 characters")]
         public string BalingStationCode { get; set; }
 
         [MaxLength(50, ErrorMessage = "Baling Station Name length must not exceed to 50 characters")]
         public string BalingStationName { get; set; }
-
-        [ForeignKey("SaleId")]
-        public virtual ICollection<Bale> Bales { get; set; }
 
         [NotMapped]
         public long InyardId { get; set; }
@@ -224,6 +222,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public DateTime DateOut { get; set; }
 
         public virtual ReturnedVehicle ReturnedVehicle { get; set; }
+
+        [ForeignKey("SaleId")]
+        public virtual ICollection<SaleBale> SaleBales { get; set; }
 
     }
 

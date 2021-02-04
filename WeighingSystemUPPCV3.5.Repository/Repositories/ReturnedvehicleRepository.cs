@@ -16,22 +16,29 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly DatabaseContext dbContext;
         private readonly IAppConfigRepository appconfigRepo;
         private readonly IMoistureSettingsRepository mcRepo;
+        private readonly ISaleTransactionRepository saleTransactionRepository;
 
-        public ReturnedVehicleRepository(DatabaseContext dbContext, IAppConfigRepository appconfigRepo, IMoistureSettingsRepository mcRepo)
+        public ReturnedVehicleRepository(DatabaseContext dbContext, 
+            IAppConfigRepository appconfigRepo, 
+            IMoistureSettingsRepository mcRepo,
+            ISaleTransactionRepository saleTransactionRepository)
         {
             this.dbContext = dbContext;
             this.appconfigRepo = appconfigRepo;
             this.mcRepo = mcRepo;
+            this.saleTransactionRepository = saleTransactionRepository;
             appconfigRepo.LoadJSON();
         }
 
-        public ReturnedVehicle GetBySaleId(long saleId)
+        public ReturnedVehicle GetById(long id)
         {
-            return dbContext.SaleTransactions.Where(a => a.SaleId == saleId).Include(a => a.ReturnedVehicle).Select(a => a.ReturnedVehicle).AsNoTracking().FirstOrDefault();
+            return dbContext.ReturnedVehicles.Where(a => a.ReturnedVehicleId == id).AsNoTracking().ToList().FirstOrDefault();
         }
 
-        public ReturnedVehicle Create(ReturnedVehicle model)
+        public SaleTransaction Create(long SaleId, ReturnedVehicle model)
         {
+            var saleTransaction = saleTransactionRepository.GetById(SaleId);
+           
             var correctedMC = mcRepo.GetCorrectedMC(model.MC, model.PlantNetWt);
             //model.MCStatus = correctedMC.MCStatus;
             model.Corrected10 = correctedMC.Corrected10;
@@ -39,16 +46,16 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             model.Corrected14 = correctedMC.Corrected14;
             //model.Corrected15 = correctedMC.Corrected15;
 
-            dbContext.ReturnedVehicles.Add(model);
+            saleTransaction.ReturnedVehicle = model;
+            dbContext.Update(saleTransaction);
             dbContext.SaveChanges();
-            return model;
+
+            return saleTransaction;
         }
 
         public ReturnedVehicle Update(ReturnedVehicle model)
         {
-
-
-            var entity = GetBySaleId(model.ReturnedVehicleId);
+            var entity = GetById(model.ReturnedVehicleId);
             entity.MC = model.MC;
             entity.BaleCount = model.BaleCount;
             entity.PMAdjustedWt = model.PMAdjustedWt;
@@ -71,9 +78,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             var correctedMC = mcRepo.GetCorrectedMC(model.MC, model.PlantNetWt);
             //model.MCStatus = correctedMC.MCStatus;
-            model.Corrected10 = correctedMC.Corrected10;
-            model.Corrected12 = correctedMC.Corrected12;
-            model.Corrected14 = correctedMC.Corrected14;
+            entity.Corrected10 = correctedMC.Corrected10;
+            entity.Corrected12 = correctedMC.Corrected12;
+            entity.Corrected14 = correctedMC.Corrected14;
             //model.Corrected15 = correctedMC.Corrected15;
 
             dbContext.ReturnedVehicles.Update(entity);
@@ -131,7 +138,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 sa.Fill(serverDataSet, nameof(dbContext.ReturnedVehicles));
                 sa.Dispose();
 
-                query = dbContext.Bales.Where(a => a.SaleId == saleId).ToQueryString();
+                query = dbContext.SaleTransactions.Where(a => a.SaleId == saleId).Include(a=>a.SaleBales).ThenInclude(a=>a.Bale).Select(a=>a.SaleBales.Select(a=>a.Bale)).ToQueryString();
                 sa = new SqlDataAdapter(query.ToString(), sqlConn);
                 sa.Fill(serverDataSet, nameof(dbContext.Bales));
                 sa.Dispose();

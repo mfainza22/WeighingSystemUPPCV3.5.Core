@@ -15,7 +15,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [Required(ErrorMessage = "Vehicle Numbers is required")]
         public string VehicleNum { get; set; }
 
-        public long VehicleTypeId { get; set; }
+        public Nullable<long> VehicleTypeId { get; set; }
 
         public Nullable<long> CustomerId { get; set; }
 
@@ -23,7 +23,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public Nullable<long> HaulerId { get; set; }
 
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
 
 
         [ForeignKey(nameof(Models.Vehicle.VehicleTypeId))]
@@ -37,5 +37,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [ForeignKey(nameof(Models.Hauler.HaulerId))]
         public Hauler Hauler { get; set; }
+
+        [NotMapped]
+        public string VehicleTypeCode { get; set; }
     }
 }

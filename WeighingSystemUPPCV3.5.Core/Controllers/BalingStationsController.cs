@@ -257,8 +257,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                repository.RestrictReceiving(balingStationId);
-                return Ok("Receiving Locked");
+                var model = repository.RestrictReceiving(balingStationId);
+                return Ok(model);
             }
             catch (Exception ex)
             {
@@ -273,8 +273,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                repository.UnRestrictReceiving(balingStationId);
-                return Ok("Receiving Unlocked");
+                var model = repository.UnRestrictReceiving(balingStationId);
+                return Ok(model);
             }
             catch (Exception ex)
             {

@@ -12,6 +12,12 @@ using SysUtility.Config.Models;
 using SysUtility.Helpers;
 using SysUtility.Logging;
 using WeighingSystemUPPCV3_5_Core.Extensions;
+using SysUtility.Config.Interfaces;
+using SysUtility.Models;
+using System;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace WeighingSystemUPPCV3_5_Core
 {
@@ -69,8 +75,10 @@ namespace WeighingSystemUPPCV3_5_Core
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,IAppConfigRepository appConfigRepository, ILogger<Startup> logger)
         {
+            appConfigRepository.LoadJSON();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -85,10 +93,25 @@ namespace WeighingSystemUPPCV3_5_Core
 
             app.UseCors();
 
-
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                //logger.LogInformation($"Header: {JsonConvert.SerializeObject(context.Request.Headers, Formatting.Indented)}");
+
+                context.Request.EnableBuffering();
+                logger.LogInformation($"Path: {context.Request.Host}/{context.Request.Path}");
+
+                var body = await new StreamReader(context.Request.Body).ReadToEndAsync();
+                if (body != null) logger.LogInformation($"Body: {body}");
+                var queryString = context.Request.QueryString;
+                if (queryString != null) logger.LogInformation($"Query: {queryString}");
+                context.Request.Body.Position = 0;
+                logger.LogInformation($"Client IP: {context.Connection.RemoteIpAddress}");
+                await next.Invoke();
+            });
 
             app.UseEndpoints(endpoints =>
             {

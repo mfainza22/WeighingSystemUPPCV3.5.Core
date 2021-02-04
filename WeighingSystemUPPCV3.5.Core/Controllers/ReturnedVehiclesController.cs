@@ -26,12 +26,11 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         }
 
         [HttpGet("{id}")]
-        [Route("[action]")]
-        public IActionResult GetBySaleId(long saleId)
+        public IActionResult Get(long id)
         {
             try
             {
-                var model = repository.GetBySaleId(saleId);
+                var model = repository.GetById(id);
                 if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 return Ok(model);
             }
@@ -43,14 +42,14 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult Post([FromBody] ReturnedVehicle model)
+        [HttpPost("{saleId}")]
+        public IActionResult Post([FromRoute] long saleId,[FromBody] ReturnedVehicle model)
         {
             try
             {
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 if (!validateEntity(model)) return InvalidModelStateResult();
-                return Accepted(repository.Create(model));
+                return Accepted(repository.Create(saleId, model));
             }
             catch (Exception ex)
             {
@@ -104,6 +103,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
 
     }
 }

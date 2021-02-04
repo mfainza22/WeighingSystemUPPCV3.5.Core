@@ -16,30 +16,36 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
     public class PurchaseTransactionRepository : IPurchaseTransactionRepository
     {
         private readonly DatabaseContext dbContext;
+        private readonly IUserAccountRepository userAccountRepository;
         private readonly IPrintLogRepository printLogRepository;
         private readonly IVehicleRepository vehicleRepository;
         private readonly ISupplierRepository supplierRepository;
         private readonly IRawMaterialRepository rawMaterialRepository;
         private readonly ISourceRepository sourceRepository;
         private readonly IMoistureReaderRepository moistureReaderRepository;
+        private readonly IMoistureSettingsRepository mcRepository;
         private readonly IBaleTypeRepository baleTypeRepository;
 
         public PurchaseTransactionRepository(DatabaseContext dbContext,
+            IUserAccountRepository userAccountRepository,
             IPrintLogRepository printLogRepository,
             IVehicleRepository vehicleRepository,
             ISupplierRepository supplierRepository,
             IRawMaterialRepository rawMaterialRepository,
             ISourceRepository sourceRepository,
             IMoistureReaderRepository moistureReaderRepository,
+            IMoistureSettingsRepository mcRepository,
             IBaleTypeRepository baleTypeRepository)
         {
             this.dbContext = dbContext;
+            this.userAccountRepository = userAccountRepository;
             this.printLogRepository = printLogRepository;
             this.vehicleRepository = vehicleRepository;
             this.supplierRepository = supplierRepository;
             this.rawMaterialRepository = rawMaterialRepository;
             this.sourceRepository = sourceRepository;
             this.moistureReaderRepository = moistureReaderRepository;
+            this.mcRepository = mcRepository;
             this.baleTypeRepository = baleTypeRepository;
         }
 
@@ -56,82 +62,64 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         }
 
 
-        public PurchaseTransaction Update(PurchaseTransaction model)
+        public PurchaseTransaction Update(PurchaseTransaction modifiedPurchase)
         {
-            var entity = dbContext.PurchaseTransactions.Find(model.PurchaseId);
+            var entity = dbContext.PurchaseTransactions.AsNoTracking().FirstOrDefault(a => a.PurchaseId == modifiedPurchase.PurchaseId);
             if (entity == null)
             {
                 throw new Exception("Selected Record does not exists.");
             }
 
-            var vehicle = vehicleRepository.Get()
-               .Where(a => a.VehicleNum == model.VehicleNum)
-               .Include(a => a.VehicleType).DefaultIfEmpty()
-               .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
-            model.VehicleTypeId = vehicle?.VehicleTypeId ?? 0;
-            model.VehicleTypeCode = vehicle?.VehicleTypeCode;
+            updateRelatedTableColumns(ref modifiedPurchase);
 
-            model.BaleTypeDesc = baleTypeRepository.Get()
-                .Where(a => a.BaleTypeId == model.BaleTypeId).Select(a => a.BaleTypeDesc).FirstOrDefault();
+            var correctedMC = mcRepository.GetCorrectedMC(modifiedPurchase.MC, entity.NetWt);
 
-            entity.Trip = model.Trip;
-            entity.SupplierId = model.SupplierId;
+            entity.BaleCount = modifiedPurchase.BaleCount;
+            entity.BaleTypeDesc = modifiedPurchase.BaleTypeDesc;
+            entity.BaleTypeId = modifiedPurchase.BaleTypeId;
+            entity.CategoryDesc = modifiedPurchase.CategoryDesc;
+            entity.CategoryId = modifiedPurchase.CategoryId;
+            entity.Corrected10 = correctedMC.Corrected10;
+            entity.Corrected12 = correctedMC.Corrected12;
+            entity.Corrected14 = correctedMC.Corrected14;
+            entity.Corrected15 = correctedMC.Corrected15;
+            entity.DriverName = modifiedPurchase.DriverName;
+            entity.MC = modifiedPurchase.MC;
+            entity.MCStatus = modifiedPurchase.MCStatus;
+            entity.MoistureReaderId = modifiedPurchase.MoistureReaderId;
+            entity.MoistureReaderDesc = modifiedPurchase.MoistureReaderDesc;
+            entity.OT = modifiedPurchase.OT;
+            entity.PM = modifiedPurchase.PM;
+            entity.RawMaterialId = modifiedPurchase.RawMaterialId;
+            entity.RawMaterialDesc = modifiedPurchase.RawMaterialDesc;
+            entity.Remarks = modifiedPurchase.Remarks;
+            entity.SourceId = modifiedPurchase.SourceId;
+            entity.SourceName = modifiedPurchase.SourceName;
+            entity.SourceCategoryId = modifiedPurchase.SourceCategoryId;
+            entity.SourceCategoryDesc = modifiedPurchase.SourceCategoryDesc;
+            entity.SubSupplierName = modifiedPurchase.SubSupplierName;
+            entity.SupplierId = modifiedPurchase.SupplierId;
+            entity.SupplierName = modifiedPurchase.SupplierName;
+            entity.Trip = modifiedPurchase.Trip;
+            entity.VehicleNum = modifiedPurchase.VehicleNum;
+            entity.VehicleTypeId = modifiedPurchase.VehicleTypeId;
+            entity.VehicleTypeCode = modifiedPurchase.VehicleTypeCode;
+            entity.WeigherOutId = modifiedPurchase.WeigherOutId;
+            entity.WeigherOutName = modifiedPurchase.WeigherOutName;
 
-            entity.SupplierName = supplierRepository.Get()
-                .Where(a => a.SupplierId == entity.SupplierId).Select(a => a.SupplierName).FirstOrDefault();
-
-
-            entity.RawMaterialId = model.RawMaterialId;
-            var material = rawMaterialRepository.Get()
-              .Where(a => a.RawMaterialId == entity.RawMaterialId)
-              .Include(a => a.Category).DefaultIfEmpty()
-              .Select(a => new { a.RawMaterialDesc, a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
-              .FirstOrDefault();
-            entity.RawMaterialDesc = material?.RawMaterialDesc;
-            entity.CategoryId = material?.CategoryId ?? 0;
-            entity.CategoryDesc = material?.CategoryDesc;
-
-            entity.MC = model.MC;
-            entity.PM = model.PM;
-            entity.OT = model.OT;
-            entity.FactoryWt = model.FactoryWt;
-            entity.MCStatus = model.MCStatus;
-            entity.PONum = model.PONum?.ToUpper();
-            entity.DRNum = model.DRNum?.ToUpper();
-            entity.Remarks = model.Remarks?.ToUpper();
-            entity.SubSupplierName = model.SubSupplierName?.ToUpper();
-            entity.SourceId = model.SourceId;
-            var source = sourceRepository.Get()
-                .Where(a => a.SourceId == entity.SourceId)
-                .Include(a => a.SourceCategory).DefaultIfEmpty()
-                .Select(a => new { a.SourceDesc, a.SourceCategoryId, SourceCategoryDesc = a.SourceCategory == null ? null : a.SourceCategory.Description })
-                .FirstOrDefault();
-            entity.SourceName = source?.SourceDesc;
-            entity.SourceCategoryId = source?.SourceCategoryId ?? 0;
-            entity.SourceCategoryDesc = source?.SourceCategoryDesc;
-
-            entity.DriverName = model.DriverName;
-            entity.Price = model.Price;
-
-
-            entity.MoistureReaderId = model.MoistureReaderId;
-            model.MoistureReaderDesc = moistureReaderRepository.Get()
-               .Where(a => a.MoistureReaderId == model.MoistureReaderId)
-               .Select(a => a.Description).FirstOrDefault();
-
-            entity.MoistureReaderLogsModified = model.MoistureReaderLogsModified;
+            entity.MoistureReaderLogsModified = modifiedPurchase.MoistureReaderLogsModified;
 
             dbContext.PurchaseTransactions.Update(entity);
 
-            if (model.MoistureReaderLogsModified)
+            if (modifiedPurchase.MoistureReaderLogsModified)
             {
-                dbContext.RemoveRange(dbContext.moistureReaderLogs.Where(a => a.TransactionId == model.PurchaseId));
-                foreach (var moistureReaderLog in model.MoistureReaderLogs)
-                {
-                    moistureReaderLog.TransactionId = model.PurchaseId;
-                };
+                dbContext.RemoveRange(dbContext.moistureReaderLogs.Where(a => a.TransactionId == modifiedPurchase.PurchaseId));
+                //foreach (var moistureReaderLog in modifiedPurchase.MoistureReaderLogs)
+                //{
+                //    moistureReaderLog.TransactionId = modifiedPurchase.PurchaseId;
+                //};
 
-                dbContext.AddRange(model.MoistureReaderLogs);
+                //dbContext.AddRange(modifiedPurchase.MoistureReaderLogs);
             }
             dbContext.SaveChanges();
             return entity;
@@ -173,11 +161,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public SqlRawParameter GetSqlRawParameter(TransactionFilter parameters = null)
         {
-            if (parameters == null) return new SqlRawParameter();
+
             var sqlQry = new StringBuilder();
             sqlQry.AppendLine("SELECT * FROM PurchaseTransactions");
             var whereClauses = new List<string>();
             var sqlParams = new List<SqlParameter>();
+
+            if (parameters == null) return new SqlRawParameter() { SqlParameters = sqlParams, SqlQuery = sqlQry.ToString() };
+
             if (!parameters.TransactionId.IsNullOrZero())
             {
                 sqlParams.Add(new SqlParameter(nameof(PurchaseTransaction.PurchaseId).Parametarize(), parameters.TransactionId));
@@ -234,11 +225,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 sa.Fill(serverDataSet, nameof(dbContext.PurchaseTransactions));
                 sa.Dispose();
 
-                query = dbContext.moistureReaderLogs.Where(a => a.TransactionId == model.TransactionId).Take(1).ToQueryString();
-                sa = new SqlDataAdapter(query.ToString(), sqlConn);
-                sa.Fill(serverDataSet, nameof(dbContext.moistureReaderLogs));
-                sa.Dispose();
-
                 query = null;
             }
 
@@ -247,7 +233,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public IQueryable<PrintLog> GetPrintLogs(long transactionId)
         {
-            return printLogRepository.Get(transactionId);
+            return printLogRepository.Get(new PrintLog() { TransactionId = transactionId, TransactionTypeCode = "I" });
         }
 
         public PurchaseTransaction GetByIdWithMCReaderLogs(long id)
@@ -272,7 +258,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     (purchase, supplier) => new { purchase.purchase, purchase.material, supplier })
                  .SelectMany(a => a.supplier.DefaultIfEmpty(),
                 (purchase, supplier) => new { purchase.purchase, purchase.material, supplier })
-                .GroupJoin(dbContext.Sources.Include(a=>a.SourceCategory),
+                .GroupJoin(dbContext.Sources.Include(a => a.SourceCategory),
                     t => t.purchase.SubCat,
                     source => source.SourceDesc,
                     (purchase, source) => new { purchase.purchase, purchase.material, purchase.supplier, source })
@@ -331,9 +317,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 LastDay = a.purchase.LastDay,
                 MoistureReaderId = null,
                 MC = a.purchase.Moisture ?? 0,
-                MCStatus = Convert.ToInt32(a.purchase.MoistureStatus ?? 0),
+                MCStatus = a.purchase.MoistureStatus == 0 ? 10 :
+                        a.purchase.MoistureStatus == 1 ? 12 :
+                        a.purchase.MoistureStatus == 2 ? 14 :
+                        15,
                 MoistureReaderDesc = null,
                 MoistureSettingsId = 1,
+                NetWt = a.purchase.net ?? 0,
                 OT = a.purchase.OutThrow ?? 0,
                 PM = a.purchase.PM ?? 0,
                 PONum = a.purchase.PoNo,
@@ -353,6 +343,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 SupplierName = a.supplier == null ? null : a.supplier.SupplierName,
                 TimeZoneIn = a.purchase.tz_in == null ? "GMT+08:00 PH" : a.purchase.tz_in,
                 TimeZoneOut = a.purchase.tz_out == null ? "GMT+08:00 PH" : a.purchase.tz_out,
+                TareWt = a.purchase.Tare ?? 0,
                 Trip = a.purchase.TypeOfTrip,
                 VehicleNum = a.purchase.PlateNo,
                 VehicleTypeId = a.vehicle == null ? null : (Nullable<long>)a.vehicle.VehicleTypeId,
@@ -396,16 +387,16 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     new MoistureReaderLog() { TransactionId = 0, DTLog = a.purchase.MC29DT,LogNum = 29,MC = a.purchase.MC29??0 },
                     new MoistureReaderLog() { TransactionId = 0, DTLog = a.purchase.MC30DT,LogNum = 30,MC = a.purchase.MC30??0 },
                  }
-            }).OrderBy(a=>a.DateTimeIn).ToList();
+            }).OrderBy(a => a.DateTimeIn).ToList();
 
 
-            for (var i =0; i<=allPurchase.Count-1;i++)
+            for (var i = 0; i <= allPurchase.Count - 1; i++)
             {
                 dbContext.AddRange(allPurchase[i]);
                 dbContext.SaveChanges();
                 dbContext.Entry(allPurchase[i]).State = EntityState.Detached;
             }
-          
+
 
 
         }
@@ -420,5 +411,51 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 MC = mc ?? 0
             };
         }
+
+        public void updateRelatedTableColumns(ref PurchaseTransaction model)
+        {
+            var vehicleNum = model.VehicleNum;
+            var vehicle = vehicleRepository.Get()
+    .Include(a => a.VehicleType).DefaultIfEmpty()
+    .Where(a => a.VehicleNum == vehicleNum)
+    .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
+            model.VehicleTypeId = vehicle?.VehicleTypeId ?? 0;
+            model.VehicleTypeCode = vehicle?.VehicleTypeCode;
+
+            var supplierId = model.SupplierId;
+            model.SupplierName = supplierRepository.Get()
+             .Where(a => a.SupplierId == supplierId).Select(a => a.SupplierName).FirstOrDefault();
+
+            var rawMaterialId = model.RawMaterialId;
+            var material = rawMaterialRepository.Get()
+                .Where(a => a.RawMaterialId == rawMaterialId)
+                .Include(a => a.Category).DefaultIfEmpty()
+                .Select(a => new { a.RawMaterialDesc, a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
+                .FirstOrDefault();
+            model.RawMaterialDesc = material?.RawMaterialDesc;
+            model.CategoryId = material?.CategoryId ?? 0;
+            model.CategoryDesc = material?.CategoryDesc;
+
+            var sourceId = model.SourceId;
+            var source = sourceRepository.Get()
+                .Where(a => a.SourceId == sourceId)
+                .Include(a => a.SourceCategory).DefaultIfEmpty()
+                .Select(a => new { a.SourceDesc, a.SourceCategoryId, SourceCategoryDesc = a.SourceCategory == null ? null : a.SourceCategory.Description })
+                .FirstOrDefault();
+            model.SourceName = source?.SourceDesc;
+            model.SourceCategoryId = source?.SourceCategoryId ?? 0;
+            model.SourceCategoryDesc = source?.SourceCategoryDesc;
+
+            var msId = model.MoistureReaderId;
+            model.MoistureReaderDesc = moistureReaderRepository.Get()
+                .Where(a => a.MoistureReaderId == msId).Select(a => a.Description).FirstOrDefault();
+
+
+            var userAccountId = model.WeigherOutId;
+            model.WeigherOutName = userAccountRepository.Get().Where(a => a.UserAccountId == userAccountId)
+                .Select(a => a.FullName).FirstOrDefault();
+
+        }
+
     }
 }

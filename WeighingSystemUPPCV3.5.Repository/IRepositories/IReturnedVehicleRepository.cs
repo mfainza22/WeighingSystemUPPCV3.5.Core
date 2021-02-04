@@ -7,9 +7,8 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 {
     public interface IReturnedVehicleRepository
     {
-        ReturnedVehicle GetBySaleId(long saleId);
-
-        ReturnedVehicle Create(ReturnedVehicle model);
+        ReturnedVehicle GetById(long returnedVehicleId);
+        SaleTransaction Create(long SaleId,ReturnedVehicle model);
         ReturnedVehicle Update(ReturnedVehicle model);
         Dictionary<string, string> Validate(ReturnedVehicle model);
 

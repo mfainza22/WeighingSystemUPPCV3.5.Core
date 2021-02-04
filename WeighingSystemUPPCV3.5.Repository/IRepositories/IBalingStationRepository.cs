@@ -11,9 +11,9 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 
         BalingStation GetSelected();
 
-        void RestrictReceiving(long balingStationId);
+        BalingStation RestrictReceiving(long balingStationId);
 
-        void UnRestrictReceiving(long balingStationId);
+        BalingStation UnRestrictReceiving(long balingStationId);
 
         decimal GetWarehouseSpaceStatus();
 

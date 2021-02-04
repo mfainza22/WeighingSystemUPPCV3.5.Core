@@ -6400,7 +6400,6 @@ namespace WeighingSystemUPPCV3_5_Repository {
                 this.columnWeigherInId.MaxLength = 100;
                 this.columnWeigherOutId.MaxLength = 100;
                 this.columnSubSupplierName.MaxLength = 50;
-                this.columnRemarks.AllowDBNull = false;
                 this.columnRemarks.MaxLength = 200;
                 this.columnSourceId.AllowDBNull = false;
                 this.columnSourceCategoryId.AllowDBNull = false;
@@ -15279,7 +15278,12 @@ namespace WeighingSystemUPPCV3_5_Repository {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Remarks {
                 get {
-                    return ((string)(this[this.tablePurchaseTransactions.RemarksColumn]));
+                    try {
+                        return ((string)(this[this.tablePurchaseTransactions.RemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Remarks\' in table \'PurchaseTransactions\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePurchaseTransactions.RemarksColumn] = value;
@@ -15795,6 +15799,18 @@ namespace WeighingSystemUPPCV3_5_Repository {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetSubSupplierNameNull() {
                 this[this.tablePurchaseTransactions.SubSupplierNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsRemarksNull() {
+                return this.IsNull(this.tablePurchaseTransactions.RemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetRemarksNull() {
+                this[this.tablePurchaseTransactions.RemarksColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -26021,7 +26037,7 @@ SELECT LooseBaleId, CategoryId, Wt, MC, DT, DYear, DMonth, WeekDay, WeekNum, Fir
                 this.Adapter.DeleteCommand.Parameters[44].Value = ((string)(Original_SubSupplierName));
             }
             if ((Original_Remarks == null)) {
-                throw new global::System.ArgumentNullException("Original_Remarks");
+                this.Adapter.DeleteCommand.Parameters[45].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[45].Value = ((string)(Original_Remarks));
@@ -26335,7 +26351,7 @@ SELECT LooseBaleId, CategoryId, Wt, MC, DT, DYear, DMonth, WeekDay, WeekNum, Fir
                 this.Adapter.InsertCommand.Parameters[28].Value = ((string)(SubSupplierName));
             }
             if ((Remarks == null)) {
-                throw new global::System.ArgumentNullException("Remarks");
+                this.Adapter.InsertCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[29].Value = ((string)(Remarks));
@@ -26671,7 +26687,7 @@ SELECT LooseBaleId, CategoryId, Wt, MC, DT, DYear, DMonth, WeekDay, WeekNum, Fir
                 this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(SubSupplierName));
             }
             if ((Remarks == null)) {
-                throw new global::System.ArgumentNullException("Remarks");
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Remarks));
@@ -26913,7 +26929,7 @@ SELECT LooseBaleId, CategoryId, Wt, MC, DT, DYear, DMonth, WeekDay, WeekNum, Fir
                 this.Adapter.UpdateCommand.Parameters[96].Value = ((string)(Original_SubSupplierName));
             }
             if ((Original_Remarks == null)) {
-                throw new global::System.ArgumentNullException("Original_Remarks");
+                this.Adapter.UpdateCommand.Parameters[97].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[97].Value = ((string)(Original_Remarks));

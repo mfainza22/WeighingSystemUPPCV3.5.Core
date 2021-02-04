@@ -16,5 +16,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string ReprintRemarks { get; set; }
 
         public bool IsReprinted { get; set; }
+
+        public string UserAccoountId { get; set; }
+
+        public string UserFullName { get; set; }
     }
 }

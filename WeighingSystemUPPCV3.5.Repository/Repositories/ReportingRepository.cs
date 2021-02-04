@@ -32,7 +32,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             using (var sqlConn = new SqlConnection(dbContext.Database.GetDbConnection().ConnectionString))
             {
-                switch (reportParameters.ReportType) {
+                switch (reportParameters.ReportType)
+                {
                     case ReportType.PURCHASE_GENERAL:
                     case ReportType.PURCHASE_WEEKLY:
                     case ReportType.PURCHASE_MONTHLY:
@@ -83,14 +84,16 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                         break;
                     case ReportType.SALE_OT_LOSS_MONITORING:
                     case ReportType.SALE_PM_LOSS_MONITORING:
-                        saleIds = fillSaleTransactionsDataTable(sqlConn, serverDataSet, reportParameters,isReturned: true);
+                    case ReportType.SALE_POTENTIAL_LOSS_PLANTMC:
+                    case ReportType.SALE_MITIGATING_MC_DEDUCTION:
+                        saleIds = fillSaleTransactionsDataTable(sqlConn, serverDataSet, reportParameters, isReturned: true);
                         fillReturnedVehicleDataTable(sqlConn, serverDataSet, saleIds);
                         categoryIds = serverDataSet.Tables[nameof(dbContext.SaleTransactions)].Rows.Cast<DataRow>()
                        .Select(a => a.Field<long>(nameof(SaleTransaction.CategoryId))).Distinct().ToList();
-                        fillCategoriesDataTable(sqlConn, serverDataSet,categoryIds);
+                        fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
                         break;
                     case ReportType.SALE_PLANT_COMPARISON:
-                       saleIds= fillSaleTransactionsDataTable(sqlConn, serverDataSet, reportParameters);
+                        saleIds = fillSaleTransactionsDataTable(sqlConn, serverDataSet, reportParameters);
                         fillReturnedVehicleDataTable(sqlConn, serverDataSet, saleIds);
                         break;
                     case ReportType.SALE_BALE_LOADING_FORM:
@@ -106,19 +109,20 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                         if (reportParameters.ReportType == ReportType.BALE_ACTUAL)
                         {
                             fillBalesInventoryDataTable(sqlConn, serverDataSet, reportParameters, BaleStatus.INSTOCK);
-                        } else
+                        }
+                        else
                         {
                             fillBalesInventoryDataTable(sqlConn, serverDataSet, reportParameters, BaleStatus.NONE);
                         }
-                        
+
                         fillMachineUnBaledWasteDataTable(sqlConn, serverDataSet, reportParameters);
                         fillMachineUnBaledWasteSummaryDataTable(sqlConn, serverDataSet, reportParameters);
                         fillLooseBalesSummaryDataTable(sqlConn, serverDataSet, reportParameters);
                         fillActualBalesMCSummaryDataTable(sqlConn, serverDataSet, reportParameters);
-                         categoryIds = serverDataSet.Tables[nameof(dbContext.Bales)].Rows.Cast<DataRow>()
-                        .Select(a => a.Field<long>(nameof(Bale.CategoryId))).Distinct().ToList();
-             
-                fillCategoriesDataTable(sqlConn, serverDataSet,categoryIds);
+                        categoryIds = serverDataSet.Tables[nameof(dbContext.Bales)].Rows.Cast<DataRow>()
+                       .Select(a => a.Field<long>(nameof(Bale.CategoryId))).Distinct().ToList();
+
+                        fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
                         break;
                     case ReportType.BALE_INVENTORY_MONITORING:
                     case ReportType.BALE_INVENTORY_MONITORING_10:
@@ -168,7 +172,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         /// <param name="sqlConn"></param>
         /// <param name="dataSet"></param>
         /// <param name="reportParameters"></param>
-        private List<long> fillSaleTransactionsDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters,Nullable<bool> isReturned = true)
+        private List<long> fillSaleTransactionsDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters, Nullable<bool> isReturned = true)
         {
             reportParameters.DTFrom = reportParameters.DTFrom.Date;
             reportParameters.DTTo = reportParameters.DTTo.Date + new TimeSpan(23, 59, 59);
@@ -193,20 +197,21 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 .Select(a => a.Field<long>(nameof(SaleTransaction.SaleId))).Distinct().ToList();
         }
 
-     
+
         private void fillBalesInventoryDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters,
             BaleStatus baleStatus = BaleStatus.NONE)
         {
 
             var query = String.Empty;
-            var efQuery = dbContext.Bales.FromSqlRaw("Select * From BalesViews")
+            var efQuery = dbContext.Bales.Include(a => a.BaleInventoryView)
                      .Where(a => a.DT.Date >= reportParameters.DTFrom.Date && a.DT.Date <= reportParameters.DTTo.Date);
-              switch (baleStatus) {
+            switch (baleStatus)
+            {
                 case BaleStatus.DELIVERED:
-                    query = efQuery.Where(a => a.InStock == false && a.IsReject == false).ToQueryString();
+                    query = efQuery.Where(a => a.BaleInventoryView.InStock == false && a.IsReject == false).ToQueryString();
                     break;
                 case BaleStatus.INSTOCK:
-                    query = efQuery.Where(a => a.InStock == true).ToQueryString();
+                    query = efQuery.Where(a => a.BaleInventoryView.InStock == true).ToQueryString();
                     break;
                 case BaleStatus.REJECT:
                     query = efQuery.Where(a => a.IsReject == true).ToQueryString();
@@ -217,7 +222,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             };
 
 
-            var sa = new SqlDataAdapter(query.ToString() , sqlConn);
+            var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.Bales));
             sa.Dispose();
             query = null;
@@ -230,7 +235,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             if (saleIds.Count == 0) return;
 
-            var query = dbContext.Bales.FromSqlRaw("Select * From BalesViews").Where(a=> saleIds.Contains(a.SaleId.Value)).ToQueryString();
+            var query = dbContext.Bales.Include(a => a.SaleBale).Where(a => saleIds.Contains(a.SaleBale.SaleId ?? 0)).ToQueryString();
 
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.Bales));
@@ -248,9 +253,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         /// <param name="reportParameters"></param>
         private void fillSourceCategoryTargetsDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters)
         {
+            var dtFrom = new DateTime(reportParameters.DTFrom.Year, reportParameters.DTFrom.Month, 1);
+
+
             var query = dbContext.SourceCategoryTargets
-                      .Where(a => a.DT.Year.CompareTo(reportParameters.DTFrom.Year) > 0
-                      && a.DT.Month.CompareTo(reportParameters.DTFrom.Month) > 0).ToQueryString();
+                      .Where(a => a.DT >= dtFrom && a.DT <=reportParameters.DTTo).ToQueryString();
 
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.SourceCategoryTargets));
@@ -286,11 +293,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             query = null;
         }
 
-        private void fillCategoriesDataTable(SqlConnection sqlConn, ReportDataSet dataSet,List<long> categoryIds = null)
+        private void fillCategoriesDataTable(SqlConnection sqlConn, ReportDataSet dataSet, List<long> categoryIds = null)
         {
             var categoryIdEmpty = categoryIds == null || categoryIds.Count == 0;
 
-            var query = dbContext.Categories.Where(a => a.IsActive==true && (categoryIds.Contains(a.CategoryId) || categoryIdEmpty == true)).OrderBy(a=>a.SeqNum).ToQueryString();
+            var query = dbContext.Categories.Where(a => a.IsActive == true && (categoryIds.Contains(a.CategoryId) || categoryIdEmpty == true)).OrderBy(a => a.SeqNum).ToQueryString();
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.Categories));
             sa.Dispose();
@@ -298,11 +305,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         }
 
 
-        private void fillReportDaysDataTable(SqlConnection sqlConn, ReportDataSet dataSet,ReportParameters reportParameters)
+        private void fillReportDaysDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters)
 
         {
             var query = dbContext.ReportDays
-                    .Where(a => a.DT.Value.Date >= reportParameters.DTFrom.Date     
+                    .Where(a => a.DT.Value.Date >= reportParameters.DTFrom.Date
                     && a.DT.Value.Date <= reportParameters.DTTo.Date).ToQueryString();
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.ReportDays));
@@ -314,9 +321,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             if (saleIds == null || saleIds.Count() == 0) return;
 
-            var query = dbContext.SaleTransactions.Include(a=>a.ReturnedVehicle)
+            var query = dbContext.SaleTransactions.Include(a => a.ReturnedVehicle)
                     .Where(a => saleIds.Contains(a.SaleId))
-                    .Select(a=>a.ReturnedVehicle).ToQueryString();
+                    .Select(a => a.ReturnedVehicle).ToQueryString();
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.ReturnedVehicles));
             sa.Dispose();
@@ -330,7 +337,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             reportParameters.DTTo = reportParameters.DTTo.Date + new TimeSpan(23, 59, 59);
 
             var query = dbContext.PurchaseSaleMCComparisonViews
-                .Where(a => a.DateTimeOut >= reportParameters.DTFrom 
+                .Where(a => a.DateTimeOut >= reportParameters.DTFrom
                 && a.DateTimeOut <= reportParameters.DTTo
                 && (a.CategoryId == reportParameters.CategoryId || reportParameters.CategoryId == 0)).ToQueryString();
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
@@ -340,7 +347,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         }
 
 
-        private void fillTVF_InventoryDataTable(SqlConnection sqlConn, ReportDataSet dataSet,ReportParameters reportParameters)
+        private void fillTVF_InventoryDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters)
         {
             var dtFrom = reportParameters.DTFrom;
             // SET DateFrom to Firstday of the month
@@ -361,8 +368,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private void fillLooseBalesDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters)
         {
 
-           var query = dbContext.LooseBales.Where(a => a.DT.Date >= reportParameters.DTFrom.Date && a.DT.Date <= reportParameters.DTTo.Date).ToQueryString();
-     
+            var query = dbContext.LooseBales.Where(a => a.DT.Date >= reportParameters.DTFrom.Date && a.DT.Date <= reportParameters.DTTo.Date).ToQueryString();
+
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, nameof(dbContext.LooseBales) + "Summary");
             sa.Dispose();
@@ -380,7 +387,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                       .Select(a => new { a.Key.CategoryId, DT = a.Min(a => a.DT), Wt = a.Sum(a => a.Wt), MC = a.Average(a => a.MC) }).ToQueryString();
 
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
-            sa.Fill(dataSet, nameof(dbContext.LooseBales)+"Summary");
+            sa.Fill(dataSet, nameof(dbContext.LooseBales) + "Summary");
             sa.Dispose();
             query = null;
 
@@ -466,24 +473,30 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public void SetReportDaysWeekNum()
         {
             var week = new WeekDetail(DateTime.Now);
+            var startDays = new DateTime(1980, 1, 1);
+            var endDays = new DateTime(2030, 12, 31);
 
-            var reportDays = dbContext.ReportDays.AsNoTracking().ToList();
+            var reportDays = Enumerable.Range(0, 1 + endDays.Subtract(startDays).Days)
+          .Select(offset => startDays.AddDays(offset)).Select(a => new WeekDetail(a.Date))
+          .Select(a => new ReportDay()
+          {
+              FirstDay = a.FirstDay,
+              LastDay = a.LastDay,
+              WeekNum = a.WeekNum,
+              WeekDay = a.WeekDay,
+              DT = a.CurrentDate
+          })
+          .ToArray();
+
+            dbContext.Database.ExecuteSqlRaw("DELETE FROM ReportDays");
+
             for (int i = 0; i <= reportDays.Count() - 1; i++)
             {
-                week = new WeekDetail(reportDays[i].DT ?? DateTime.Now);
-                reportDays[i].WeekNum = week.WeekNum;
-                reportDays[i].WeekDay = week.WeekDay;
-                reportDays[i].FirstDay = week.FirstDay;
-                reportDays[i].LastDay = week.LastDay;
-
-
-                dbContext.ReportDays.Update(reportDays[i]);
+                dbContext.ReportDays.Add(reportDays[i]);
                 dbContext.SaveChanges();
+                dbContext.Entry<ReportDay>(reportDays[i]).State = EntityState.Detached;
             }
-
         }
-
+        
     }
-
-
 }

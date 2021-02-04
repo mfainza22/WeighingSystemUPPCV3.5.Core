@@ -24,6 +24,49 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return model;
         }
 
+        public VehicleType CreateAndUpdateRelatedTables(VehicleType model)
+        {
+            dbContext.VehicleTypes.Add(model);
+            dbContext.SaveChanges();
+
+            return model;
+        }
+
+        public VehicleType Update(VehicleType model)
+        {
+            var entity = dbContext.VehicleTypes.Find(model.VehicleTypeId);
+            if (entity == null)
+            {
+                throw new Exception("Selected Record does not exists.");
+            }
+
+            var updateRelatedTable = entity.VehicleTypeCode != model.VehicleTypeCode;
+            var oldVehicleTypeId = entity.VehicleTypeId;
+
+            entity.VehicleTypeCode = model.VehicleTypeCode;
+            entity.VehicleTypeDesc = model.VehicleTypeDesc;
+            entity.IsActive = model.IsActive;
+
+            dbContext.VehicleTypes.Update(entity);
+
+            dbContext.SaveChanges();
+
+            if (updateRelatedTable)
+            {
+                dbContext.Database.ExecuteSqlRaw($@"UPDATE PurchaseTransactions SET 
+                        {nameof(PurchaseTransaction.VehicleTypeId)} = {entity.VehicleTypeId},
+                        {nameof(PurchaseTransaction.VehicleTypeCode)} = '{entity.VehicleTypeCode}'
+                        WHERE {nameof(PurchaseTransaction.VehicleTypeId)} = {oldVehicleTypeId}");
+                dbContext.Database.ExecuteSqlRaw($@"UPDATE SaleTransactions SET 
+                        {nameof(SaleTransaction.VehicleTypeId)} = {entity.VehicleTypeId},
+                        {nameof(SaleTransaction.VehicleTypeCode)} = '{entity.VehicleTypeCode}'
+                        WHERE {nameof(SaleTransaction.VehicleTypeId)} = {oldVehicleTypeId}");
+            }
+
+            return entity;
+        }
+
+
         public bool Delete(VehicleType model)
         {
             dbContext.VehicleTypes.Remove(model);
@@ -58,22 +101,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.VehicleTypes.Find(id);
         }
 
-        public VehicleType Update(VehicleType model)
-        {
-            var entity = dbContext.VehicleTypes.Find(model.VehicleTypeId);
-            if (entity == null)
-            {
-                throw new Exception("Selected Record does not exists.");
-            }
-
-            entity.VehicleTypeCode = model.VehicleTypeCode;
-            entity.VehicleTypeDesc = model.VehicleTypeDesc;
-            entity.IsActive = model.IsActive;
-
-            dbContext.VehicleTypes.Update(entity);
-            dbContext.SaveChanges();
-            return entity;
-        }
 
         public bool ValidateCode(VehicleType model)
         {

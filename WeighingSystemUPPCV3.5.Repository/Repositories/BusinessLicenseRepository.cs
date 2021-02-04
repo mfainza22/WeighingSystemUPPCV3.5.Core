@@ -82,7 +82,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public IQueryable<BusinessLicense> Get(BusinessLicense model = null)
         {
-            throw new NotImplementedException();
+            return dbContext.BusinessLicenses.AsNoTracking();
         }
 
         public SqlRawParameter GetSqlRawParameter(BusinessLicense parameters)

@@ -78,11 +78,11 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
-        public IActionResult Put([FromBody] PurchaseTransaction model)
+        public IActionResult Put([FromRoute] long id, [FromBody] PurchaseTransaction model)
         {
             try
             {
-                if (repository.Get().Count(a => a.PurchaseId == model.PurchaseId) == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
+                if (repository.GetByFilter().Count(a => a.PurchaseId == model.PurchaseId) == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 var modelStateDic = transValidationRepository.ValidatePurchase(model);
                 if (modelStateDic.Count > 0)

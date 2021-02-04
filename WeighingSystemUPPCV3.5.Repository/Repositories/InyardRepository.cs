@@ -19,6 +19,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
     public class InyardRepository : IInyardRepository
     {
         private readonly DatabaseContext dbContext;
+        private readonly IBalingStationRepository balingStationRepository;
+        private readonly IUserAccountRepository userAccountRepository;
         private readonly IReferenceNumberRepository refNumRepository;
         private readonly ISubSupplierRepository subSupplierRepository;
         private readonly IMoistureSettingsRepository mcRepo;
@@ -34,8 +36,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IBaleTypeRepository baleTypeRepository;
         private readonly ISourceRepository sourceRepository;
         private readonly ICustomerRepository customerRepository;
+        private readonly IBaleRepository baleRepository;
 
         public InyardRepository(DatabaseContext dbContext,
+            IBalingStationRepository balingStationRepository,
+            IUserAccountRepository userAccountRepository,
             IReferenceNumberRepository refNumRepository,
             ISubSupplierRepository subSupplierRepository,
             IMoistureSettingsRepository mcRepo,
@@ -50,9 +55,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IMoistureReaderRepository moistureReaderRepository,
             IBaleTypeRepository baleTypeRepository,
             ISourceRepository sourceRepository,
-            ICustomerRepository customerRepository)
+            ICustomerRepository customerRepository,
+            IBaleRepository baleRepository )
         {
             this.dbContext = dbContext;
+            this.balingStationRepository = balingStationRepository;
+            this.userAccountRepository = userAccountRepository;
             this.refNumRepository = refNumRepository;
             this.subSupplierRepository = subSupplierRepository;
             this.mcRepo = mcRepo;
@@ -68,6 +76,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.baleTypeRepository = baleTypeRepository;
             this.sourceRepository = sourceRepository;
             this.customerRepository = customerRepository;
+            this.baleRepository = baleRepository;
         }
 
         public Inyard WeighIn(Inyard model)
@@ -75,72 +84,68 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var refNum = refNumRepository.Get().FirstOrDefault();
             model.InyardNum = refNum?.InyardNum;
 
-            model.DriverName = model.DriverName?.ToUpper();
-            //model.DateTimeIn = model.IsOfflineIn ? model.DateTimeIn : DateTime.Now;
-            model.TimeZoneIn = model.DateTimeIn.GetTimeZone();
-            model.DRNum = model.DRNum?.ToUpper();
-            model.PlantTruckOrigin ??= String.Empty.ToUpper();
-            model.Remarks ??= String.Empty.ToUpper();
-            model.SealNum = model.SealNum?.ToUpper();
-            model.SubSupplierName = model.SubSupplierName?.ToUpper();
-            model.TimeZoneIn = model.TimeZoneIn?.ToUpper();
-            model.Trip = model.Trip?.ToUpper();
-            model.VehicleNum = model.VehicleNum?.ToUpper();
+            updateRelatedTableColumns(ref model);
 
-            var vehicle = vehicleRepository.Get()
-                .Where(a => a.VehicleNum == model.VehicleNum)
-                .Include(a => a.VehicleType).DefaultIfEmpty()
-                .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
-            model.VehicleTypeId = vehicle?.VehicleTypeId ?? 0;
-            model.VehicleTypeCode = vehicle?.VehicleTypeCode;
-
-            model.BaleTypeDesc = baleTypeRepository.Get()
-                .Where(a => a.BaleTypeId == model.BaleTypeId).Select(a => a.BaleTypeDesc).FirstOrDefault();
-
-            if (model.TransactionTypeCode == "I")
+            var newInyard = new Inyard()
             {
-                model.ClientName = supplierRepository.Get()
-                 .Where(a => a.SupplierId == model.ClientId).Select(a => a.SupplierName).FirstOrDefault();
+                BaleCount = model.BaleCount,
+                BaleTypeDesc = baleTypeRepository.Get().Where(a => a.BaleTypeId == model.BaleTypeId).Take(1).Select(a => a.BaleTypeDesc).FirstOrDefault(),
+                BaleTypeId = model.BaleTypeId,
+                BalingStationNum = model.BalingStationNum,
+                BalingStationCode = model.BalingStationCode,
+                BalingStationName = model.BalingStationName,
+                CategoryDesc = model.CategoryDesc,
+                CategoryId = model.CategoryId,
+                ClientId = model.ClientId,
+                ClientName = model.ClientName,
+                CommodityDesc = model.CommodityDesc,
+                CommodityId = model.CommodityId,
+                DateTimeIn = model.DateTimeIn,
+                DateTimeOut = null,
+                DriverName = model.DriverName?.ToUpper(),
+                DRNum = model.DRNum?.ToUpper(),
+                GrossWt = model.GrossWt,
+                HaulerId = model.HaulerId,
+                InyardNum = model.InyardNum,
+                IsOfflineIn = model.IsOfflineIn,
+                IsOfflineOut = model.IsOfflineOut,
+                MC = model.MC,
+                MCStatus = model.MCStatus,
+                MoistureReaderDesc = model.MoistureReaderDesc,
+                MoistureReaderId = model.MoistureReaderId,
+                MoistureSettingsId = 1,
+                NetWt = model.NetWt,
+                OT = model.OT,
+                PlantMC = model.PlantMC,
+                PlantNetWt = model.PlantNetWt,
+                PlantTruckOrigin = model.PlantTruckOrigin?.ToUpper(),
+                PM = model.PM,
+                PONum = model.PONum,
+                Price = model.Price,
+                Remarks = model.Remarks?.ToUpper(),
+                SealNum = model.SealNum?.ToUpper(),
+                SignatoryId = 1,
+                SourceCategoryDesc = model.SourceCategoryDesc,
+                SourceCategoryId = model.SourceCategoryId,
+                SourceId = model.SourceId,
+                SourceName = model.SourceName,
+                SubSupplierName = model.SubSupplierName?.ToUpper(),
+                TareWt = model.TareWt,
+                TimeZoneIn = model.DateTimeIn.GetTimeZone(),
+                TimeZoneOut = null,
+                TransactionProcess = model.TransactionProcess,
+                TransactionTypeCode = model.TransactionTypeCode,
+                Trip = model.Trip?.ToUpper(),
+                VehicleNum = model.VehicleNum?.ToUpper(),
+                VehicleTypeCode = model.VehicleTypeCode,
+                VehicleTypeId = model.VehicleTypeId,
+                WeigherInId = model.WeigherInId,
+                WeigherInName = model.WeigherInName,
+                WeigherOutId = null,
+                WeigherOutName = null
+            };
 
-                var material = rawMaterialRepository.Get()
-                    .Where(a => a.RawMaterialId == model.CommodityId)
-                    .Include(a => a.Category).DefaultIfEmpty()
-                    .Select(a => new { a.RawMaterialDesc, a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
-                    .FirstOrDefault();
-                model.CommodityDesc = material?.RawMaterialDesc;
-                model.CategoryId = material?.CategoryId ?? 0;
-                model.CategoryDesc = material?.CategoryDesc;
-
-                var source = sourceRepository.Get()
-                    .Where(a => a.SourceId == model.SourceId)
-                    .Include(a => a.SourceCategory).DefaultIfEmpty()
-                    .Select(a => new { a.SourceDesc, a.SourceCategoryId, SourceCategoryDesc = a.SourceCategory == null ? null : a.SourceCategory.Description })
-                    .FirstOrDefault();
-                model.SourceName = source?.SourceDesc;
-                model.SourceCategoryId = source?.SourceCategoryId ?? 0;
-                model.SourceCategoryDesc = source?.SourceCategoryDesc;
-
-            }
-            else
-            {
-                model.ClientName = customerRepository.Get()
-                .Where(a => a.CustomerId == model.ClientId).Select(a => a.CustomerName).FirstOrDefault();
-
-                var product = productRepository.Get()
-                    .Where(a => a.ProductId == model.CommodityId)
-                    .Include(a => a.Category).DefaultIfEmpty()
-                    .Select(a => new { a.ProductDesc, a.CategoryId, CategoyDesc= a.Category== null ? null : a.Category.CategoryDesc })
-                    .FirstOrDefault();
-                model.CommodityDesc = product?.ProductDesc;
-                model.CategoryId = product?.CategoryId??0;
-                model.CategoryDesc = product?.CategoyDesc;
-            }
-
-            model.MoistureReaderDesc = moistureReaderRepository.Get()
-                .Where(a => a.MoistureReaderId == model.MoistureReaderId)
-                .Select(a => a.Description).FirstOrDefault();
-
-            dbContext.Inyards.Add(model);
+            dbContext.Inyards.Add(newInyard);
 
             refNum.InyardNum = String.Format(StringFormats.REFNO_FORMAT, Convert.ToInt32(refNum.InyardNum) + 1);
             dbContext.ReferenceNumbers.Update(refNum);
@@ -157,7 +162,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                 vehicleDeliveryRestrictionRepository.Create(vd);
 
-
                 var pg = new PurchaseGrossWtRestriction()
                 {
                     VehicleNum = model.VehicleNum,
@@ -168,66 +172,85 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 purchaseGrossWtRestrictionRepository.Create(pg);
             }
 
-            return model;
+            return newInyard;
         }
 
         public PurchaseTransaction WeighoutPurchase(Inyard model)
         {
-            model.DateTimeOut = model.IsOfflineOut ? model.DateTimeIn : DateTime.Now;
-            model.TimeZoneOut = model.DateTimeOut.GetTimeZone();
+
             var refNum = dbContext.ReferenceNumbers.FirstOrDefault();
 
-            var purchase = new PurchaseTransaction();
-            ((IInyard)model).CopyPropertiesTo<IInyard>(purchase);
-
-            purchase.ReceiptNum = refNum.PurchaseReceiptNum;
-            purchase.SupplierId = model.ClientId;
-            purchase.RawMaterialId = model.CommodityId;
-            purchase.PONum = model.PONum?.ToUpper();
-            purchase.DRNum = model.DRNum?.ToUpper();
-            purchase.SubSupplierName = model.SubSupplierName?.ToUpper();
-            purchase.Price = model.Price;
-            purchase.SourceId = model.SourceId;
-
-            purchase.SupplierName = supplierRepository.Get()
-                .Where(a => a.SupplierId == purchase.SupplierId).Select(a => a.SupplierName).FirstOrDefault();
-
-            var material = rawMaterialRepository.Get()
-                .Where(a => a.RawMaterialId == purchase.RawMaterialId)
-                .Include(a => a.Category).DefaultIfEmpty()
-                .Select(a => new { a.RawMaterialDesc, a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
-                .FirstOrDefault();
-            purchase.RawMaterialDesc = material?.RawMaterialDesc;
-            purchase.CategoryId = material?.CategoryId ?? 0;
-            purchase.CategoryDesc = material?.CategoryDesc;
-
-            var source = sourceRepository.Get()
-                .Where(a => a.SourceId == purchase.SourceId)
-                .Include(a => a.SourceCategory).DefaultIfEmpty()
-                .Select(a => new { a.SourceDesc, a.SourceCategoryId, SourceCategoryDesc = a.SourceCategory == null ? null : a.SourceCategory.Description })
-                .FirstOrDefault();
-            purchase.SourceName = source?.SourceDesc;
-            purchase.SourceCategoryId = source?.SourceCategoryId ?? 0;
-            purchase.SourceCategoryDesc = source?.SourceCategoryDesc;
-
-            model.MoistureReaderDesc = moistureReaderRepository.Get()
-               .Where(a => a.MoistureReaderId == model.MoistureReaderId)
-               .Select(a => a.Description).FirstOrDefault();
+            updateRelatedTableColumns(ref model);
 
             var weekDetail = new WeekDetail(model.DateTimeOut.Value);
-            purchase.WeekDay = weekDetail.WeekDay;
-            purchase.WeekNum = weekDetail.WeekNum;
-            purchase.FirstDay = weekDetail.FirstDay;
-            purchase.LastDay = weekDetail.LastDay;
 
             var correctedMC = mcRepo.GetCorrectedMC(model.MC, model.NetWt);
-            purchase.MCStatus = correctedMC.MCStatus;
-            purchase.Corrected10 = correctedMC.Corrected10;
-            purchase.Corrected12 = correctedMC.Corrected12;
-            purchase.Corrected14 = correctedMC.Corrected14;
-            purchase.Corrected15 = correctedMC.Corrected15;
 
-            dbContext.PurchaseTransactions.Add(purchase);
+            var newPurchase = new PurchaseTransaction()
+            {
+                BaleCount = model.BaleCount,
+                BaleTypeDesc = baleTypeRepository.Get().Where(a => a.BaleTypeId == model.BaleTypeId).Take(1).Select(a => a.BaleTypeDesc).FirstOrDefault(),
+                BaleTypeId = model.BaleTypeId,
+                BalingStationNum = model.BalingStationNum,
+                BalingStationCode = model.BalingStationCode,
+                BalingStationName = model.BalingStationName,
+                CategoryDesc = model.CategoryDesc,
+                CategoryId = model.CategoryId,
+                Corrected10 = correctedMC.Corrected10,
+                Corrected12 = correctedMC.Corrected12,
+                Corrected14 = correctedMC.Corrected14,
+                Corrected15 = correctedMC.Corrected15,
+                DateTimeIn = model.DateTimeIn,
+                DateTimeOut = model.IsOfflineOut??false ? model.DateTimeIn : DateTime.Now,
+                DriverName = model.DriverName?.ToUpper(),
+                DRNum = model.DRNum?.ToUpper(),
+                FirstDay = weekDetail.FirstDay,
+                FactoryWt = model.PlantNetWt,
+                GrossWt = model.GrossWt,
+                IsOfflineIn = model.IsOfflineIn,
+                IsOfflineOut = model.IsOfflineOut??false,
+                LastDay = weekDetail.LastDay,
+                MC = model.MC,
+                MCDate = model.MoistureReaderLogs.FirstOrDefault()?.DTLog,
+                MCStatus = model.MCStatus,
+                MoistureReaderDesc = model.MoistureReaderDesc,
+                MoistureReaderId = model.MoistureReaderId,
+                MoistureReaderLogs = model.MoistureReaderLogs,
+                MoistureSettingsId = 1,
+                OT = model.OT,
+                NetWt = model.NetWt,
+                PM = model.PM,
+                PONum = model.PONum,
+                Price = model.Price,
+                PrintCount = 0,
+                RawMaterialDesc = model.CommodityDesc,
+                RawMaterialId = model.CommodityId,
+                ReceiptNum = refNum.PurchaseReceiptNum,
+                Remarks = model.Remarks?.ToUpper(),
+                SignatoryId = 1,
+                SourceCategoryDesc = model.SourceCategoryDesc,
+                SourceCategoryId = model.SourceCategoryId,
+                SourceId = model.SourceId,
+                SourceName = model.SourceName,
+                SupplierId = model.ClientId,
+                SupplierName = model.ClientName,
+                SubSupplierName = model.SubSupplierName?.ToUpper(),
+                TareWt = model.TareWt,
+                TimeZoneIn = model.DateTimeIn.GetTimeZone(),
+                TimeZoneOut = model.DateTimeOut.GetTimeZone(),
+                Trip = model.Trip?.ToUpper(),
+                VehicleNum = model.VehicleNum?.ToUpper(),
+                VehicleTypeCode = model.VehicleTypeCode,
+                VehicleTypeId = model.VehicleTypeId,
+                WeekDay = weekDetail.WeekDay,
+                WeekNum = weekDetail.WeekNum,
+                WeigherInId = model.WeigherInId,
+                WeigherInName = model.WeigherInName,
+                WeigherOutId =model.WeigherOutId,
+                WeigherOutName = model.WeigherOutName
+            };
+
+            dbContext.PurchaseTransactions.Add(newPurchase);
 
             if (subSupplierRepository.Get().Count(a => a.SubSupplierName == model.SubSupplierName) == 0)
             {
@@ -241,58 +264,84 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.SaveChanges();
 
-            for (var i = 0; i <= model.MoistureReaderLogs.Count() - 1; i++) 
-                model.MoistureReaderLogs[i].TransactionId = purchase.PurchaseId;
-  
-            dbContext.moistureReaderLogs.AddRange(model.MoistureReaderLogs);
+            balingStationRepository.CheckAndCreateStockStatusReminder();
 
-            dbContext.SaveChanges();
-            return purchase;
+            return newPurchase;
         }
 
         public SaleTransaction WeighoutSale(Inyard model)
         {
-            model.DateTimeOut = model.IsOfflineOut ? model.DateTimeIn : DateTime.Now;
+            model.DateTimeOut = model.IsOfflineOut??false ? model.DateTimeIn : DateTime.Now;
             var refNum = dbContext.ReferenceNumbers.FirstOrDefault();
 
-            var sale = new SaleTransaction();
-            ((IInyard)model).CopyPropertiesTo<IInyard>(sale);
-
-            sale.ReceiptNum = refNum.SaleReceiptNum;
-            sale.CustomerId = model.ClientId;
-            sale.ProductId = model.CommodityId;
-            sale.HaulerId = model.HaulerId ?? 0;
-            sale.SealNum = model.SealNum;
-
-            sale.CustomerName = customerRepository.Get()
-                          .Where(a => a.CustomerId == model.ClientId).Select(a => a.CustomerName).FirstOrDefault();
-
-            var product = productRepository.Get()
-                .Where(a => a.ProductId == model.CommodityId)
-                .Include(a => a.Category).DefaultIfEmpty()
-                .Select(a => new { a.ProductDesc, a.CategoryId, CategoyDesc = a.Category == null ? null : a.Category.CategoryDesc })
-                .FirstOrDefault();
-            sale.ProductDesc = product?.ProductDesc;
-            sale.CategoryId = product?.CategoryId ?? 0;
-            sale.CategoryDesc = product?.CategoyDesc;
+            updateRelatedTableColumns(ref model);
 
             var weekDetail = new WeekDetail(model.DateTimeOut.Value);
-            sale.WeekDay = weekDetail.WeekDay;
-            sale.WeekNum = weekDetail.WeekNum;
-            sale.FirstDay = weekDetail.FirstDay;
-            sale.LastDay = weekDetail.LastDay;
 
             var correctedMC = mcRepo.GetCorrectedMC(model.MC, model.NetWt);
-            var mcSettings = mcRepo.Get().Select(a => a).First();
-            sale.MCStatus = 0;
-            sale.Corrected10 = correctedMC.Corrected10;
-            sale.Corrected12 = correctedMC.Corrected12;
-            sale.Corrected14 = correctedMC.Corrected14;
-            sale.Corrected15 = correctedMC.Corrected15;
+
+            var saleTransaction = new SaleTransaction()
+            {
+                BaleCount = model.BaleCount,
+                BaleTypeDesc = baleTypeRepository.Get().Where(a => a.BaleTypeId == model.BaleTypeId).Take(1).Select(a => a.BaleTypeDesc).FirstOrDefault(),
+                BaleTypeId = model.BaleTypeId,
+                BalingStationCode = model.BalingStationCode,
+                BalingStationName = model.BalingStationName,
+                BalingStationNum = model.BalingStationNum,
+                CategoryDesc = model.CategoryDesc,
+                CategoryId = model.CategoryId,
+                Corrected10 = correctedMC.Corrected10,
+                Corrected12 = correctedMC.Corrected12,
+                Corrected14 = correctedMC.Corrected14,
+                Corrected15 = correctedMC.Corrected15,
+                CustomerId = model.ClientId,
+                CustomerName = model.ClientName,
+                DateTimeIn = model.DateTimeIn,
+                DateTimeOut = model.IsOfflineOut ?? false ? model.DateTimeIn : DateTime.Now,
+                DriverName = model.DriverName??String.Empty.ToUpper(),
+                FirstDay = weekDetail.FirstDay,
+                GrossWt = model.GrossWt,
+                HaulerId = model.HaulerId??0,
+                HaulerName = model.HaulerName,
+                IsOfflineIn = model.IsOfflineIn,
+                IsOfflineOut = model.IsOfflineOut ?? false,
+                LastDay = weekDetail.LastDay,
+                MC = model.MC,
+                MCStatus = model.MCStatus,
+                MoistureReaderDesc = model.MoistureReaderDesc,
+                MoistureReaderId = model.MoistureReaderId,
+                MoistureSettingsId = 1,
+                OT = model.OT,
+                NetWt = model.NetWt,
+                PM = model.PM,
+                Price = model.Price,
+                PrintCount = 0,
+                ProductId = model.CommodityId,
+                ProductDesc = model.CommodityDesc,
+                ReceiptNum = refNum.SaleReceiptNum,
+                Remarks = model.Remarks??String.Empty.ToUpper(),
+                SealNum = model.SealNum,
+                SaleBales = model.Bales.Select(a=>new SaleBale() { BaleId = a.BaleId}).ToList(),
+                SignatoryId = 1,
+                TareWt = model.TareWt,
+                TimeZoneIn = model.DateTimeIn.GetTimeZone(),
+                TimeZoneOut = model.DateTimeOut.GetTimeZone(),
+                Trip = model.Trip?.ToUpper(),
+                VehicleNum = model.VehicleNum?.ToUpper(),
+                VehicleTypeCode = model.VehicleTypeCode,
+                VehicleTypeId = model.VehicleTypeId,
+                WeekDay = weekDetail.WeekDay,
+                WeekNum = weekDetail.WeekNum,
+                WeigherInId = model.WeigherInId,
+                WeigherInName = model.WeigherInName,
+                WeigherOutId = model.WeigherOutId,
+                WeigherOutName = model.WeigherOutName
+
+            };
 
             using var transaction = dbContext.Database.BeginTransaction();
 
-            dbContext.SaleTransactions.Add(sale);
+            dbContext.SaleTransactions.Add(saleTransaction);
 
             refNum.SaleReceiptNum = String.Format(StringFormats.REFNO_FORMAT, Convert.ToInt32(refNum.SaleReceiptNum) + 1);
             dbContext.ReferenceNumbers.Update(refNum);
@@ -301,12 +350,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.SaveChanges();
 
-            var str = getUpdateBalesQuery(sale, model.Bales);
-            if (str != String.Empty) dbContext.Database.ExecuteSqlRaw(str);
-
             transaction.Commit();
 
-            return sale;
+            baleRepository.CheckAndCreateBaleOverageReminder();
+            balingStationRepository.CheckAndCreateStockStatusReminder();
+
+            return saleTransaction;
         }
 
         private string getUpdateBalesQuery(SaleTransaction sale, List<Bale> bales)
@@ -322,6 +371,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public bool Delete(Inyard model)
         {
             dbContext.Inyards.Remove(model);
+
+      
             dbContext.SaveChanges();
             return true;
         }
@@ -361,6 +412,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 throw new Exception("Selected Record does not exists.");
             }
 
+            updateRelatedTableColumns(ref model);
+
             var oldVehicleNum = entity.VehicleNum;
             var oldCommodityId = entity.CommodityId;
 
@@ -382,9 +435,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.TimeZoneIn = model.TimeZoneIn?.ToUpper();
             entity.Trip = model.Trip?.ToUpper();
             entity.VehicleNum = model.VehicleNum?.ToUpper();
+            entity.WeigherInId = model.WeigherInId;
+            entity.WeigherInName = model.WeigherInName;
 
             dbContext.Inyards.Update(entity);
             dbContext.SaveChanges();
+            dbContext.Entry<Inyard>(entity).State = EntityState.Detached;
 
             if (model.IsOfflineIn == false)
             {
@@ -439,6 +495,94 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         }
 
         DataSet ITransDbRepository<Inyard>.PrintReceipt(PrintReceiptModel model) => throw new NotImplementedException();
+
+        public Inyard updateRelatedTableColumns(ref Inyard outModifiedInyard)
+        {
+            var vehicleNum = outModifiedInyard.VehicleNum;
+            var vehicle = vehicleRepository.Get()
+    .Include(a => a.VehicleType).DefaultIfEmpty()
+    .Where(a => a.VehicleNum == vehicleNum)
+    .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
+            outModifiedInyard.VehicleTypeId = vehicle?.VehicleTypeId ?? 0;
+            outModifiedInyard.VehicleTypeCode = vehicle?.VehicleTypeCode;
+
+            if (outModifiedInyard.TransactionTypeCode == "I")
+            {
+                var clientId = outModifiedInyard.ClientId;
+                outModifiedInyard.ClientName = supplierRepository.Get()
+                 .Where(a => a.SupplierId == clientId).Select(a => a.SupplierName).FirstOrDefault();
+
+                var commodityId = outModifiedInyard.CommodityId;
+                var material = rawMaterialRepository.Get()
+                    .Where(a => a.RawMaterialId == commodityId)
+                    .Include(a => a.Category).DefaultIfEmpty()
+                    .Select(a => new { a.RawMaterialDesc, a.Price,a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
+                    .FirstOrDefault();
+                outModifiedInyard.CommodityDesc = material?.RawMaterialDesc;
+                outModifiedInyard.CategoryId = material?.CategoryId ?? 0;
+                outModifiedInyard.CategoryDesc = material?.CategoryDesc;
+                outModifiedInyard.Price = material?.Price ?? 0;
+
+                var sourceId = outModifiedInyard.SourceId;
+                var source = sourceRepository.Get()
+                    .Where(a => a.SourceId == sourceId)
+                    .Include(a => a.SourceCategory).DefaultIfEmpty()
+                    .Select(a => new { a.SourceDesc, a.SourceCategoryId, SourceCategoryDesc = a.SourceCategory == null ? null : a.SourceCategory.Description })
+                    .FirstOrDefault();
+                outModifiedInyard.SourceName = source?.SourceDesc;
+                outModifiedInyard.SourceCategoryId = source?.SourceCategoryId ?? 0;
+                outModifiedInyard.SourceCategoryDesc = source?.SourceCategoryDesc;
+
+            }
+            else
+            {
+                var clientId = outModifiedInyard.ClientId;
+                outModifiedInyard.ClientName = customerRepository.Get()
+                .Where(a => a.CustomerId == clientId).Select(a => a.CustomerName).FirstOrDefault();
+
+                var haulerId = outModifiedInyard.HaulerId;
+                outModifiedInyard.HaulerName = haulerRepository.Get()
+                .Where(a => a.HaulerId == clientId).Select(a => a.HaulerName).FirstOrDefault();
+
+                var commodityId = outModifiedInyard.CommodityId;
+                var product = productRepository.Get()
+                    .Where(a => a.ProductId == commodityId)
+                    .Include(a => a.Category).DefaultIfEmpty()
+                    .Select(a => new { a.ProductDesc, a.CategoryId, CategoyDesc = a.Category == null ? null : a.Category.CategoryDesc })
+                    .FirstOrDefault();
+                outModifiedInyard.CommodityDesc = product?.ProductDesc;
+                outModifiedInyard.CategoryId = product?.CategoryId ?? 0;
+                outModifiedInyard.CategoryDesc = product?.CategoyDesc;
+            }
+
+            var msId = outModifiedInyard.MoistureReaderId;
+            outModifiedInyard.MoistureReaderDesc = moistureReaderRepository.Get()
+                .Where(a => a.MoistureReaderId == msId).Select(a => a.Description).FirstOrDefault();
+
+            var balingStation = balingStationRepository.Get().Where(a => a.Selected).Take(1).AsNoTracking()
+                .Select(a => new { a.BalingStationNum, a.BalingStationCode, a.BalingStationName }).FirstOrDefault();
+
+            outModifiedInyard.BalingStationNum = balingStation.BalingStationNum;
+            outModifiedInyard.BalingStationCode = balingStation.BalingStationCode;
+            outModifiedInyard.BalingStationName = balingStation.BalingStationName;
+
+            var userAccountId = String.Empty;
+            if (outModifiedInyard.TransactionProcess == SysUtility.Enums.TransactionProcess.WEIGH_IN ||
+                outModifiedInyard.TransactionProcess == SysUtility.Enums.TransactionProcess.UPDATE_WEIGH_IN)
+            {
+                userAccountId = outModifiedInyard.WeigherInId;
+                outModifiedInyard.WeigherInName = userAccountRepository.Get().Where(a => a.UserAccountId == userAccountId)
+                .Select(a => a.FullName).FirstOrDefault();
+
+            } else if (outModifiedInyard.TransactionProcess == SysUtility.Enums.TransactionProcess.WEIGH_OUT ||
+                outModifiedInyard.TransactionProcess == SysUtility.Enums.TransactionProcess.UPDATE_WEIGH_OUT)
+            {
+                userAccountId = outModifiedInyard.WeigherOutId;
+                outModifiedInyard.WeigherOutName = userAccountRepository.Get().Where(a => a.UserAccountId == userAccountId)
+                .Select(a => a.FullName).FirstOrDefault();
+            }
+            return outModifiedInyard;
+        }
 
     }
 }

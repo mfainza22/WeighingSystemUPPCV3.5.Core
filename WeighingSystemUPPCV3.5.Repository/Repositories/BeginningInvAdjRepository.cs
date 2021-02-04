@@ -85,10 +85,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public decimal GetActualWt(int year, int month, long categoryId)
         {
-            return dbContext.Bales.Where(a => a.DT.Year == year &&
+            return dbContext.Bales.Include(a=>a.BaleInventoryView).Where(a => a.DT.Year == year &&
             a.DT.Month == month &&
             a.CategoryId == categoryId &&
-            a.InStock == true).Sum(a => a.BaleWt);
+            a.BaleInventoryView.InStock == true).Sum(a => a.BaleWt);
         }
     }
 }

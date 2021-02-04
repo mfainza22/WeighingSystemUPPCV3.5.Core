@@ -8,6 +8,7 @@ using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,19 +31,22 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                //var result = repository.Get(parameters)
-                //    .Include(a => a.VehicleType)
-                //    .Include(a => a.Customer)
-                //    .Include(a => a.Hauler).DefaultIfEmpty();
+                var result = repository.Get(parameters)
+                .Include(a => a.VehicleType)
+                .Select(a => new
+                {
+                    a.VehicleId,
+                    a.VehicleNum,
+                    a.VehicleTypeId,
+                    VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode,
+                    a.IsActive,
+                    a.CustomerId,
+                    a.HaulerId,
+                    a.SupplierId
+                });
 
-                var result = repository.Get()
-               .Where(a => a.VehicleNum == parameters.VehicleNum)
-               .Include(a => a.VehicleType).DefaultIfEmpty()
-               .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
+                var ss =result.ToList();
 
-
-                var newVehicle = new Vehicle();
-                newVehicle.VehicleTypeId = result.VehicleTypeId;
                 return Ok(result);
             }
             catch (Exception ex)
@@ -76,7 +80,22 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 if (!validateEntity(model)) return InvalidModelStateResult();
-                return Accepted(repository.Create(model));
+
+                var modelResult = repository.Create(model);
+                var result = (new List<Vehicle>() { modelResult }).Select(a => new
+                {
+                    a.VehicleId,
+                    a.VehicleNum,
+                    a.VehicleTypeId,
+                    VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode,
+                    a.IsActive,
+                    a.CustomerId,
+                    a.HaulerId,
+                    a.SupplierId
+                }).FirstOrDefault();
+
+                return Accepted(result);
+
             }
             catch (Exception ex)
             {
@@ -95,7 +114,21 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 if (!validateEntity(model)) return InvalidModelStateResult();
                 if (repository.Get().Count(a => a.VehicleId.Equals(model.VehicleId)) == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
-                return Accepted(repository.Update(model));
+
+                var modelResult = repository.Update(model);
+                var result = (new List<Vehicle>() { modelResult }).Select(a => new
+                {
+                    a.VehicleId,
+                    a.VehicleNum,
+                    a.VehicleTypeId,
+                    VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode,
+                    a.IsActive,
+                    a.CustomerId,
+                    a.HaulerId,
+                    a.SupplierId
+                }).FirstOrDefault();
+
+                return Accepted(result);
 
             }
             catch (Exception ex)

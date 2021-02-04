@@ -17,12 +17,14 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 
         Dictionary<string, string> Validate(SaleTransaction model);
 
-        SaleTransaction GetByIdWithBales(long id);
+        SaleTransaction GetById(long id,bool includeBales = false);
 
         decimal UpdateMCStatus(long id, decimal mcStatus);
 
-        List<Bale> UpdateBales(SaleTransaction model);
+        List<SaleBale> UpdateBales(long id,List<SaleBale> newSaleBales);
 
         void MigrateOldDb(DateTime dtFrom, DateTime dtTo);
+
+        IQueryable<PrintLog> GetPrintLogs(long transactionId);
     }
 }

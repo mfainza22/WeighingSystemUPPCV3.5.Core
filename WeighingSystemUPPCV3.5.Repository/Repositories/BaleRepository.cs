@@ -24,6 +24,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IProductRepository productRepository;
         private readonly IReminderRepository reminderRepository;
 
+        private readonly int baleInventoryAgeWarning = 7;
+        private readonly int baleInventoryAgeDanger = 15;
+
         public BaleRepository(DatabaseContext dbContext,
             ICategoryRepository catRepository,
             IBalingStationRepository baleStationRepository,
@@ -40,17 +43,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public Bale Create(Bale model)
         {
-            //var weekDetail = new WeekDetail(model.DTCreated.Value);
-            //model.WeekDay = weekDetail.WeekDay;
-            //model.WeekNum = weekDetail.WeekNum;
-            //model.FirstDay = weekDetail.FirstDay;
-            //model.LastDay = weekDetail.LastDay;
-            model.DTCreated = DateTime.Now;
+            model.DTCreated = model.DTCreated;
             model.FIFORemarks = "First In, First Out";
             model.IsReject = false;
 
             dbContext.Bales.Add(model);
             dbContext.SaveChanges();
+            dbContext.Entry<Bale>(model).State = EntityState.Detached;
 
             CheckAndCreateBaleOverageReminder();
             baleStationRepository.CheckAndCreateStockStatusReminder();
@@ -61,7 +60,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public bool Delete(Bale model)
         {
-            dbContext.Bales.Remove(model);
+            var bs = dbContext.Bales.Where(a => a.BaleId == model.BaleId).AsNoTracking().FirstOrDefault();
+            dbContext.Bales.Remove(bs);
             dbContext.SaveChanges();
 
             CheckAndCreateBaleOverageReminder();
@@ -73,17 +73,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public Bale Update(Bale model)
         {
-            var parameters = new BaleFilter()
-            {
-                BaleId = model.BaleId
-            };
-
-            var entity = Get(parameters).FirstOrDefault();
-            if (entity == null)
-            {
-                throw new Exception("Selected Record does not exists.");
-            }
-
+           
+            var entity = dbContext.Bales.Where(a => a.BaleId == model.BaleId).FirstOrDefault();
+            if (entity == null) throw new Exception("Selected Record does not exists.");
 
             if (entity.DT.Year != model.DT.Year ||
                 entity.DT.Month != model.DT.Month ||
@@ -103,11 +95,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.IsReject = model.IsReject;
             var categoryId = dbContext.Products.AsNoTracking().Where(a => a.ProductId == model.ProductId).Select(a => a.CategoryId).FirstOrDefault();
             entity.CategoryId = categoryId;
+        
+
             dbContext.Bales.Update(entity);
             dbContext.SaveChanges();
-            var invAge = entity.InStock ? (DateTime.Now - entity.DT).TotalDays : 0d;
-            invAge = Math.Round(invAge, 1);
-            entity.InventoryAge = (int)invAge;
+            dbContext.Entry<Bale>(entity).State = EntityState.Detached;
 
             CheckAndCreateBaleOverageReminder();
             baleStationRepository.CheckAndCreateStockStatusReminder();
@@ -122,17 +114,59 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             if (id.Length == 0) return false;
 
             var entitiesToDelete = dbContext.Bales.Where(a => id.Contains(a.BaleId.ToString()));
-
             dbContext.Bales.RemoveRange(entitiesToDelete);
             dbContext.SaveChanges();
+
             return true;
         }
 
-
         public IQueryable<Bale> Get(BaleFilter parameters = null)
         {
-            var sqlRawParams = GetSqlRawParameter(parameters);
-            return dbContext.Bales.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).AsNoTracking();
+            var b = dbContext.Bales
+                .Include(a => a.SaleBale)
+                .Include(a => a.BaleInventoryView)
+                .AsNoTracking();
+            if (parameters == null) return b;
+
+            if (parameters.BaleId.IsNullOrZero() == false)
+            {
+                b = b.Where(a => a.BaleId == parameters.BaleId);
+                return b;
+            }
+
+            if (!parameters.BaleCode.IsNull())
+            {
+                b = b.Where(a => a.BaleCode == parameters.BaleCode.Trim());
+                return b;
+            }
+
+            if (!parameters.SearchText.IsNull())
+            {
+                b = b.Where(a => a.BaleCode.Contains(parameters.SearchText));
+            }
+
+            if (!parameters.SaleId.IsNullOrZero()) b = b.Where(a => a.SaleBale.SaleId == parameters.SaleId);
+            if (!parameters.CategoryId.IsNullOrZero()) b = b.Where(a => a.CategoryId == parameters.CategoryId);
+            if (!parameters.ProductId.IsNullOrZero()) b = b.Where(a => a.ProductId == parameters.ProductId);
+
+            if (parameters.DTCreatedFrom.HasValue)
+            {
+                //parameters.DTCreatedFrom = parameters.DTCreatedFrom.Value.Date + new TimeSpan(0, 0, 0);
+                //parameters.DTCreatedTo = parameters.DTCreatedTo.Value.Date + new TimeSpan(23, 59, 59);
+
+                b = b.Where(a => a.DTCreated.Date >= parameters.DTCreatedFrom.Value.Date && a.DTCreated.Date <= parameters.DTCreatedTo.Value.Date);
+            }
+
+            if (parameters.BaleStatus != BaleStatus.NONE)
+            {
+                if (parameters.BaleStatus == BaleStatus.INSTOCK) b = b.Where(a => a.BaleInventoryView.InStock == true);
+                else if (parameters.BaleStatus == BaleStatus.REJECT) b = b.Where(a => a.IsReject == true);
+                else if (parameters.BaleStatus == BaleStatus.DELIVERED) b = b.Where(a => a.SaleBale != null);
+            }
+
+            return b;
+
+            //return dbContext.Bales.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).AsNoTracking();
         }
 
 
@@ -141,7 +175,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var sqlrawParams = new SqlRawParameter();
 
             var sqlQry = new StringBuilder();
-            sqlQry.AppendLine("SELECT * FROM BalesViews");
+            sqlQry.AppendLine("SELECT * FROM Bales");
             if (parameters == null) parameters = new BaleFilter();
 
             var whereClauses = new List<string>();
@@ -166,15 +200,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                 if (parameters.BaleStatus == SysUtility.Enums.BaleStatus.INSTOCK)
                 {
-                    whereClauses.Add($"{nameof(Bale.InStock)} = 1");
+                    whereClauses.Add($"{nameof(BaleInventoryView.InStock)} = 1");
                 }
-
-                if (parameters.BaleStatus == SysUtility.Enums.BaleStatus.DELIVERED)
+                else if (parameters.BaleStatus == SysUtility.Enums.BaleStatus.DELIVERED)
                 {
                     whereClauses.Add($"DTDelivered is not null");
                 }
-
-                if (parameters.BaleStatus == SysUtility.Enums.BaleStatus.REJECT)
+                else if (parameters.BaleStatus == SysUtility.Enums.BaleStatus.REJECT)
                 {
                     sqlParams.Add(new SqlParameter(nameof(Bale.IsReject).Parametarize(), true));
                     whereClauses.Add($"{nameof(Bale.IsReject)} = {nameof(Bale.IsReject).Parametarize()}");
@@ -202,6 +234,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     sqlParams.Add(new SqlParameter(nameof(parameters.ProductId).Parametarize(), parameters.ProductId));
                     whereClauses.Add($"{nameof(parameters.ProductId)} = {nameof(parameters.ProductId).Parametarize()}");
                 }
+
                 if (!parameters.SearchText.IsNull())
                 {
                     sqlParams.Add(new SqlParameter(nameof(parameters.SearchText).Parametarize(), parameters.SearchText));
@@ -221,9 +254,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             }
 
             return new SqlRawParameter() { SqlParameters = sqlParams, SqlQuery = sqlQry.ToString() };
-
         }
-
 
         public void GenerateBaleCode(Bale model, out Bale outModel)
         {
@@ -255,7 +286,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             a.CategoryId == categoryId).OrderByDescending(a => a.BaleNum).Select(a => a.BaleNum).FirstOrDefault();
         }
 
-
         public bool ValidateCode(Bale model)
         {
             var existing = Get().FirstOrDefault(a => a.BaleCode == model.BaleCode);
@@ -277,15 +307,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public int GetWarningBaleOverage()
         {
-            var sqlQuery = "SELECT * FROM BalesViews WHERE InventoryAge between 7 and 15";
-
-            return dbContext.Bales.FromSqlRaw(sqlQuery).Count();
+            return dbContext.Bales.Include(a => a.BaleInventoryView)
+                .Count(a => a.BaleInventoryView.InventoryAge >= baleInventoryAgeWarning && 
+                a.BaleInventoryView.InventoryAge <= baleInventoryAgeDanger);
         }
 
         public int GetDangerBaleOverage()
         {
-            var sqlQuery = "Select * from BalesViews where InventoryAge > 15";
-            return dbContext.Bales.FromSqlRaw(sqlQuery).Count();
+            return dbContext.Bales.Include(a => a.BaleInventoryView)
+               .Count(a => a.BaleInventoryView.InventoryAge > baleInventoryAgeDanger);
         }
 
         public int GetInStockBaleWtTotal()
@@ -303,7 +333,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             if (overageBaleCount > 0)
             {
-                var description = $"Bale Stock over {(over15Days ? "15" : "7")} days ({overageBaleCount} Bales).{(over15Days ? "Deliver ASAP! - Stock Overage." : "Please Deliver")}";
+                var description = $"Bale Stock over {(over15Days ? baleInventoryAgeDanger : baleInventoryAgeWarning)} days ({overageBaleCount} Bales).{(over15Days ? "Deliver ASAP! - Stock Overage." : "Please Deliver")}";
                 if (reminder == null)
                 {
                     reminder = new Reminder();
@@ -332,56 +362,46 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
         {
-            //var suppliers = dbContext.Suppliers.AsNoTracking().ToList();
-            var products = dbContext.Products.Include(a=>a.Category).AsNoTracking().ToList();
-            var categories = dbContext.Categories.AsNoTracking().ToList();
-            var weighers = dbContext.UserAccounts.AsNoTracking().ToList();
-
+            var baleIdLength = 13;
             dtFrom = dtFrom.Date;
             dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
-            var oldBales = dbContext.BalesInvs.Where(a => a.DTCREATED >= dtFrom && a.DTCREATED <= dtTo).AsNoTracking().ToList();
-            foreach (var oldBale in oldBales)
+            var oldBales = dbContext.BalesInvs.Where(a => a.DTCREATED >= dtFrom && a.DTCREATED <= dtTo).AsNoTracking()
+                .GroupJoin(dbContext.Products.Include(a => a.Category).Where(a => a.ProductIdOld != null),
+                    bale => bale.ProductId,
+                    product => product.ProductIdOld,
+                    (bale, product) => new { bale, product })
+                .SelectMany(a => a.product,
+                (bale, product) => new { bale.bale, product }).AsNoTracking()
+                .Where(a => dbContext.Bales.Select(a => a.BaleCode).Contains(a.bale.BaleId) == false)
+                 .AsNoTracking().ToList();
+
+
+            var allBales = oldBales.Select(a => new Bale()
             {
-                var exist = dbContext.Bales.Where(a => a.DTCreated == oldBale.DTCREATED).AsNoTracking().Count();
-                if (exist > 0) continue;
+                BaleId = 0,
+                BaleCode = a.bale.BaleId,
+                BaleNum = Convert.ToInt32(a.bale.BaleId.Substring(baleIdLength - 4, 4)),
+                BaleWt = Convert.ToInt32(a.bale.BaleWt ?? 0),
+                BaleWt10 = Convert.ToInt32(a.bale.BaleWt10 ?? 0),
+                CategoryDesc = a.product == null ? String.Empty : a.product.Category != null ? a.product.Category.CategoryDesc : String.Empty,
+                CategoryId = a.product == null ? 0 : (long)a.product.CategoryId,
+                DT = a.bale.DTCREATED.Value,
+                DTCreated = a.bale.DTCREATED.Value,
+                FIFORemarks = "FIRST IN FIRST OUT",
+                IsReject = a.bale.Reject ?? false,
+                ProductDesc = a.product != null ? a.product.ProductDesc : String.Empty,
+                ProductId = Convert.ToInt64(a.product != null ? a.product.ProductId : 0),
+                Remarks = a.bale.Remarks,
+            }).ToList();
 
-                var bale = new Bale();
-                bale.DT = oldBale.Rdate.Value;
-                bale.DTCreated = oldBale.Rdate.Value;
-                var product = products.FirstOrDefault(a => a.ProductIdOld == oldBale.ProductId);
-                if (product != null)
-                {
-                    bale.ProductId = product.ProductId;
-                    bale.ProductDesc = product.ProductDesc;
-                    if (product.Category != null)
-                    {
-                        bale.CategoryId = product.Category.CategoryId;
-                        bale.CategoryDesc = product.Category.CategoryDesc;
-                    }
-                }
-
-                bale.BaleCode = oldBale.BaleId;
-
-                var baleIdLength = oldBale.BaleId.Length;
-                bale.BaleNum = Convert.ToInt32(oldBale.BaleId.Substring(baleIdLength - 4, 4));
-
-                bale.BaleWt = Convert.ToInt32(oldBale.BaleWt ?? 0);
-                bale.BaleWt10 = Convert.ToInt32(oldBale.BaleWt10 ?? 0);
-                //bale.FirstDay = oldBale.FirstDay.Value;
-                //bale.LastDay = oldBale.LastDay.Value;
-                //bale.WeekDay = Convert.ToInt32(oldBale.WeekDay);
-                //bale.WeekNum = Convert.ToInt32(oldBale.WeekNo);
-
-                var saleTransaction = dbContext.SaleTransactions.Where(a => a.DateTimeOut == oldBale.DTDELIVERED).AsNoTracking().FirstOrDefault();
-                if (saleTransaction != null)
-                {
-                    bale.SaleId = saleTransaction.SaleId;
-                    bale.DTDelivered = saleTransaction.DateTimeOut;
-                }
-
-                dbContext.Bales.Add(bale);
+            for (var i = 0; i <= allBales.Count() - 1; i++)
+            {
+                dbContext.Bales.Add(allBales[i]);
                 dbContext.SaveChanges();
-            };
+                dbContext.Entry(allBales[i]).State = EntityState.Detached;
+            }
+
+            dbContext.Database.ExecuteSqlRaw("UPDATE BalesInv set BaleIdNew = (Select top 1 b1.BaleId From Bales as b1 where b1.BaleCode = BalesInv.baleid)");
         }
     }
 

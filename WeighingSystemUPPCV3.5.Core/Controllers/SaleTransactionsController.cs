@@ -7,6 +7,10 @@ using System;
 using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
+using System.Collections.Generic;
+using SysUtility.Validations.UPPC;
+using static SysUtility.Constants;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -66,7 +70,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = includeBales ? repository.GetByIdWithBales(id) : repository.GetById(id);
+                var model = repository.GetById(id,includeBales);
                 if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 return Ok(model);
             }
@@ -111,13 +115,11 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
-        public IActionResult Put([FromBody] SaleTransaction model)
+        public IActionResult Put(long id,[FromBody] SaleTransaction model)
         {
             try
             {
-
-
-                if (repository.Get().Count(a => a.SaleId == model.SaleId) == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
+                if (repository.Get().Count(a => a.SaleId == id) == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 var modelStateDic = transValidationRepository.ValidateSale(model);
                 if (modelStateDic.Count > 0)
@@ -134,7 +136,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.UpdateError);
             }
         }
-
 
 
         [HttpDelete]
@@ -219,13 +220,30 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("[action]/{id}")]
-        public IActionResult UpdateBales([FromRoute] long id, [FromBody] SaleTransaction model)
+        [Route("{id}/[action]")]
+        public IActionResult PrintLogs(long id)
         {
             try
             {
-                return Ok(repository.UpdateBales(model));
+                return Ok(repository.GetPrintLogs(id));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.GetExceptionMessage());
+                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
+            }
+        }
+
+
+        [HttpPut]
+        [Route("[action]/{id}")]
+        public IActionResult UpdateBales([FromRoute] long id, [FromBody] List<SaleBale> saleBales)
+        {
+            try
+            {
+                var model = repository.Get().Count(a=>a.SaleId == id);
+                if (model == 0) return StatusCode(StatusCodes.Status404NotFound, ErrorMessages.NotFoundEntity );
+                return Ok(repository.UpdateBales(id,saleBales));
             }
             catch (Exception ex)
             {

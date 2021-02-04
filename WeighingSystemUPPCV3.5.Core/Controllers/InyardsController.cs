@@ -69,7 +69,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 model.DateTimeIn = model.IsOfflineIn ? model.DateTimeIn : DateTime.Now;
 
                 if (!ModelState.IsValid) return InvalidModelStateResult();
-                var modelStateDic = transValRepository.ValidateInyard(model);
+                var modelStateDic = transValRepository.ValidateInyardWeighing(model);
                 if (modelStateDic.Count > 0)
                 {
                     ModelState.AddModelErrors(modelStateDic);
@@ -92,13 +92,13 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 if (repository.Get().Count(a => a.InyardId == model.InyardId) == 0) return NotFound("Selected Inyard Not found found");
 
-                model.DateTimeOut = model.IsOfflineOut ? model.DateTimeOut : DateTime.Now;
+                model.DateTimeOut = (model.IsOfflineOut??false) ? model.DateTimeOut : DateTime.Now;
 
                 if (!ModelState.IsValid) return InvalidModelStateResult();
-                var modelStateDic = transValRepository.ValidateInyard(model);
+                var modelStateDic = transValRepository.ValidateInyardWeighing(model);
                 if (modelStateDic.Count > 0)
                 {
-                    ModelState.AddModelErrors(transValRepository.ValidateInyard(model));
+                    ModelState.AddModelErrors(transValRepository.ValidateInyardWeighing(model));
                     return InvalidModelStateResult();
                 }
 
@@ -176,10 +176,10 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 if (repository.Get().Count(a => a.InyardId == model.InyardId) == 0) return NotFound("Selected Inyard Not found found");
                 if (!ModelState.IsValid) return InvalidModelStateResult();
-                var modelStateDic = transValRepository.ValidateInyard(model);
+                var modelStateDic = transValRepository.ValidateInyardWeighing(model);
                 if (modelStateDic.Count > 0)
                 {
-                    ModelState.AddModelErrors(transValRepository.ValidateInyard(model));
+                    ModelState.AddModelErrors(transValRepository.ValidateInyardWeighing(model));
                     return InvalidModelStateResult();
                 }
 
@@ -242,12 +242,10 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                     model.DateTimeIn = model.IsOfflineIn ? model.DateTimeIn : DateTime.Now;
                 } else if (model.TransactionProcess == SysUtility.Enums.TransactionProcess.WEIGH_OUT)
                 {
-                    model.DateTimeOut = model.IsOfflineOut ? model.DateTimeOut : DateTime.Now;
+                    model.DateTimeOut = model.IsOfflineOut??false ? model.DateTimeOut : DateTime.Now;
                 }
-                model.DateTimeIn = model.IsOfflineIn ? model.DateTimeIn : DateTime.Now;
-
                 if (!ModelState.IsValid) return InvalidModelStateResult();
-                var modelStateDic = transValRepository.ValidateInyard(model);
+                var modelStateDic = transValRepository.ValidateInyardWeighing(model);
                 if (modelStateDic.Count > 0)
                 {
                     ModelState.AddModelErrors(modelStateDic);

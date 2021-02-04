@@ -7,6 +7,6 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
     {
         PrintLog Create(PrintReceiptModel model);
 
-        IQueryable<PrintLog> Get(long transactionId);
+        IQueryable<PrintLog> Get(PrintLog parameters = null);
     }
 }

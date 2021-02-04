@@ -28,6 +28,7 @@ namespace WeighingSystemUPPCV3_5_Repository
         public DbSet<Models.Product> Products { get; set; }
         public DbSet<Models.BaleType> BaleTypes { get; set; }
         public DbSet<Models.Bale> Bales { get; set; }
+
         public DbSet<Models.Vehicle> Vehicles { get; set; }
         public DbSet<Models.VehicleType> VehicleTypes { get; set; }
         public DbSet<Models.SubSupplier> SubSuppliers { get; set; }
@@ -74,7 +75,6 @@ namespace WeighingSystemUPPCV3_5_Repository
 
         public DbSet<Models.PurchaseSalesMCComparisonView> PurchaseSaleMCComparisonViews { get; set; }
 
-
         public DbSet<Models.ReportDay> ReportDays { get; set; }
         public DbSet<Models.TVFInventory> TVFInventories { get; set; }
         public DbSet<Models.AuditLog> AuditLogs { get; set; }
@@ -84,6 +84,8 @@ namespace WeighingSystemUPPCV3_5_Repository
         /// </summary>
         public DbSet<Models.Purchase> Purchases { get; set; }
         public DbSet<Models.Sale> Sales { get; set; }
+        public DbSet<Models.SaleBale> SaleBales{ get; set; }
+
         public DbSet<Models.Tbl_PO> Tbl_POs { get; set; }
         public DbSet<Models.BalesInv> BalesInvs { get; set; }
         public DbSet<Models.Truck> Trucks { get; set; }
@@ -103,6 +105,7 @@ namespace WeighingSystemUPPCV3_5_Repository
             modelBuilder.Entity<RawMaterial>().Property(a => a.Price).HasPrecision(8, 3);
             modelBuilder.Entity<PurchaseTransaction>().Property(a => a.Price).HasPrecision(8, 3);
 
+      
 
             //modelBuilder.Entity<SaleTransaction>(entity =>
             //{

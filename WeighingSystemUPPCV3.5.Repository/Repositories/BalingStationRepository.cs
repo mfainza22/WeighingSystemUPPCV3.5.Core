@@ -166,7 +166,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public decimal GetWarehouseSpaceStatus()
         {
-            var inStockBaleWtTotal = dbContext.Bales.Where(a => a.InStock == true).AsNoTracking().Sum(a => a.BaleWt);
+            var inStockBaleWtTotal = dbContext.Bales.Include(a=>a.BaleInventoryView).Where(a => a.BaleInventoryView.InStock == true).AsNoTracking().Sum(a => a.BaleWt);
             var bsSpaceHoldings = Get(new BalingStation() { Selected = true }).Select(a => a.WarehouseHoldings * 1000).FirstOrDefault();
             if (inStockBaleWtTotal == 0 || bsSpaceHoldings == 0) return 0;
             return Math.Round(inStockBaleWtTotal / bsSpaceHoldings, 2) * 100;
@@ -177,7 +177,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var stockSpaceStatus = GetWarehouseSpaceStatus();
 
             var reminder = reminderRepository.Get(new Reminder() { ReminderCode = ReminderCode.STOCK_STATUS.ToString(), IsActive = true }).AsNoTracking().FirstOrDefault();
-            
+
             if (stockSpaceStatus > 70)
             {
                 var over90 = stockSpaceStatus >= 90;
@@ -209,6 +209,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     reminder.Description = description;
                     reminderRepository.Update(reminder);
                 }
+
+                if (over90)
+                {
+                    var bsId = Get(new BalingStation() { Selected = true }).Select(a => a.BalingStationId).FirstOrDefault();
+                    if (bsId == 0) throw new Exception("Please select a default baling station.");
+                    RestrictReceiving(bsId);
+                }
             }
             else
             {
@@ -217,22 +224,26 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             reminder = null;
         }
     
-        public void RestrictReceiving(long balingStationId)
+        public BalingStation RestrictReceiving(long balingStationId)
         {
             var bs = dbContext.BalingStations.Where(a => a.BalingStationId == balingStationId).FirstOrDefault();
             if (bs == null) throw new Exception("Baling Station was not found.");
             bs.ReceivingLocked = true;
             dbContext.Update(bs);
             dbContext.SaveChanges();
+
+            return bs;
         }
 
-        public void UnRestrictReceiving(long balingStationId)
+        public BalingStation UnRestrictReceiving(long balingStationId)
         {
             var bs = dbContext.BalingStations.Where(a => a.BalingStationId == balingStationId).FirstOrDefault();
             if (bs == null) throw new Exception("Baling Station was not found.");
             bs.ReceivingLocked = false;
             dbContext.Update(bs);
             dbContext.SaveChanges();
+
+            return bs;
         }
 
         /// <summary>

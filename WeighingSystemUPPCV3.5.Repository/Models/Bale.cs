@@ -2,13 +2,12 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
+using WeighingSystemUPPCV3_5_Repository.Interfaces;
 
 namespace WeighingSystemUPPCV3_5_Repository.Models
 {
     [Table("Bales")]
-    public class Bale
+    public class Bale 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,18 +15,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public DateTime DT { get; set; }
 
-
         [MaxLength(30, ErrorMessage = "BaleCode length must not exceed to 30 characters")]
+        
         public string BaleCode { get; set; }
 
-        [Required(ErrorMessage = "Bale Number is required", AllowEmptyStrings = false)]
         [Range(0, 9999, ErrorMessage = "Bale Number must not exceed to 4 characters")]
         public int BaleNum { get; set; }
 
-        [Required(ErrorMessage = "Category is required", AllowEmptyStrings = false)]
         public long CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Product is required", AllowEmptyStrings = false)]
         public long ProductId { get; set; }
 
         [Range(1, 99999, ErrorMessage = "Invalid bale weight.")]
@@ -41,14 +37,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DefaultValue("First In, First Out")]
         public string FIFORemarks { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public bool InStock { get; set; }
-
         public bool IsReject { get; set; }
-
-        public long? SaleId { get; set; }
-
-        public DateTime? DTDelivered { get; set; }
 
         public string ProductDesc { get; set; }
 
@@ -56,8 +45,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public DateTime DTCreated { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int InventoryAge { get; set; }
+        public virtual SaleBale SaleBale { get; set; }
+
+        public virtual BaleInventoryView BaleInventoryView { get; set; }
 
     }
 }

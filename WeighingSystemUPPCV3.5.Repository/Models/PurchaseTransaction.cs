@@ -113,7 +113,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DefaultValue(false)]
         public bool IsOfflineIn { get; set; }
         [DefaultValue(false)]
-        public bool IsOfflineOut { get; set; }
+        public bool? IsOfflineOut { get; set; }
 
 
         public int WeekDay { get; set; }
@@ -164,13 +164,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(50, ErrorMessage = "Moisture Reader Description length must not exceed to 50 characters")]
         public string MoistureReaderDesc { get; set; }
 
+
+        [MaxLength(3, ErrorMessage = "Baling Station Num length must not exceed to 50 characters")]
+        public string BalingStationNum { get; set; }
         [MaxLength(50, ErrorMessage = "Baling Station Code length must not exceed to 50 characters")]
         public string BalingStationCode{ get; set; }
 
         [MaxLength(50, ErrorMessage = "Baling Station Name length must not exceed to 50 characters")]
         public string BalingStationName { get; set; }
-
-        [MaxLength(50, ErrorMessage = "Moisture Reader Description length must not exceed to 50 characters")]
+        
         public Nullable<DateTime> MCDate { get; set; }
 
         [NotMapped]

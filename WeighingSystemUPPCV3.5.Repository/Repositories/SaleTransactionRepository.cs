@@ -19,20 +19,39 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly DatabaseContext dbContext;
         private readonly IPrintLogRepository printLogRepository;
         private readonly IBaleRepository baleRepository;
-        private readonly IReturnedVehicleRepository returnedVehicleRepository;
+        private readonly IVehicleRepository vehicleRepository;
+        private readonly ICustomerRepository customerRepository;
+        private readonly IHaulerRepository haulerRepository;
+        private readonly IProductRepository productRepository;
+        private readonly IMoistureReaderRepository moistureReaderRepository;
+        private readonly IMoistureSettingsRepository mcRepository;
         private readonly ILogger<SaleTransactionRepository> logger;
+        private readonly IUserAccountRepository userAccountRepository;
 
         public SaleTransactionRepository(DatabaseContext dbContext,
+            ILogger<SaleTransactionRepository> logger,
+            IUserAccountRepository  userAccountRepository,
             IPrintLogRepository printLogRepository,
             IBaleRepository baleRepository,
-            IReturnedVehicleRepository returnedVehicleRepository,
-            ILogger<SaleTransactionRepository> logger)
+            IVehicleRepository vehicleRepository,
+            ICustomerRepository customerRepository,
+            IHaulerRepository haulerRepository,
+            IProductRepository productRepository,
+            IMoistureReaderRepository moistureReaderRepository,
+            IMoistureSettingsRepository moistureSettingsRepository
+            )
         {
             this.dbContext = dbContext;
             this.printLogRepository = printLogRepository;
             this.baleRepository = baleRepository;
-            this.returnedVehicleRepository = returnedVehicleRepository;
+            this.vehicleRepository = vehicleRepository;
+            this.customerRepository = customerRepository;
+            this.haulerRepository = haulerRepository;
+            this.productRepository = productRepository;
+            this.moistureReaderRepository = moistureReaderRepository;
+            this.mcRepository = moistureSettingsRepository;
             this.logger = logger;
+            this.userAccountRepository = userAccountRepository;
         }
 
         public IQueryable<SaleTransaction> Get(SaleTransaction parameters = null)
@@ -40,9 +59,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.SaleTransactions;
         }
 
-        public SaleTransaction GetById(long id)
+        public SaleTransaction GetById(long id) => throw new NotImplementedException();
+
+        public SaleTransaction GetById(long id,bool includeBales = false)
         {
-            return dbContext.SaleTransactions.AsNoTracking().Where(a => a.SaleId == id).FirstOrDefault();
+            var model = dbContext.SaleTransactions.AsNoTracking().Where(a => a.SaleId == id);
+            if (includeBales) model = model.Include(a => a.SaleBales).ThenInclude(a => a.Bale);
+            var result = model.FirstOrDefault();
+            if (result != null) result.SaleBales= result?.SaleBales == null ? new List<SaleBale>() : result.SaleBales;
+            return model.FirstOrDefault();
         }
 
         public SaleTransaction GetByReceiptNum(string receiptNum)
@@ -50,21 +75,53 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.SaleTransactions.AsNoTracking().Where(a => a.ReceiptNum == receiptNum).FirstOrDefault();
         }
 
-        public SaleTransaction Update(SaleTransaction model)
+        public IQueryable<PrintLog> GetPrintLogs(long transactionId)
         {
-            var entity = dbContext.SaleTransactions.AsNoTracking().FirstOrDefault(a => a.SaleId == model.SaleId);
+            return printLogRepository.Get(new PrintLog() { TransactionId = transactionId, TransactionTypeCode = "O" });
+        }
+
+        public SaleTransaction Update(SaleTransaction modifiedSale)
+        {
+            var entity = dbContext.SaleTransactions.AsNoTracking().FirstOrDefault(a => a.SaleId == modifiedSale.SaleId);
             if (entity == null)
             {
                 throw new Exception("Selected Record does not exists.");
             }
 
-            entity.CustomerId = model.CustomerId;
-            entity.CustomerName = model.CustomerName;
-            entity.ProductId = model.ProductId;
-            entity.ProductDesc = model.ProductDesc;
-            entity.HaulerId = model.HaulerId;
-            entity.HaulerName = model.HaulerName;
-            entity.SealNum = model.SealNum;
+            updateRelatedTableColumns(ref modifiedSale);
+
+            var correctedMC = mcRepository.GetCorrectedMC(modifiedSale.MC, entity.NetWt);
+
+            entity.BaleCount = modifiedSale.BaleCount;
+            entity.BaleTypeDesc = modifiedSale.BaleTypeDesc;
+            entity.BaleTypeId = modifiedSale.BaleTypeId;
+            entity.CategoryDesc = modifiedSale.CategoryDesc;
+            entity.CategoryId = modifiedSale.CategoryId;
+            entity.Corrected10 = correctedMC.Corrected10;
+            entity.Corrected12 = correctedMC.Corrected12;
+            entity.Corrected14 = correctedMC.Corrected14;
+            entity.Corrected15 = correctedMC.Corrected15;
+            entity.CustomerId = modifiedSale.CustomerId;
+            entity.CustomerName = modifiedSale.CustomerName;
+            entity.DriverName = modifiedSale.DriverName;
+            entity.HaulerId = modifiedSale.HaulerId;
+            entity.HaulerName = modifiedSale.HaulerName;
+            entity.MC = modifiedSale.MC;
+            //entity.MCStatus = modifiedSale.MCStatus;
+            entity.MoistureReaderId = modifiedSale.MoistureReaderId;
+            entity.MoistureReaderDesc = modifiedSale.MoistureReaderDesc;
+            entity.OT = modifiedSale.OT;
+            entity.PM = modifiedSale.PM;
+            entity.ProductId = modifiedSale.ProductId;
+            entity.ProductDesc = modifiedSale.ProductDesc;
+            entity.Remarks = modifiedSale.Remarks;
+            entity.SealNum = modifiedSale.SealNum;
+            entity.Trip = modifiedSale.Trip;
+            entity.VehicleNum = modifiedSale.VehicleNum;
+            entity.VehicleTypeId = modifiedSale.VehicleTypeId;
+            entity.VehicleTypeCode = modifiedSale.VehicleTypeCode;
+            entity.WeigherOutId = modifiedSale.WeigherOutId;
+            entity.WeigherOutName = modifiedSale.WeigherOutName;
 
             dbContext.SaleTransactions.Update(entity);
             dbContext.SaveChanges();
@@ -74,11 +131,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public bool Delete(SaleTransaction model)
         {
             dbContext.SaleTransactions.Remove(model);
-            var qry = $"UPDATE Bales SET ";
-            qry += $"{nameof(Bale.SaleId)}=${model.SaleId}, ";
-            qry += $"{nameof(Bale.DTDelivered)}=null ";
-            qry += $"WHERE SaleId = {model.SaleId}";
-            dbContext.Database.ExecuteSqlRaw(qry);
+            //var qry = $"UPDATE Bales SET ";
+            //qry += $"{nameof(Bale.SaleId)}=${model.SaleId}, ";
+            //qry += $"{nameof(Bale.DTDelivered)}=null ";
+            //qry += $"WHERE SaleId = {model.SaleId}";
+            //dbContext.Database.ExecuteSqlRaw(qry);
             dbContext.SaveChanges();
             return true;
         }
@@ -142,7 +199,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 if (parameters.Returned.Value)
                 {
                     whereClauses.Add($"(SELECT COUNT(*) FROM ReturnedVehicles Where ReturnedVehicles.SaleId = SaleTransactions.SaleId) > 0");
-                } else
+                }
+                else
                 {
                     whereClauses.Add($"(SELECT COUNT(*) FROM ReturnedVehicles Where ReturnedVehicles.SaleId = SaleTransactions.SaleId) = 0");
                 }
@@ -157,12 +215,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return new SqlRawParameter() { SqlParameters = sqlParams, SqlQuery = sqlQry.ToString() };
         }
 
-        public SqlRawParameter GetSqlRawParameter(SaleTransaction parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public Dictionary<string, string> Validate(SaleTransaction model)
         {
             throw new NotImplementedException();
@@ -170,15 +222,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public DataSet PrintReceipt(PrintReceiptModel model)
         {
-            var qry = $"UPDATE SaleTransactions SET {nameof(PurchaseTransaction.PrintCount)} = " +
-                $"{nameof(PurchaseTransaction.PrintCount).Parametarize()}+1 WHERE SaleTransactionId ={model.TransactionId}";
-            dbContext.Database.ExecuteSqlRaw(qry);
-
-            printLogRepository.Create(model);
+            if (model.IsReprinted) printLogRepository.Create(model);
 
             var serverDataSet = new DataSet();
             serverDataSet.EnforceConstraints = false;
             serverDataSet.Tables.Add(new DataTable(nameof(dbContext.SaleTransactions)));
+            serverDataSet.Tables.Add(new DataTable(nameof(dbContext.PurchaseTransactions)));
 
             using (var sqlConn = new SqlConnection(dbContext.Database.GetDbConnection().ConnectionString))
             {
@@ -191,15 +240,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 sa.Fill(serverDataSet, nameof(dbContext.SaleTransactions));
                 sa.Dispose();
 
+                query = $"SELECT {model.TransactionId} AS PurchaseId";
+                sa = new SqlDataAdapter(query.ToString(), sqlConn);
+                sa.Fill(serverDataSet, nameof(dbContext.PurchaseTransactions));
+                sa.Dispose();
+
                 query = null;
             }
 
             return serverDataSet;
-        }
-
-        public SaleTransaction GetByIdWithBales(long id)
-        {
-            return dbContext.SaleTransactions.Include(a => a.Bales).AsNoTracking().FirstOrDefault(a => a.SaleId == id);
         }
 
         public decimal UpdateMCStatus(long id, decimal mcStatus)
@@ -218,45 +267,41 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return mcStatus;
         }
 
-        public List<Bale> UpdateBales(SaleTransaction model)
+        public List<SaleBale> UpdateBales(long id,List<SaleBale> newSaleBales)
         {
-            var baleFilter = new BaleFilter();
-            baleFilter.SaleId = model.SaleId;
+            var entity = dbContext.SaleTransactions.Include(a=>a.SaleBales).FirstOrDefault(a => a.SaleId == id);
 
-            var origBales = baleRepository.Get(baleFilter);
 
-            var deletedBale = origBales.Select(a => a.BaleId).ToArray().Except(model.Bales.ToList().Select(a => a.BaleId).ToArray());
+            var deletedBales = entity.SaleBales.Select(a=>a.BaleId).Except(newSaleBales.Select(a=>a.BaleId))
+                .Select(a=> new SaleBale() { BaleId = a,SaleId = entity.SaleId }).ToList();
 
-            var addedBales = model.Bales.Select(a => a.BaleId).ToArray().Except(origBales.ToList().Select(a => a.BaleId).ToArray());
+            for (var i = 0; i <= deletedBales.Count()-1;i++)
+                entity.SaleBales.Remove(entity.SaleBales.FirstOrDefault(a => deletedBales.Select(a => a.BaleId).Contains(a.BaleId)));
 
-            var newBaleSQLQuery = new StringBuilder();
-            if (addedBales.ToList().Count() > 0)
-            {
-                newBaleSQLQuery.AppendLine($"Update Bales set SaleId = '{model.SaleId}', DTDelivered = '{model.DateTimeOut}'");
-                newBaleSQLQuery.AppendLine($"WHERE BaleId in ({String.Join(",", addedBales.ToArray())})");
-            }
+            var newBales = newSaleBales.Select(a => a.BaleId).Except(entity.SaleBales.Select(a => a.BaleId))
+                .Select(a => new SaleBale() { BaleId = a, SaleId = entity.SaleId }).ToList();
 
-            var deletedBalesQry = new StringBuilder();
-            if (deletedBale.ToList().Count() > 0)
-            {
-                deletedBalesQry.AppendLine($"Update Bales set SaleId = null, DTDelivered = null");
-                deletedBalesQry.AppendLine($"WHERE BaleId in ({String.Join(",", deletedBale.ToArray())})");
-            }
+            for (var i = 0; i <= newBales.Count() - 1; i++)
+                entity.SaleBales.Add(newBales[i]);
 
-            if (addedBales.ToList().Count > 0 || deletedBale.ToList().Count() > 0)
-            {
-                dbContext.Database.ExecuteSqlRaw(newBaleSQLQuery.AppendLine(deletedBalesQry.ToString()).ToString());
-            }
+            dbContext.SaleTransactions.Update(entity);
 
-            return origBales.ToList();
+            dbContext.SaveChanges();
+
+            return dbContext.SaleTransactions.Where(a => a.SaleId == entity.SaleId)
+                .Include(a => a.SaleBales).ThenInclude(a => a.Bale)
+                .AsNoTracking().FirstOrDefault().SaleBales.ToList();
+  
         }
 
         public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
         {
-            #region Old Sale Migration
             dtFrom = dtFrom.Date;
             dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
+
+  
             var sales = dbContext.Sales.Where(a => a.DateTimeIn >= dtFrom && a.DateTimeIn <= dtTo).OrderBy(a => a.ReceiptNo)
+                .Include(a => a.BalesInv)
                 .GroupJoin(dbContext.Products.Include(a => a.Category).Where(a => a.ProductIdOld != null),
                     sale => sale.ProductId,
                     product => product.ProductIdOld,
@@ -299,14 +344,24 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     (sale, vehicle) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, vehicle })
                  .SelectMany(a => a.vehicle.DefaultIfEmpty(),
                 (sale, vehicle) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, vehicle })
-                 .GroupJoin(dbContext.UserAccounts.Select(a=>new { a.UserAccountId,a.UserAccountIdOld, a.FullName }).DefaultIfEmpty(),
+                 .GroupJoin(dbContext.UserAccounts.Select(a => new { a.UserAccountId, a.UserAccountIdOld, a.FullName }).DefaultIfEmpty(),
                     t => t.sale.Plant_User,
                     plantUser => plantUser.UserAccountIdOld,
-                    (sale, plantUser) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, sale.vehicle,plantUser })
+                    (sale, plantUser) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, sale.vehicle, plantUser })
                  .SelectMany(a => a.plantUser.DefaultIfEmpty(),
-                (sale, plantUser) => new { sale.sale, sale.product, sale.customer, sale.hauler, sale.userIn, sale.userOut, sale.baleType, sale.vehicle,plantUser })
+                (sale, plantUser) => new
+                {
+                    sale.sale,
+                    sale.product,
+                    sale.customer,
+                    sale.hauler,
+                    sale.userIn,
+                    sale.userOut,
+                    sale.baleType,
+                    sale.vehicle,
+                    plantUser
+                })
                  .AsNoTracking().ToList();
-
 
             var allSale = sales.Select(a => new SaleTransaction
             {
@@ -358,7 +413,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 VehicleTypeId = a.vehicle == null ? null : (Nullable<long>)a.vehicle.VehicleTypeId,
                 VehicleTypeCode = a.vehicle == null ? null : a.vehicle.VehicleType == null ? null : a.vehicle.VehicleType.VehicleTypeCode,
                 WeekDay = Convert.ToInt32(a.sale.Weekday ?? "0"),
-                WeekNum = Convert.ToInt32(a.sale.WeekNo??0),
+                WeekNum = Convert.ToInt32(a.sale.WeekNo ?? 0),
                 WeigherInId = a.userIn == null ? null : a.userIn.UserAccountId,
                 WeigherInName = a.userIn == null ? null : a.userIn.FullName,
                 WeigherOutId = a.userOut == null ? null : a.userOut.UserAccountId,
@@ -374,7 +429,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     DiffDay = Convert.ToInt32(a.sale.Plant_DayInterval ?? 0),
                     DiffTime = a.sale.Plant_TimeInterval ?? 0,
                     DiffNet = a.sale.Plant_DiffNet ?? 0,
-                    DTArrival = a.sale.DTArrival?? DateTime.Now,
+                    DTArrival = a.sale.DTArrival ?? DateTime.Now,
                     DTGuardIn = a.sale.Plant_Guard_in,
                     DTGuardOut = a.sale.Plant_Guard_out,
                     DTOutToPlant = null,
@@ -384,12 +439,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     PMAdjustedWt = (a.sale.PM ?? 0) > 5 ? (Math.Round(((a.sale.PM ?? 0) - 0.5M) * a.sale.Plant_NetWt ?? 0) / 100) : 0,
                     OT = a.sale.OutThrow ?? 0,
                     OTAdjustedWt = (a.sale.OutThrow ?? 0) > 5 ? (Math.Round(((a.sale.OutThrow ?? 0) - 0.5M) * a.sale.Plant_NetWt ?? 0) / 100) : 0,
-                    Remarks = a.sale.Plant_Remarks??String.Empty,
-                    TimeVarianceRemarks = a.sale.time_variance_remarks??String.Empty,
+                    Remarks = a.sale.Plant_Remarks ?? String.Empty,
+                    TimeVarianceRemarks = a.sale.time_variance_remarks ?? String.Empty,
                     UserAccountId = a.plantUser != null ? a.plantUser.UserAccountId : null,
                     UserAccountFullName = null,
-                    VehicleOrigin = a.sale.Plant_TruckOrigin??String.Empty,
-                }
+                    VehicleOrigin = a.sale.Plant_TruckOrigin ?? String.Empty,
+                },
+                SaleBales = a.sale.BalesInv.Select(b => new SaleBale() { BaleId = b.BaleIdNew }).ToList()
             }).OrderBy(a => a.DateTimeIn).ToList();
 
             for (var i = 0; i <= allSale.Count - 1; i++)
@@ -398,6 +454,45 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 dbContext.SaveChanges();
                 dbContext.Entry(allSale[i]).State = EntityState.Detached;
             }
+        }
+
+        private void updateRelatedTableColumns(ref SaleTransaction model)
+        {
+            var vehicleNum = model.VehicleNum;
+            var vehicle = vehicleRepository.Get()
+    .Include(a => a.VehicleType).DefaultIfEmpty()
+    .Where(a => a.VehicleNum == vehicleNum)
+    .Select(a => new { a.VehicleNum, a.VehicleTypeId, VehicleTypeCode = a.VehicleType == null ? "" : a.VehicleType.VehicleTypeCode }).ToList().FirstOrDefault();
+            model.VehicleTypeId = vehicle?.VehicleTypeId ?? 0;
+            model.VehicleTypeCode = vehicle?.VehicleTypeCode;
+
+            var customerId = model.CustomerId;
+            model.CustomerName = customerRepository.Get()
+             .Where(a => a.CustomerId == customerId).Select(a => a.CustomerName).FirstOrDefault();
+
+            var haulerId = model.HaulerId;
+            model.HaulerName = haulerRepository.Get()
+             .Where(a => a.HaulerId == haulerId).Select(a => a.HaulerName).FirstOrDefault();
+
+
+            var productId = model.ProductId;
+            var product = productRepository.Get()
+                .Where(a => a.ProductId == productId)
+                .Include(a => a.Category).DefaultIfEmpty()
+                .Select(a => new { a.ProductDesc, a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
+                .FirstOrDefault();
+            model.ProductDesc = product?.ProductDesc;
+            model.CategoryId = product?.CategoryId ?? 0;
+            model.CategoryDesc = product?.CategoryDesc;
+
+            var msId = model.MoistureReaderId;
+            model.MoistureReaderDesc = moistureReaderRepository.Get()
+                .Where(a => a.MoistureReaderId == msId).Select(a => a.Description).FirstOrDefault();
+
+            var userAccountId = model.WeigherOutId;
+            model.WeigherOutName = userAccountRepository.Get().Where(a => a.UserAccountId == userAccountId)
+                .Select(a => a.FullName).FirstOrDefault();
+
         }
     }
 }

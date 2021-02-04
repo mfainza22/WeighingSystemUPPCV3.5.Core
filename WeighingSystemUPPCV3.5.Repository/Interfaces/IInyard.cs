@@ -22,7 +22,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Interfaces
         long? MoistureReaderId { get; set; }
         string DriverName { get; set; }
         bool IsOfflineIn { get; set; }
-        bool IsOfflineOut { get; set; }
+        bool? IsOfflineOut { get; set; }
         string WeigherInId { get; set; }
         string WeigherOutId { get; set; }
         long SignatoryId { get; set; }
@@ -31,6 +31,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Interfaces
         string TimeZoneIn { get; set; }
         string TimeZoneOut { get; set; }
         string WeigherInName { get; set; }
+        public string WeigherOutName { get; set; }
+        public string BalingStationNum { get; set; }
 
         public string BalingStationCode { get; set; }
         public string BalingStationName { get; set; }

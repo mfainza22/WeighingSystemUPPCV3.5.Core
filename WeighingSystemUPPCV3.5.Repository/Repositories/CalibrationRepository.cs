@@ -146,6 +146,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             dbContext.Calibrations.Update(calibration);
             dbContext.SaveChanges();
 
+            CheckAndCreateDueCalibrationReminder(calibration);
             return calibration;
         }
 

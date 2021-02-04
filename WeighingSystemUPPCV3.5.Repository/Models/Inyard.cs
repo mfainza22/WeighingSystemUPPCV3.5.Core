@@ -9,7 +9,7 @@ using SysUtility.Enums;
 namespace WeighingSystemUPPCV3_5_Repository.Models
 {
     [Table("Inyards")]
-    public class Inyard : IInyard
+    public class Inyard : IInyard, ICloneable
     {
         public Inyard()
         {
@@ -123,7 +123,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [DefaultValue(false)]
         [NotMapped]
-        public bool IsOfflineOut { get; set; }
+        public bool? IsOfflineOut { get; set; }
 
 
         [MaxLength(100, ErrorMessage = "Weigher-In I.D. length must not exceed to 100 characters")]
@@ -185,6 +185,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string VehicleTypeCode { get; set; }
 
         public string MoistureReaderDesc { get; set; }
+
+        public string BalingStationNum { get; set; }
         public string BalingStationCode { get; set; }
         public string BalingStationName { get; set; }
 
@@ -196,11 +198,24 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string HaulerName { get; set; }
         public string BaleTypeDesc { get; set; }
         public string WeigherInName { get; set; }
+        public string WeigherOutName { get; set; }
+
         [NotMapped]
         public List<Bale> Bales { get; set; }
 
         [NotMapped]
+        public string VehicleNumOld {get;set;}
+
+        [NotMapped]
+        public string ReceiptNum { get; set; }
+
+        [NotMapped]
         public TransactionProcess TransactionProcess { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
 
     }
 

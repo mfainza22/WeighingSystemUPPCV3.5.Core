@@ -27,5 +27,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public int InventoryAge { get; set; }
 
+        public bool AsListView { get; set; }
+
     }
 }

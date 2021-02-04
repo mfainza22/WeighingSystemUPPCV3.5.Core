@@ -5,7 +5,7 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 {
     public interface ITransValidationRepository
     {
-        Dictionary<string, string> ValidateInyard(Inyard model);
+        Dictionary<string, string> ValidateInyardWeighing(Inyard model);
         Dictionary<string, string> ValidatePurchase(PurchaseTransaction model);
         Dictionary<string, string> ValidateSale(SaleTransaction model);
 
