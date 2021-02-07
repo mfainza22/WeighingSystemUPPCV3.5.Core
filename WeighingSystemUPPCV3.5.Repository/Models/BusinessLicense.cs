@@ -33,5 +33,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public string UploadedFileURL { get; set; }
 
+        public bool IsActive { get; set; }
+
     }
 }

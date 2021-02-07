@@ -33,7 +33,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                var msg = ex.GetExceptionMessage();
+                var msg = ex.GetExceptionMessages();
                 logger.LogError(msg);
                 return StatusCode(StatusCodes.Status500InternalServerError, msg);
             }
@@ -50,7 +50,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                var msg = ex.GetExceptionMessage();
+                var msg = ex.GetExceptionMessages();
                 logger.LogError(msg);
                 return StatusCode(StatusCodes.Status500InternalServerError, msg);
             }
@@ -71,7 +71,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                var msg = ex.GetExceptionMessage();
+                var msg = ex.GetExceptionMessages();
                 logger.LogError(msg);
                 return StatusCode(StatusCodes.Status500InternalServerError, msg);
             }
@@ -94,7 +94,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                var msg = ex.GetExceptionMessage();
+                var msg = ex.GetExceptionMessages();
                 logger.LogError(msg);
                 return StatusCode(StatusCodes.Status500InternalServerError, msg);
             }
@@ -121,7 +121,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                var msg = ex.GetExceptionMessage();
+                var msg = ex.GetExceptionMessages();
                 logger.LogError(msg);
                 return StatusCode(StatusCodes.Status500InternalServerError, msg);
             }

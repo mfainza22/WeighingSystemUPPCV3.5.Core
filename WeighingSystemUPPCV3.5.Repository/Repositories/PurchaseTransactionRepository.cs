@@ -90,6 +90,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.MoistureReaderDesc = modifiedPurchase.MoistureReaderDesc;
             entity.OT = modifiedPurchase.OT;
             entity.PM = modifiedPurchase.PM;
+            entity.PONum = modifiedPurchase.PONum;
             entity.RawMaterialId = modifiedPurchase.RawMaterialId;
             entity.RawMaterialDesc = modifiedPurchase.RawMaterialDesc;
             entity.Remarks = modifiedPurchase.Remarks;

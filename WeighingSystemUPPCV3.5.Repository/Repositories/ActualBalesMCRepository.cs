@@ -54,7 +54,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return false;
             }
         }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SysUtility;
+using SysUtility.Extensions;
 
 namespace WeighingSystemUPPCV3_5_Repository.Repositories
 {
@@ -24,124 +25,115 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public async Task<PurchaseOrderView> CreateAsync(PurchaseOrder model)
         {
-            using (var transaction = await dbContext.Database.BeginTransactionAsync())
+
+            var transaction = await dbContext.Database.BeginTransactionAsync();
+            try
             {
-                try
-                {
-                    var str = new StringBuilder();
-                    str.AppendLine($"UPDATE {nameof(dbContext.PurchaseOrders)} set {nameof(PurchaseOrder.IsActive)} = 0 ");
-                    str.AppendLine($"WHERE {nameof(PurchaseOrder.SupplierId)} = {model.SupplierId} ");
-                    str.AppendLine($"AND {nameof(PurchaseOrder.RawMaterialId)} = {model.RawMaterialId} ");
-                    str.AppendLine($"AND {nameof(PurchaseOrder.POType)} = '{model.POType}' ");
-                    str.AppendLine($"AND {nameof(PurchaseOrder.IsActive)} = 1");
-                    await dbContext.Database.ExecuteSqlRawAsync(str.ToString());
+                model.DTCreated = DateTime.Now;
+                model.DTEffectivity = model.DTEffectivity;
+                dbContext.PurchaseOrders.Add(model);
+                await dbContext.SaveChangesAsync();
 
-                    model.DTCreated = DateTime.Now;
-                    model.DTEffectivity = DateTime.Now;
-                    dbContext.PurchaseOrders.Add(model);
-                    await dbContext.SaveChangesAsync();
+                dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType));
 
-                    var latestPO = dbContext.PurchaseOrders.Where(a => a.SupplierId == model.SupplierId &&
-                    a.RawMaterialId == model.RawMaterialId && a.POType == model.POType).OrderByDescending(a => a.DTEffectivity).Select(a => a.PurchaseOrderId).FirstOrDefault();
+                dbContext.Database.ExecuteSqlRaw(ActivateLatestPOQuery(model.SupplierId, model.RawMaterialId, model.POType));
 
-                    str = new StringBuilder();
-                    str.AppendLine($"UPDATE {nameof(dbContext.PurchaseOrders)} set {nameof(PurchaseOrder.IsActive)} = 1 ");
-                    str.AppendLine($"WHERE {nameof(PurchaseOrder.PurchaseOrderId)} = {latestPO}");
-                    await dbContext.Database.ExecuteSqlRawAsync(str.ToString());
+                await transaction.CommitAsync();
 
-                    await transaction.CommitAsync();
+                return dbContext.PurchaseOrderViews.FirstOrDefault(a => a.PurchaseOrderId == model.PurchaseOrderId); ;
 
-                    return dbContext.PurchaseOrderViews.FirstOrDefault(a=>a.PurchaseOrderId == model.PurchaseOrderId);
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    throw ex;
-                }
+            }
+            catch (AggregateException ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception(ex.GetExceptionMessages());
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception(ex.GetExceptionMessages());
             }
         }
 
         public async Task<PurchaseOrderView> UpdateAsync(PurchaseOrder model)
         {
+            var entity = await dbContext.PurchaseOrders.FindAsync(model.PurchaseOrderId);
 
-            using (var transaction = await dbContext.Database.BeginTransactionAsync())
+            var transaction = await dbContext.Database.BeginTransactionAsync();
+            try
             {
-                try
-                {
-                    var entity = await dbContext.PurchaseOrders.FindAsync(model.PurchaseOrderId);
-                    if (entity == null)
-                    {
-                        await transaction.RollbackAsync();
-                        throw new Exception("Selected Record does not exists.");
-                    }
+                entity.DTEffectivity = model.DTEffectivity;
+                entity.PONum = model.PONum;
+                entity.BalanceTotalKg = model.BalanceTotalKg;
+                entity.POType = model.POType;
+                entity.Remarks = model.Remarks;
+                dbContext.PurchaseOrders.Update(entity);
+                await dbContext.SaveChangesAsync();
 
-                    var str = new StringBuilder();
-                    var dtEffectivityModified = entity.DTEffectivity != model.DTEffectivity;
-                    var poTypeModified = entity.POType != model.POType;
+                dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType));
 
-                    entity.DTEffectivity = model.DTEffectivity;
-                    entity.PONum = model.PONum;
-                    entity.BalanceTotalKg = model.BalanceTotalKg;
-                    entity.POType = model.POType;
-                    entity.Remarks = model.Remarks;
-                    dbContext.PurchaseOrders.Update(entity);
-                    await dbContext.SaveChangesAsync();
+                dbContext.Database.ExecuteSqlRaw(ActivateLatestPOQuery(model.SupplierId, model.RawMaterialId, model.POType));
 
-                    if (dtEffectivityModified || poTypeModified)
-                    {
-                        str.AppendLine($"UPDATE {nameof(dbContext.PurchaseOrders)} set {nameof(PurchaseOrder.IsActive)} = 0 ");
-                        str.AppendLine($"WHERE {nameof(PurchaseOrder.SupplierId)} = {model.SupplierId} ");
-                        str.AppendLine($"AND {nameof(PurchaseOrder.RawMaterialId)} = {model.RawMaterialId} ");
-                        str.AppendLine($"AND {nameof(PurchaseOrder.IsActive)} = 1");
-                        await dbContext.Database.ExecuteSqlRawAsync(str.ToString());
+                await transaction.CommitAsync();
 
-                        var latestBasePOId = dbContext.PurchaseOrders.Where(a => a.SupplierId == model.SupplierId &&
-                        a.RawMaterialId == model.RawMaterialId && a.POType == "BASE")
-                            .OrderByDescending(a => a.DTEffectivity).Select(a => a.PurchaseOrderId).FirstOrDefault();
+                return dbContext.PurchaseOrderViews.FirstOrDefault(a => a.PurchaseOrderId == model.PurchaseOrderId); ;
 
-                        var latestSpotPOId = dbContext.PurchaseOrders.Where(a => a.SupplierId == model.SupplierId &&
-                        a.RawMaterialId == model.RawMaterialId && a.POType == "SPOT")
-                            .OrderByDescending(a => a.DTEffectivity).Select(a => a.PurchaseOrderId).FirstOrDefault();
-
-
-                        str = new StringBuilder();
-                        str.AppendLine($"UPDATE {nameof(dbContext.PurchaseOrders)} set {nameof(PurchaseOrder.IsActive)} = 1 ");
-                        str.AppendLine($"WHERE {nameof(PurchaseOrder.PurchaseOrderId)} in ({latestBasePOId},{latestSpotPOId})");
-                        await dbContext.Database.ExecuteSqlRawAsync(str.ToString());
-
-                    }
-
-
-                    await transaction.CommitAsync();
-
-                    return dbContext.PurchaseOrderViews.FirstOrDefault(a => a.PurchaseOrderId == model.PurchaseOrderId);
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    throw ex;
-                }
+            }
+            catch (AggregateException ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception(ex.GetExceptionMessages());
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception(ex.GetExceptionMessages());
             }
         }
 
 
         public bool Delete(PurchaseOrder model)
         {
-                dbContext.PurchaseOrders.Remove(model);
-                dbContext.SaveChanges();
-                return true;
+            dbContext.PurchaseOrders.Remove(model);
+            dbContext.SaveChanges();
+            return true;
         }
 
-        public bool BulkDelete(string[] id)
+        public async Task<bool> BulkDelete(string[] id)
         {
-                if (id == null) return false;
-                if (id.Length == 0) return false;
+            if (id == null) return false;
+            if (id.Length == 0) return false;
 
-                var entitiesToDelete = dbContext.PurchaseOrders.Where(a => id.Contains(a.PurchaseOrderId.ToString()));
+            var entitiesToDelete = dbContext.PurchaseOrders.Where(a => id.Contains(a.PurchaseOrderId.ToString())).ToList();
 
+            var transaction = await dbContext.Database.BeginTransactionAsync();
+            try
+            {
                 dbContext.PurchaseOrders.RemoveRange(entitiesToDelete);
                 dbContext.SaveChanges();
+
+                var groups = entitiesToDelete.Where(a=>a.IsActive==true).GroupBy(a => new { a.SupplierId, a.RawMaterialId, a.POType }).Select(a=> new { a.Key.SupplierId,a.Key.RawMaterialId,a.Key.POType});
+                foreach(var group in groups)
+                {
+                    dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(group.SupplierId, group.RawMaterialId, group.POType));
+                    dbContext.Database.ExecuteSqlRaw(ActivateLatestPOQuery(group.SupplierId, group.RawMaterialId, group.POType));
+                };
+
+                await transaction.CommitAsync();
+
                 return true;
+
+            }
+            catch (AggregateException ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception(ex.GetExceptionMessages());
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception(ex.GetExceptionMessages());
+            }
         }
 
         public IQueryable<PurchaseOrder> Get(PurchaseOrder parameters = null)
@@ -161,8 +153,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             return dbContext.PurchaseOrderViews.Where(a => a.PONum == parameters.PONum).AsNoTracking().FirstOrDefault();
         }
-
-
 
         public SqlRawParameter GetSqlRawParameter(PurchaseOrder parameters)
         {
@@ -290,6 +280,26 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 dbContext.PurchaseOrders.Add(purchaseOrder);
                 dbContext.SaveChanges();
             };
+        }
+
+        private string ActivateLatestPOQuery(long supplierId, long rawMaterialId, string POType)
+        {
+            return @$"UPDATE PurchaseOrders SET {nameof(PurchaseOrder.IsActive)} = 1
+                    WHERE PurchaseOrderId = (
+                    SELECT TOP 1 {nameof(PurchaseOrder.PurchaseOrderId)} FROM purchaseOrders WHERE 
+                    {nameof(PurchaseOrder.SupplierId)}= {supplierId} AND
+                    {nameof(PurchaseOrder.RawMaterialId)}= {rawMaterialId} AND
+                    {nameof(PurchaseOrder.POType)}= '{POType}' 
+                    ORDER BY {nameof(PurchaseOrder.DTEffectivity)} DESC
+                    )";
+        }
+
+        private string DeactivatePurchaseOrdersQuery(long supplierId, long rawMaterialId, string poType)
+        {
+            return @$"UPDATE PurchaseOrders SET {nameof(PurchaseOrder.IsActive)} = 0
+                    WHERE {nameof(PurchaseOrder.SupplierId)} = {supplierId} AND
+                          {nameof(PurchaseOrder.RawMaterialId)} = {rawMaterialId} AND
+                          {nameof(PurchaseOrder.POType)} = '{poType}'";
         }
     }
 }

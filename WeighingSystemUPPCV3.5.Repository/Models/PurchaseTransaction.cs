@@ -161,6 +161,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(50, ErrorMessage = "Weigher-out Name length must not exceed to 50 characters")]
         public string WeigherOutName { get; set; }
 
+        public string MoistureReaderProcess { get; set; }
+
         [MaxLength(50, ErrorMessage = "Moisture Reader Description length must not exceed to 50 characters")]
         public string MoistureReaderDesc { get; set; }
 

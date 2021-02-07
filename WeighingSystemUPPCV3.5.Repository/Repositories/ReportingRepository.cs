@@ -85,11 +85,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     case ReportType.SALE_OT_LOSS_MONITORING:
                     case ReportType.SALE_PM_LOSS_MONITORING:
                     case ReportType.SALE_POTENTIAL_LOSS_PLANTMC:
-                    case ReportType.SALE_MITIGATING_MC_DEDUCTION:
-                        saleIds = fillSaleTransactionsDataTable(sqlConn, serverDataSet, reportParameters, isReturned: true);
-                        fillReturnedVehicleDataTable(sqlConn, serverDataSet, saleIds);
-                        categoryIds = serverDataSet.Tables[nameof(dbContext.SaleTransactions)].Rows.Cast<DataRow>()
-                       .Select(a => a.Field<long>(nameof(SaleTransaction.CategoryId))).Distinct().ToList();
+                    case ReportType.PURCHASE_MITIGATING_MC_DEDUCTION:
+                        purchaseIds = fillPurchaseTransactionsDataTable(sqlConn, serverDataSet, reportParameters);
+                        categoryIds = serverDataSet.Tables[nameof(dbContext.PurchaseTransactions)].Rows.Cast<DataRow>()
+                       .Select(a => a.Field<long>(nameof(PurchaseTransaction.CategoryId))).Distinct().ToList();
                         fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
                         break;
                     case ReportType.SALE_PLANT_COMPARISON:
@@ -105,20 +104,21 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                         fillReportDaysDataTable(sqlConn, serverDataSet, reportParameters);
                         break;
                     case ReportType.BALE_ACTUAL:
-                    case ReportType.BALE_PRODUCTION:
-                        if (reportParameters.ReportType == ReportType.BALE_ACTUAL)
-                        {
-                            fillBalesInventoryDataTable(sqlConn, serverDataSet, reportParameters, BaleStatus.INSTOCK);
-                        }
-                        else
-                        {
-                            fillBalesInventoryDataTable(sqlConn, serverDataSet, reportParameters, BaleStatus.NONE);
-                        }
-
+                        fillBalesActualInventoryDataTable(sqlConn, serverDataSet, reportParameters, BaleStatus.INSTOCK);
                         fillMachineUnBaledWasteDataTable(sqlConn, serverDataSet, reportParameters);
                         fillMachineUnBaledWasteSummaryDataTable(sqlConn, serverDataSet, reportParameters);
                         fillLooseBalesSummaryDataTable(sqlConn, serverDataSet, reportParameters);
                         fillActualBalesMCSummaryDataTable(sqlConn, serverDataSet, reportParameters);
+
+
+                        categoryIds = serverDataSet.Tables[nameof(dbContext.Bales)].Rows.Cast<DataRow>()
+                       .Select(a => a.Field<long>(nameof(Bale.CategoryId))).Distinct().ToList();
+
+                        fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
+                        break;
+                    case ReportType.BALE_PRODUCTION:
+                        fillBalesProductionDataTable(sqlConn, serverDataSet, reportParameters, BaleStatus.NONE);
+
                         categoryIds = serverDataSet.Tables[nameof(dbContext.Bales)].Rows.Cast<DataRow>()
                        .Select(a => a.Field<long>(nameof(Bale.CategoryId))).Distinct().ToList();
 
@@ -198,7 +198,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         }
 
 
-        private void fillBalesInventoryDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters,
+        private void fillBalesProductionDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters,
             BaleStatus baleStatus = BaleStatus.NONE)
         {
 
@@ -226,6 +226,22 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             sa.Fill(dataSet, nameof(dbContext.Bales));
             sa.Dispose();
             query = null;
+
+        }
+
+        private void fillBalesActualInventoryDataTable(SqlConnection sqlConn, ReportDataSet dataSet, ReportParameters reportParameters,
+            BaleStatus baleStatus = BaleStatus.NONE)
+        {
+
+            var efQuery = dbContext.Bales.Include(a => a.BaleInventoryView)
+                     .Where(a => a.DT.Date <= reportParameters.DTFrom &&
+                     (a.BaleInventoryView.InStock == true && a.IsReject == false) ||
+                     (a.BaleInventoryView.DTDelivered.Value.Date > reportParameters.DTFrom)).ToQueryString();
+                
+            var sa = new SqlDataAdapter(efQuery.ToString(), sqlConn);
+            sa.Fill(dataSet, nameof(dbContext.Bales));
+            sa.Dispose();
+            efQuery = null;
 
         }
 

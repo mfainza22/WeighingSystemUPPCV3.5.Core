@@ -35,7 +35,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
         }
@@ -51,7 +51,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
 
@@ -76,7 +76,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.CreateError);
             }
 
@@ -104,34 +104,32 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.UpdateError);
             }
 
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
         public IActionResult Delete(long id)
         {
             try
             {
-                var model = repository.Get(new PurchaseOrder() { PurchaseOrderId = id }).FirstOrDefault();
-
-                if (model == null)
+                if (repository.Get().Count(a => a.PurchaseOrderId == id) == 0)
                 {
                     return BadRequest(Constants.ErrorMessages.NotFoundEntity);
-                }
+                };
 
-                repository.Delete(model);
+                repository.BulkDelete(new string[] { id.ToString() });
 
                 return Accepted(Constants.ErrorMessages.DeleteSucess(1));
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
@@ -153,7 +151,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
@@ -184,7 +182,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
         }

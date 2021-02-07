@@ -65,6 +65,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             var model = dbContext.SaleTransactions.AsNoTracking().Where(a => a.SaleId == id);
             if (includeBales) model = model.Include(a => a.SaleBales).ThenInclude(a => a.Bale);
+            model = model.Include(a => a.ReturnedVehicle);
             var result = model.FirstOrDefault();
             if (result != null) result.SaleBales= result?.SaleBales == null ? new List<SaleBale>() : result.SaleBales;
             return model.FirstOrDefault();

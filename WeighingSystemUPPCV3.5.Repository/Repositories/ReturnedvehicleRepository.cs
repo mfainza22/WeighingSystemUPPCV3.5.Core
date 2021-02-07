@@ -93,11 +93,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var modelStateErrors = new Dictionary<string, string>();
             var saleTransaction = dbContext.SaleTransactions.Where(a => a.SaleId == model.SaleId).Include(a => a.ReturnedVehicle).AsNoTracking().ToList().FirstOrDefault();
 
-            if (saleTransaction?.ReturnedVehicle != null)
-            {
-                modelStateErrors.Add(nameof(model.ReturnedVehicleId), "Selected Vehicle already returned to truck");
-                return modelStateErrors;
-            }
+            //if (saleTransaction?.ReturnedVehicle != null)
+            //{
+            //    modelStateErrors.Add(nameof(model.ReturnedVehicleId), "Selected Vehicle already returned to truck");
+            //    return modelStateErrors;
+            //}
 
             if ((saleTransaction.NetWt - model.PlantNetWt) <= -500)
             {
@@ -151,7 +151,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public decimal GetOTAdjustedWt(ReturnedVehicle model)
         {
             var result = model.PlantNetWt;
-            if (model.OT >= 10) result = model.PlantNetWt - Math.Round((model.OT - 10) * model.PlantNetWt) / 100;
+            if (model.OT >= 5) result = model.PlantNetWt - Math.Round((model.OT - 5) * model.PlantNetWt) / 100;
             return result;
         }
 

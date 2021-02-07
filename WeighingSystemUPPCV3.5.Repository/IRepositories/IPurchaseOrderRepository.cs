@@ -14,7 +14,7 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 
         bool Delete(PurchaseOrder model);
 
-        bool BulkDelete(string[] id);
+        Task<bool> BulkDelete(string[] id);
 
         IQueryable<PurchaseOrder> Get(PurchaseOrder parameters = null);
 

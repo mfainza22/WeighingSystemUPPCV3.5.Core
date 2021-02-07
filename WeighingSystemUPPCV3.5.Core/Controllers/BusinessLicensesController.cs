@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,7 +35,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
         }
@@ -50,24 +51,29 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
 
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] BusinessLicense model)
+        public async Task<IActionResult> Post([FromBody] BusinessLicense model)
         {
             try
             {
                 if (!ModelState.IsValid) return InvalidModelStateResult();
-                if (!validateEntity(model)) return InvalidModelStateResult();
-                return Accepted(repository.Create(model));
+
+                var validationResult = await Task<bool>.Run(() => validateEntity(model));
+                if (validationResult == false) return InvalidModelStateResult();
+
+                var result = await repository.CreateAsync(model);
+
+                return Accepted(result);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.CreateError);
             }
 
@@ -77,18 +83,23 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
-        public IActionResult Put([FromBody] BusinessLicense model)
+        public async Task<IActionResult> Put([FromBody] BusinessLicense model)
         {
             try
             {
                 if (!ModelState.IsValid) return InvalidModelStateResult();
-                if (!validateEntity(model)) return InvalidModelStateResult();
-                return Accepted(repository.Update(model));
+
+                var validationResult = await Task<bool>.Run(() => validateEntity(model));
+                if (validationResult == false) return InvalidModelStateResult();
+
+                var result = await repository.UpdateAsync(model);
+
+                return Accepted(result);
 
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.UpdateError);
             }
 
@@ -115,7 +126,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
@@ -124,23 +135,25 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         [HttpDelete("{name}/{ids}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
-        public IActionResult BulkDelete(string ids)
+        public async Task<IActionResult> BulkDelete(string ids)
         {
             try
             {
                 var arrayIds = ids.Split(",");
                 if (arrayIds.Length == 0) return BadRequest(Constants.ErrorMessages.NoEntityOnDelete);
 
-                repository.BulkDelete(arrayIds);
+                var result = await repository.BulkDeleteAsync(arrayIds);
 
-                return Ok(Constants.ErrorMessages.DeleteSucess(arrayIds.Count()));
+                if (result == false) return BadRequest(Constants.ErrorMessages.DeleteError);
+                else return Ok(Constants.ErrorMessages.DeleteSucess(arrayIds.Count()));
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
+
         private bool validateEntity(BusinessLicense model)
         {
             //var validCode = repository.ValidateName(model);
@@ -149,6 +162,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             //if (!validName) ModelState.AddModelError(nameof(BaleType.BaleTypeDesc), Constants.ErrorMessages.EntityExists("Name"));
             return (ModelState.ErrorCount == 0);
         }
+
         private IActionResult InvalidModelStateResult()
         {
             var jsonModelState = ModelState.ToJson();

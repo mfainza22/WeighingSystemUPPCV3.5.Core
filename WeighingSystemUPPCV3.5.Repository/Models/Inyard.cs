@@ -184,6 +184,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(25, ErrorMessage = "Vehicle Type must not exceed to 25 characters")]
         public string VehicleTypeCode { get; set; }
 
+        public string MoistureReaderProcess { get; set; }
+
         public string MoistureReaderDesc { get; set; }
 
         public string BalingStationNum { get; set; }

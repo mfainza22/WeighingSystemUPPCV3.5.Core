@@ -15,6 +15,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public bool InStock { get; set; }
         public int InventoryAge { get; set; }
 
+        public Nullable<DateTime> DTDelivered { get; set; }
+
 
     }
 }

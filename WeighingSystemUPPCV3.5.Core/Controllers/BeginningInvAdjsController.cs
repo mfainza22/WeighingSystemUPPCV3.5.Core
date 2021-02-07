@@ -34,7 +34,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
         }
@@ -50,7 +50,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
 
@@ -68,7 +68,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.CreateError);
             }
         }
@@ -88,7 +88,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.UpdateError);
             }
 
@@ -115,7 +115,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.GetExceptionMessage());
+                logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
