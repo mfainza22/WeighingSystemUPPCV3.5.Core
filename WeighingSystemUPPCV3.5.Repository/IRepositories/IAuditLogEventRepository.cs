@@ -8,5 +8,18 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
     {
         IQueryable<AuditLogEvent> Get();
         AuditLogEvent Get(long id);
+
+        long GetOfflineInEventId();
+
+        long GetOfflineOutEventId();
+
+        long GetPurchaseModifiedEventId();
+
+        long GetPurchaseDeletedEventId();
+        long GetSaleModifiedEventId();
+
+        long GetSaleDeletedEventId();
+
+
     }
 }

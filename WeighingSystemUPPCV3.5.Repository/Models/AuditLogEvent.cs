@@ -11,7 +11,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [Key]
         public long AuditLogEventId { get; set; }
 
-        public string Description { get; set; }
+        public string AuditLogEventDesc { get; set; }
 
     }
 }

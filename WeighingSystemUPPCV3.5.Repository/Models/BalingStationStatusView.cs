@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeighingSystemUPPCV3_5_Repository.Models
 {
-    [Table("BalingStationsStatusView")]
+    [Table("BalingStationStatusViews")]
     public class BalingStationStatusView
     {
         [Key]

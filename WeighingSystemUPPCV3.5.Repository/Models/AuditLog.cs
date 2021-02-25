@@ -25,5 +25,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(300, ErrorMessage = "Notes must not exceed to 300 characters.")]
         public string Notes { get; set; }
 
+        [ForeignKey(nameof(Models.UserAccount.UserAccountId))]
+        public virtual UserAccount UserAccount { get; set; }
+
+        [ForeignKey(nameof(Models.AuditLogEvent.AuditLogEventId))]
+        public virtual AuditLogEvent AuditLogEvent { get; set; }
+
     }
 }

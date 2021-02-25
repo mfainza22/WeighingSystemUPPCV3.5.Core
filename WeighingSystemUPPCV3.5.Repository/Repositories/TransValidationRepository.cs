@@ -178,6 +178,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 if (model.WeigherOutId.IsNull()) modelStateDict.Add(nameof(model.WeigherOutId), ValidationMessages.Required("Inspector is required."));
                 else if (UserAccountExists(model.WeigherOutId) == false) modelStateDict.Add(nameof(model.WeigherOutId), ValidationMessages.UserNotExists);
                 #endregion
+
             }
 
             #region VALIDATE VEHICLE NUM
@@ -208,7 +209,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                     #region VALIDATE MOISTURE READER
                     if (model.MoistureReaderId.IsNullOrZero()) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.Required("Moisture Reader"));
-                    else if (MoistureReaderExists(model.MoistureReaderId ?? 0) == false) modelStateDict.Add(nameof(model.BaleTypeId), ValidationMessages.BaleTypeNotExists);
+                    else if (MoistureReaderExists(model.MoistureReaderId ?? 0) == false) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.MoistureReaderNotExists);
+                    #endregion
+
+                    #region VALIDATE MC FILE
+                    if (ValidateMCFile(model)==false) modelStateDict.Add(nameof(model.MC),ValidationMessages.MCFileInvalid );
                     #endregion
                 }
 
@@ -275,8 +280,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 if (model.CommodityId.IsNullOrZero()) modelStateDict.Add(nameof(model.CommodityId), ValidationMessages.Required("Product"));
                 else if (ProductExists(model.CommodityId) ==false) modelStateDict.Add(nameof(model.CommodityId), ValidationMessages.ProductNotExists);
                 #endregion
-
-      
 
                 #region VALIDATE BALES
                 if (model.TransactionProcess == SysUtility.Enums.TransactionProcess.WEIGH_OUT)
@@ -385,6 +388,21 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return modelStateDict;
         }
 
+        public bool ValidateMCFile(Inyard model)
+        {
+            if (model.IsOfflineOut??false) return true;
+            if (appConfigRepository.AppConfig.TransactionOption.MCInput != SysUtility.Config.Enums.MCInputOption.TESTER_FILE) return true;
+            if (appConfigRepository.AppConfig.TransactionOption.ValidateMCFileDate == false) return true;
+           
+            if (model.MoistureReaderLogs?.Count > 0)
+            {
+                var dtLog = model.MoistureReaderLogs.FirstOrDefault().DTLog;
+                if (dtLog < model.DateTimeIn ||
+                    dtLog > model.DateTimeOut) return false;
+            }
+
+            return true;    
+        }
     
     }
 }

@@ -21,9 +21,19 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/balingstations/selected",
+      //"applicationUrl": "https://localhost:44386;http://localhost:44385",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+    //"WeghingSystemUPPCV3.5.Core": {
+    //  "commandName": "Project",
+    //  "launchBrowser": true,
+    //  "launchUrl": "api/balingstations/selected",
+    //  "applicationUrl": "https://localhost:44386;http://localhost:44385",
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Production"
+    //  }
+    //}
   }
 }

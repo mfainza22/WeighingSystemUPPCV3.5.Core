@@ -12,8 +12,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public long SaleId { get; set; }
 
-        public DateTime? DTCreatedFrom { get; set; }
-        public DateTime? DTCreatedTo { get; set; }
+        public DateTime? DTFrom { get; set; }
+        public DateTime? DTTo { get; set; }
 
         public DateTime? DTDeliveredFrom { get; set; }
 

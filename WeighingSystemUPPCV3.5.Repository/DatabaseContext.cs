@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 using WeighingSystemUPPCV3_5_Repository.Models;
 
 namespace WeighingSystemUPPCV3_5_Repository
@@ -39,6 +40,8 @@ namespace WeighingSystemUPPCV3_5_Repository
 
         public DbSet<Models.UserAccountPermission> UserAccountPermissions { get; set; }
         public DbSet<Models.BalingStation> BalingStations { get; set; }
+
+        public DbSet<Models.BalingStationStatusView> BalingStationStatusViews { get; set; }
         public DbSet<Models.BusinessLicense> BusinessLicenses { get; set; }
         public DbSet<Models.MoistureSettings> MoistureSettings { get; set; }
         public DbSet<Models.Signatory> Signatories { get; set; }
@@ -101,11 +104,13 @@ namespace WeighingSystemUPPCV3_5_Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<RawMaterial>().Property(a => a.Price).HasPrecision(8, 3);
             modelBuilder.Entity<PurchaseTransaction>().Property(a => a.Price).HasPrecision(8, 3);
-
-      
+            //modelBuilder.Entity<BalingStation>()
+            //    .HasMany(a => a.BusinessLicences)
+            //    .WithOne(a => a.BalingStation)
+            //    .HasPrincipalKey(a => a.BalingStationNum)
+            //    .HasForeignKey(a=>a.BalingStationNum);
 
             //modelBuilder.Entity<SaleTransaction>(entity =>
             //{

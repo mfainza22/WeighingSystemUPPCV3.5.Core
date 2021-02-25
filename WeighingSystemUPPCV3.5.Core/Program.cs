@@ -49,12 +49,14 @@ namespace WeighingSystemUPPCV3_5_Core
                           //        new MinDataRate(bytesPerSecond: 100,
                           //            gracePeriod: TimeSpan.FromSeconds(10));
                           //    serverOptions.Listen(IPAddress.Loopback, 5000);
-                            
+
                           //    serverOptions.Limits.KeepAliveTimeout =
                           //        TimeSpan.FromMinutes(2);
                           //    serverOptions.Limits.RequestHeadersTimeout =
                           //        TimeSpan.FromMinutes(1);
                           //});
+                         // webBuilder.UseKestrel();
+                         webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
                           webBuilder.UseUrls(config.GetSection("urls").Value);
                           webBuilder.UseStartup<Startup>();
                       });

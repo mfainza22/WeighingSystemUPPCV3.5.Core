@@ -110,7 +110,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                         fillLooseBalesSummaryDataTable(sqlConn, serverDataSet, reportParameters);
                         fillActualBalesMCSummaryDataTable(sqlConn, serverDataSet, reportParameters);
 
-
                         categoryIds = serverDataSet.Tables[nameof(dbContext.Bales)].Rows.Cast<DataRow>()
                        .Select(a => a.Field<long>(nameof(Bale.CategoryId))).Distinct().ToList();
 
@@ -127,7 +126,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     case ReportType.BALE_INVENTORY_MONITORING:
                     case ReportType.BALE_INVENTORY_MONITORING_10:
                         fillTVF_InventoryDataTable(sqlConn, serverDataSet, reportParameters);
-                        fillCategoriesDataTable(sqlConn, serverDataSet);
+
+                        categoryIds = serverDataSet.Tables["tvf_inventory"].Rows.Cast<DataRow>()
+                    .Select(a => a.Field<long>(nameof(Bale.CategoryId))).Distinct().ToList();
+                        fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
                         break;
 
                 }
@@ -369,7 +371,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             // SET DateFrom to Firstday of the month
             reportParameters.DTFrom = new DateTime(dtFrom.Year, dtFrom.Month, 1);
             // SET DateTo to Last of the month
-            var dtTo = reportParameters.DTFrom;
+            var dtTo = reportParameters.DTTo;
             reportParameters.DTTo = new DateTime(dtTo.Year, dtTo.Month, DateTime.DaysInMonth(dtTo.Year, dtTo.Month));
             var query = $@" DECLARE @DTFrom DATETIME; SET @DTFrom = CAST('{reportParameters.DTFrom}' AS DATE)
                                 DECLARE @DTTo DATETIME; SET @DTTo = CAST('{reportParameters.DTTo}' AS DATE)
@@ -476,13 +478,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private string getReportDaysQuery(ReportParameters rep)
         {
 
-            var query = $@" DECLARE @DTFrom DATETIME; SET @DTFrom = CAST({rep.DTFrom} AS DATE) ;
-                            DECLARE @DTTo DATETIME; SET @DTTo = CAST({rep.DTTo} AS DATE) ;
-                            WITH AllDays AS 
-                                (SELECT @DTFrom AS ReportDay
-                                    UNION ALL
-                                    SELECT   DATEADD(DAY, 1, ReportDay) FROM AllDays WHERE    ReportDay < @DTTo )
-                            SELECT ReportDay FROM AllDays OPTION (MAXRECURSION 0)";
+            var query = $@" 
+DECLARE @DTFrom DATETIME; SET @DTFrom = CAST({rep.DTFrom} AS DATE) ;
+DECLARE @DTTo DATETIME; SET @DTTo = CAST({rep.DTTo} AS DATE) ;
+WITH AllDays AS 
+    (SELECT @DTFrom AS ReportDay
+        UNION ALL
+        SELECT   DATEADD(DAY, 1, ReportDay) FROM AllDays WHERE    ReportDay < @DTTo )
+SELECT ReportDay FROM AllDays OPTION (MAXRECURSION 0)";
             return query;
         }
 

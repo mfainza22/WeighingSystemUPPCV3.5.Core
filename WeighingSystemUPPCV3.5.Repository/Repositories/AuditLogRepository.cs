@@ -39,7 +39,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             model.DTLog = model.DTLog.IsEmpty() ? DateTime.Now : model.DTLog;
             var auditLogEvent = auditLogEventRepository.Get(model.AuditLogEventId);
-            model.AuditLogEventDesc = auditLogEvent.Description;
+            model.AuditLogEventDesc = dbContext.AuditLogEvents.AsNoTracking().FirstOrDefault(a => a.AuditLogEventId == model.AuditLogEventId)?.AuditLogEventDesc;
             dbContext.AuditLogs.Add(model);
             dbContext.SaveChanges();
             return model;
@@ -64,7 +64,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var auditLogEvent = auditLogEventRepository.Get(model.AuditLogEventId);
             if (auditLogEvent != null)
             {
-                model.AuditLogEventDesc = auditLogEvent.Description;
+                model.AuditLogEventDesc = auditLogEvent.AuditLogEventDesc;
                 auditLogEvent = null;
             }
             else
@@ -108,5 +108,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             return new SqlRawParameter() { SqlParameters = sqlParams, SqlQuery = sqlQry.ToString() };
         }
+
+
     }
 }

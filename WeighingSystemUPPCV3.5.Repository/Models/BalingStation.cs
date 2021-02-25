@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -36,6 +37,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public decimal InsuranceCoverage { get; set; }
 
+
         public DateTime DateEstablished { get; set; }
         public DateTime DateCreated { get; set; }
         public Nullable<DateTime> DateModified { get; set; }
@@ -46,5 +48,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [ForeignKey(nameof(BalingStationNum))]
 
         public virtual BalingStationStatusView BalingStationStatusView { get; set; }
+
     }
 }

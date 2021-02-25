@@ -22,6 +22,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IBalingStationRepository balingStationRepository;
         private readonly IUserAccountRepository userAccountRepository;
         private readonly IReferenceNumberRepository refNumRepository;
+        private readonly IAuditLogRepository auditLogRepository;
+        private readonly IAuditLogEventRepository auditLogEventRepository;
         private readonly ISubSupplierRepository subSupplierRepository;
         private readonly IMoistureSettingsRepository mcRepo;
         private readonly IPurchaseGrossWtRestrictionRepository purchaseGrossWtRestrictionRepository;
@@ -42,6 +44,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IBalingStationRepository balingStationRepository,
             IUserAccountRepository userAccountRepository,
             IReferenceNumberRepository refNumRepository,
+            IAuditLogRepository auditLogRepository,
+            IAuditLogEventRepository auditLogEventRepository,
             ISubSupplierRepository subSupplierRepository,
             IMoistureSettingsRepository mcRepo,
             IPurchaseGrossWtRestrictionRepository purchaseGrossWtRestrictionRepository,
@@ -62,6 +66,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.balingStationRepository = balingStationRepository;
             this.userAccountRepository = userAccountRepository;
             this.refNumRepository = refNumRepository;
+            this.auditLogRepository = auditLogRepository;
+            this.auditLogEventRepository = auditLogEventRepository;
             this.subSupplierRepository = subSupplierRepository;
             this.mcRepo = mcRepo;
             this.purchaseGrossWtRestrictionRepository = purchaseGrossWtRestrictionRepository;
@@ -152,7 +158,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             dbContext.ReferenceNumbers.Update(refNum);
             dbContext.SaveChanges();
 
-            if (model.IsOfflineIn == false)
+            if (model.TransactionTypeCode == "I" && model.IsOfflineIn == false)
             {
                 var vd = new VehicleDeliveryRestriction()
                 {
@@ -173,6 +179,16 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 purchaseGrossWtRestrictionRepository.Create(pg);
             }
 
+            if (model.IsOfflineIn)
+            {
+                var auditLog = new AuditLog()
+                {
+                    AuditLogEventId = auditLogEventRepository.GetOfflineInEventId(),
+                    UserAccountId = model.WeigherInId,
+                    Notes = formatOfflineInEvent(model)
+                };
+                auditLogRepository.Create(auditLog);
+            }
             return newInyard;
         }
 
@@ -266,6 +282,17 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.SaveChanges();
 
+            if (model.IsOfflineOut??false)
+            {
+                var auditLog = new AuditLog()
+                {
+                    AuditLogEventId = auditLogEventRepository.GetOfflineOutEventId(),
+                    UserAccountId = model.WeigherInId,
+                    Notes = formatPurchaseOfflineOutEvent(newPurchase)
+                };
+                auditLogRepository.Create(auditLog);
+            }
+
             balingStationRepository.CheckAndCreateStockStatusReminder();
 
             return newPurchase;
@@ -355,6 +382,18 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             transaction.Commit();
 
+            if (model.IsOfflineOut ?? false)
+            {
+                var auditLog = new AuditLog()
+                {
+                    AuditLogEventId = auditLogEventRepository.GetOfflineOutEventId(),
+                    UserAccountId = model.WeigherInId,
+                    Notes = formatSalefflineOutEvent(saleTransaction)
+                };
+                auditLogRepository.Create(auditLog);
+            }
+
+
             baleRepository.CheckAndCreateBaleOverageReminder();
             balingStationRepository.CheckAndCreateStockStatusReminder();
 
@@ -375,7 +414,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             dbContext.Inyards.Remove(model);
 
-      
+            vehicleDeliveryRestrictionRepository.Delete(new VehicleDeliveryRestriction(model.VehicleNum, model.CommodityId)
+            {
+                DateTimeIn = model.DateTimeIn,
+            });
+
             dbContext.SaveChanges();
             return true;
         }
@@ -545,7 +588,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                 var haulerId = outModifiedInyard.HaulerId;
                 outModifiedInyard.HaulerName = haulerRepository.Get()
-                .Where(a => a.HaulerId == clientId).Select(a => a.HaulerName).FirstOrDefault();
+                .Where(a => a.HaulerId == haulerId).Select(a => a.HaulerName).FirstOrDefault();
 
                 var commodityId = outModifiedInyard.CommodityId;
                 var product = productRepository.Get()
@@ -585,6 +628,28 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 .Select(a => a.FullName).FirstOrDefault();
             }
             return outModifiedInyard;
+        }
+
+
+        private string formatOfflineInEvent(Inyard model)
+        {
+            var str = new StringBuilder();
+            str.Append($"Reference Number: {model.InyardNum};");
+            return str.ToString();
+        }
+
+        private string formatPurchaseOfflineOutEvent(PurchaseTransaction model)
+        {
+            var str = new StringBuilder();
+            str.Append($"Reference Number: {model.ReceiptNum};");
+            return str.ToString();
+        }
+
+        private string formatSalefflineOutEvent(SaleTransaction model)
+        {
+            var str = new StringBuilder();
+            str.Append($"Reference Number: {model.ReceiptNum};");
+            return str.ToString();
         }
 
     }

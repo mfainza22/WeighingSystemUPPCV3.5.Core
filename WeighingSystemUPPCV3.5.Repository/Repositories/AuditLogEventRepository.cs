@@ -30,5 +30,16 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.AuditLogEvents.Where(a=>a.AuditLogEventId == id).AsNoTracking().FirstOrDefault();
         }
 
+        public long GetOfflineInEventId() => 2001;
+
+        public long GetOfflineOutEventId() => 2002;
+
+        public long GetPurchaseModifiedEventId() => 2003;
+
+        public long GetPurchaseDeletedEventId() => 2004;
+
+        public long GetSaleModifiedEventId() => 2005;
+
+        public long GetSaleDeletedEventId() => 2006;
     }
 }

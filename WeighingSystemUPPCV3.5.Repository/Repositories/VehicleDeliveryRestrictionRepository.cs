@@ -26,6 +26,19 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             && a.DTRestriction > model.DateTimeIn).AsNoTracking().FirstOrDefault();
         }
 
+        public bool Delete(VehicleDeliveryRestriction model)
+        {
+            var vehicleDeliveryRestriction = CheckRestriction(model);
+
+            if (vehicleDeliveryRestriction != null )
+            {
+                dbContext.VehicleDeliveryRestrictions.Remove(vehicleDeliveryRestriction);
+                dbContext.SaveChanges();
+            }
+
+            return true;
+        }
+
         public VehicleDeliveryRestriction Create(VehicleDeliveryRestriction model)
         {
             if (appConfigRepository.AppConfig.TransactionOption.VehicleDeliveryRestriction == false) return null;

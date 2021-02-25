@@ -16,6 +16,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
     public class PurchaseTransactionRepository : IPurchaseTransactionRepository
     {
         private readonly DatabaseContext dbContext;
+        private readonly IBalingStationRepository balingStationRepository;
         private readonly IUserAccountRepository userAccountRepository;
         private readonly IPrintLogRepository printLogRepository;
         private readonly IVehicleRepository vehicleRepository;
@@ -25,8 +26,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IMoistureReaderRepository moistureReaderRepository;
         private readonly IMoistureSettingsRepository mcRepository;
         private readonly IBaleTypeRepository baleTypeRepository;
+        private readonly IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository;
 
         public PurchaseTransactionRepository(DatabaseContext dbContext,
+            IBalingStationRepository balingStationRepository,
             IUserAccountRepository userAccountRepository,
             IPrintLogRepository printLogRepository,
             IVehicleRepository vehicleRepository,
@@ -35,9 +38,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             ISourceRepository sourceRepository,
             IMoistureReaderRepository moistureReaderRepository,
             IMoistureSettingsRepository mcRepository,
-            IBaleTypeRepository baleTypeRepository)
+            IBaleTypeRepository baleTypeRepository,
+            IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository)
         {
             this.dbContext = dbContext;
+            this.balingStationRepository = balingStationRepository;
             this.userAccountRepository = userAccountRepository;
             this.printLogRepository = printLogRepository;
             this.vehicleRepository = vehicleRepository;
@@ -47,6 +52,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.moistureReaderRepository = moistureReaderRepository;
             this.mcRepository = mcRepository;
             this.baleTypeRepository = baleTypeRepository;
+            this.vehicleDeliveryRestrictionRepository = vehicleDeliveryRestrictionRepository;
         }
 
         public IQueryable<PurchaseTransaction> Get(PurchaseTransaction parameters = null) => throw new NotImplementedException();
@@ -122,7 +128,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                 //dbContext.AddRange(modifiedPurchase.MoistureReaderLogs);
             }
+            
             dbContext.SaveChanges();
+
+            balingStationRepository.CheckAndCreateStockStatusReminder();
+
             return entity;
         }
 
@@ -139,6 +149,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             dbContext.PurchaseTransactions.Remove(model);
             dbContext.RemoveRange(dbContext.moistureReaderLogs.Where(a => a.TransactionId == model.PurchaseId));
             dbContext.SaveChanges();
+
+
+            vehicleDeliveryRestrictionRepository.Delete(new VehicleDeliveryRestriction(model.VehicleNum, model.RawMaterialId)
+            {
+                DateTimeIn = model.DateTimeIn,
+            });
+
+            balingStationRepository.CheckAndCreateStockStatusReminder();
             return true;
         }
 
@@ -151,6 +169,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.PurchaseTransactions.RemoveRange(entitiesToDelete);
             dbContext.SaveChanges();
+
+            balingStationRepository.CheckAndCreateStockStatusReminder();
+
             return true;
         }
 

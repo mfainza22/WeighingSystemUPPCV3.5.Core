@@ -35,5 +35,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public bool IsActive { get; set; }
 
+
     }
 }

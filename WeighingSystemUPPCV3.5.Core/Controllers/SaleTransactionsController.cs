@@ -81,19 +81,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
         }
 
-        [HttpGet]
-        private IActionResult UnReturned()
-        {
-            try
-            {
-                return Ok(repository.GetUnreturnedVehicles());
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex.GetExceptionMessages());
-                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.CreateError);
-            }
-        }
+      
 
         [HttpPut]
         [Route("[action]/{id}")]

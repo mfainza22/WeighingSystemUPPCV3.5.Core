@@ -91,7 +91,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public Calibration Update(Calibration model)
         {
-            var entity = dbContext.Calibrations.Include(a => a.CalibrationType).AsNoTracking().FirstOrDefault(a => a.CalibrationId == model.CalibrationId);
+            var entity = dbContext.Calibrations.AsNoTracking().FirstOrDefault(a => a.CalibrationId == model.CalibrationId);
             if (entity == null)
             {
                 throw new Exception("Selected Record does not exists.");

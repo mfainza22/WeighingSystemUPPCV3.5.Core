@@ -88,7 +88,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public BalingStation GetSelected()
         {
-            return dbContext.BalingStations.AsNoTracking().FirstOrDefault(a => a.Selected); ;
+            return dbContext.BalingStations.AsNoTracking().Include(a=>a.BalingStationStatusView).FirstOrDefault(a => a.Selected); ;
         }
 
         public BalingStation Update(BalingStation model)
@@ -100,6 +100,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             }
 
             var holdingsModifed = entity.WarehouseHoldings != model.WarehouseHoldings;
+            entity.BalingStationNum = model.BalingStationNum;
             entity.DateModified = DateTime.Now;
             entity.BalingStationCode = model.BalingStationCode;
             entity.BalingStationName = model.BalingStationName;

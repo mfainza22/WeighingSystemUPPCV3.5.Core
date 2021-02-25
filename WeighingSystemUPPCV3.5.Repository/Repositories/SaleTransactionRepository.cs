@@ -26,10 +26,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IMoistureReaderRepository moistureReaderRepository;
         private readonly IMoistureSettingsRepository mcRepository;
         private readonly ILogger<SaleTransactionRepository> logger;
+        private readonly IBalingStationRepository balingStationRepository;
         private readonly IUserAccountRepository userAccountRepository;
 
         public SaleTransactionRepository(DatabaseContext dbContext,
             ILogger<SaleTransactionRepository> logger,
+            IBalingStationRepository balingStationRepository,
             IUserAccountRepository  userAccountRepository,
             IPrintLogRepository printLogRepository,
             IBaleRepository baleRepository,
@@ -51,6 +53,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.moistureReaderRepository = moistureReaderRepository;
             this.mcRepository = moistureSettingsRepository;
             this.logger = logger;
+            this.balingStationRepository = balingStationRepository;
             this.userAccountRepository = userAccountRepository;
         }
 
@@ -67,8 +70,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             if (includeBales) model = model.Include(a => a.SaleBales).ThenInclude(a => a.Bale);
             model = model.Include(a => a.ReturnedVehicle);
             var result = model.FirstOrDefault();
-            if (result != null) result.SaleBales= result?.SaleBales == null ? new List<SaleBale>() : result.SaleBales;
-            return model.FirstOrDefault();
+            if (result != null)
+            {
+                result.SaleBales = result?.SaleBales == null ? new List<SaleBale>() : result.SaleBales;
+                result.SaleBales = result.SaleBales.Where(a => a.Bale != null).ToList();
+            }
+   
+            return result;
         }
 
         public SaleTransaction GetByReceiptNum(string receiptNum)
@@ -132,12 +140,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public bool Delete(SaleTransaction model)
         {
             dbContext.SaleTransactions.Remove(model);
-            //var qry = $"UPDATE Bales SET ";
-            //qry += $"{nameof(Bale.SaleId)}=${model.SaleId}, ";
-            //qry += $"{nameof(Bale.DTDelivered)}=null ";
-            //qry += $"WHERE SaleId = {model.SaleId}";
-            //dbContext.Database.ExecuteSqlRaw(qry);
             dbContext.SaveChanges();
+            baleRepository.CheckAndCreateBaleOverageReminder();
             return true;
         }
 
@@ -150,6 +154,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.SaleTransactions.RemoveRange(entitiesToDelete);
             dbContext.SaveChanges();
+            baleRepository.CheckAndCreateBaleOverageReminder();
             return true;
         }
 
@@ -288,6 +293,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             dbContext.SaleTransactions.Update(entity);
 
             dbContext.SaveChanges();
+
+            baleRepository.CheckAndCreateBaleOverageReminder();
 
             return dbContext.SaleTransactions.Where(a => a.SaleId == entity.SaleId)
                 .Include(a => a.SaleBales).ThenInclude(a => a.Bale)
