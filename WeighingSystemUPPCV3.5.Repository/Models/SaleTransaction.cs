@@ -228,6 +228,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [ForeignKey("SaleId")]
         public virtual ICollection<SaleBale> SaleBales { get; set; }
 
+        [NotMapped]
+        public string LoggedInUserId { get; set; }
     }
 
 }

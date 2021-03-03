@@ -250,5 +250,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 if (reminder != null) reminderRepository.Delete(reminder);
             }
         }
+
+        public Dictionary<string,string> ValidateEntity(Calibration model)
+        {
+            var modelStateDic = new Dictionary<string, string>();
+            if (model.DTLastCalibration.HasValue == false && model.DTNextCalibration.IsEmpty())
+            {
+                modelStateDic.Add(nameof(model.DTNextCalibration), SysUtility.Validations.UPPC.ValidationMessages.Required("Next Calibration"));
+            }
+            return modelStateDic;
+        }
     }
 }

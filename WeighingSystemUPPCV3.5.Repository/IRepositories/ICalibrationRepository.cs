@@ -1,5 +1,6 @@
 ﻿using WeighingSystemUPPCV3_5_Repository.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 {
@@ -27,6 +28,8 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 
 
         CalibrationLog GetLastLog(long id);
+
+        Dictionary<string, string> ValidateEntity(Calibration model);
 
     }
 }

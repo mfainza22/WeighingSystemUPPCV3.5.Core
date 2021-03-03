@@ -124,12 +124,15 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.GetById(id);
 
+                var model = repository.GetById(id);
+               
                 if (model == null)
                 {
                     return BadRequest(Constants.ErrorMessages.NotFoundEntity);
                 }
+                var userId = HttpContext.Request.Cookies["UID"];
+                model.LoggedInUserId = userId;
 
                 repository.Delete(model);
 

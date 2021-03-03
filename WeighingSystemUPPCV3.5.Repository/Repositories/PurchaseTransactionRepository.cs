@@ -10,12 +10,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using SysUtility.Extensions;
+using SysUtility.Config.Interfaces;
 
 namespace WeighingSystemUPPCV3_5_Repository.Repositories
 {
     public class PurchaseTransactionRepository : IPurchaseTransactionRepository
     {
         private readonly DatabaseContext dbContext;
+        private readonly IAppConfigRepository appConfigRepository;
         private readonly IBalingStationRepository balingStationRepository;
         private readonly IUserAccountRepository userAccountRepository;
         private readonly IPrintLogRepository printLogRepository;
@@ -27,8 +29,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IMoistureSettingsRepository mcRepository;
         private readonly IBaleTypeRepository baleTypeRepository;
         private readonly IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository;
+        private readonly IAuditLogEventRepository auditLogEventRepository;
+        private readonly IAuditLogRepository auditLogRepository;
 
         public PurchaseTransactionRepository(DatabaseContext dbContext,
+            IAppConfigRepository appConfigRepository,
             IBalingStationRepository balingStationRepository,
             IUserAccountRepository userAccountRepository,
             IPrintLogRepository printLogRepository,
@@ -39,9 +44,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IMoistureReaderRepository moistureReaderRepository,
             IMoistureSettingsRepository mcRepository,
             IBaleTypeRepository baleTypeRepository,
-            IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository)
+            IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository,
+            IAuditLogEventRepository auditLogEventRepository,
+            IAuditLogRepository auditLogRepository)
         {
             this.dbContext = dbContext;
+            this.appConfigRepository = appConfigRepository;
             this.balingStationRepository = balingStationRepository;
             this.userAccountRepository = userAccountRepository;
             this.printLogRepository = printLogRepository;
@@ -53,6 +61,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.mcRepository = mcRepository;
             this.baleTypeRepository = baleTypeRepository;
             this.vehicleDeliveryRestrictionRepository = vehicleDeliveryRestrictionRepository;
+            this.auditLogEventRepository = auditLogEventRepository;
+            this.auditLogRepository = auditLogRepository;
         }
 
         public IQueryable<PurchaseTransaction> Get(PurchaseTransaction parameters = null) => throw new NotImplementedException();
@@ -67,7 +77,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.PurchaseTransactions.Where(a => a.ReceiptNum == receiptNum).FirstOrDefault();
         }
 
-
         public PurchaseTransaction Update(PurchaseTransaction modifiedPurchase)
         {
             var entity = dbContext.PurchaseTransactions.AsNoTracking().FirstOrDefault(a => a.PurchaseId == modifiedPurchase.PurchaseId);
@@ -75,6 +84,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             {
                 throw new Exception("Selected Record does not exists.");
             }
+
+            var auditLog = initAuditLogUpdate(entity, modifiedPurchase);
 
             updateRelatedTableColumns(ref modifiedPurchase);
 
@@ -131,6 +142,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             
             dbContext.SaveChanges();
 
+            if (auditLog != null) auditLogRepository.Create(auditLog);
+        
             balingStationRepository.CheckAndCreateStockStatusReminder();
 
             return entity;
@@ -150,6 +163,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             dbContext.RemoveRange(dbContext.moistureReaderLogs.Where(a => a.TransactionId == model.PurchaseId));
             dbContext.SaveChanges();
 
+            var auditLog = initAuditLogDelete(model);
+
+            if (auditLog != null) auditLogRepository.Create(auditLog);
 
             vehicleDeliveryRestrictionRepository.Delete(new VehicleDeliveryRestriction(model.VehicleNum, model.RawMaterialId)
             {
@@ -423,17 +439,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         }
 
-        private MoistureReaderLog createMcLog(long transId, int logNUm, DateTime? dt, decimal? mc)
-        {
-            return new MoistureReaderLog()
-            {
-                TransactionId = transId,
-                LogNum = logNUm,
-                DTLog = dt ?? DateTime.Now,
-                MC = mc ?? 0
-            };
-        }
-
         public void updateRelatedTableColumns(ref PurchaseTransaction model)
         {
             var vehicleNum = model.VehicleNum;
@@ -479,5 +484,132 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         }
 
+        public AuditLog initAuditLogUpdate(PurchaseTransaction previousModel, PurchaseTransaction updatedModel)
+        {
+            var auditLogNotes = new StringBuilder();
+            var auditLogRefNum = "";
+
+            if (previousModel.BaleCount != updatedModel.BaleCount)
+            {
+                auditLogNotes.AppendLine($"Bale Count: {previousModel.BaleCount} => {updatedModel.BaleCount}");
+            }
+
+            if (previousModel.BaleTypeDesc != updatedModel.BaleTypeDesc)
+            {
+                auditLogNotes.AppendLine($"Bale Type: {previousModel.BaleTypeDesc} => {updatedModel.BaleTypeDesc}");
+            }
+
+            if (previousModel.DriverName != updatedModel.DriverName)
+            {
+                auditLogNotes.AppendLine($"Driver: {previousModel.DriverName} => {updatedModel.DriverName}");
+            }
+
+            if (previousModel.DRNum != updatedModel.DRNum)
+            {
+                auditLogNotes.AppendLine($"DR Number: {previousModel.DRNum} => {updatedModel.DRNum}");
+            }
+
+            if (previousModel.FactoryWt != updatedModel.FactoryWt)
+            {
+                auditLogNotes.AppendLine($"Factor Wt: {previousModel.FactoryWt} => {updatedModel.FactoryWt}");
+            }
+
+            if (previousModel.MC != updatedModel.MC)
+            {
+                auditLogNotes.AppendLine($"MC: {previousModel.MC} => {updatedModel.MC}");
+            }
+
+            if (previousModel.MoistureReaderDesc != updatedModel.MoistureReaderDesc)
+            {
+                auditLogNotes.AppendLine($"Moisture Reader: {previousModel.MoistureReaderDesc} => {updatedModel.MoistureReaderDesc}");
+            }
+
+            if (previousModel.OT != updatedModel.OT)
+            {
+                auditLogNotes.AppendLine($"OT: {previousModel.OT} => {updatedModel.OT}");
+            }
+
+            if (previousModel.PM != updatedModel.PM)
+            {
+                auditLogNotes.AppendLine($"PM: {previousModel.PM} => {updatedModel.PM}");
+            }
+
+            if (previousModel.PONum != updatedModel.PONum)
+            {
+                auditLogNotes.AppendLine($"P.O. Number: {previousModel.PONum} => {updatedModel.PONum}");
+            }
+
+            if (previousModel.RawMaterialDesc != updatedModel.RawMaterialDesc)
+            {
+                auditLogNotes.AppendLine($"Raw Material: {previousModel.RawMaterialDesc} => {updatedModel.RawMaterialDesc}");
+            }
+
+            if (previousModel.Remarks != updatedModel.Remarks)
+            {
+                auditLogNotes.AppendLine($"Remarks: {previousModel.Remarks} => {updatedModel.Remarks}");
+            }
+
+            if (previousModel.SourceName != updatedModel.SourceName)
+            {
+                auditLogNotes.AppendLine($"Source: {previousModel.SourceName} => {updatedModel.SourceName}");
+            }
+
+            if (previousModel.SubSupplierName != updatedModel.SubSupplierName)
+            {
+                auditLogNotes.AppendLine($"Sub Supplier: {previousModel.SubSupplierName} => {updatedModel.SubSupplierName}");
+            }
+
+            if (previousModel.SupplierName != updatedModel.SupplierName)
+            {
+                auditLogNotes.AppendLine($"Supplier: {previousModel.SupplierName} => {updatedModel.SupplierName}");
+            }
+
+            if (previousModel.Trip != updatedModel.Trip)
+            {
+                auditLogNotes.AppendLine($"Trip: {previousModel.Trip} => {updatedModel.Trip}");
+            }
+
+            if (previousModel.VehicleNum != updatedModel.VehicleNum)
+            {
+                auditLogNotes.AppendLine($"Vehicle Number: {previousModel.VehicleNum} => {updatedModel.VehicleNum}");
+            }
+
+            if (previousModel.WeigherInName != updatedModel.WeigherInName)
+            {
+                auditLogNotes.AppendLine($"Weigher-In : {previousModel.WeigherInName} => {updatedModel.WeigherInName}");
+            }
+
+            if (previousModel.WeigherOutName != updatedModel.WeigherOutName)
+            {
+                auditLogNotes.AppendLine($"Weigher-Out : {previousModel.WeigherOutName} => {updatedModel.WeigherOutName}");
+            }
+
+            if (auditLogNotes.Length == 0) return null;
+
+            auditLogRefNum = $"Reference Num: R{previousModel.BalingStationNum}{previousModel.ReceiptNum}";
+           
+            var auditLog = new AuditLog()
+            {
+                AuditLogEventId = auditLogEventRepository.GetPurchaseModifiedEventId(),
+                UserAccountId = updatedModel.LoggedInUserId,
+                Notes = auditLogRefNum + Environment.NewLine + auditLogNotes.ToString()
+            };
+
+            return auditLog;
+        }
+
+        public AuditLog initAuditLogDelete(PurchaseTransaction model)
+        {
+            var auditLogRefNum = $"Reference Num: R{model.BalingStationNum}{model.ReceiptNum}";
+
+            var auditLog = new AuditLog()
+            {
+                AuditLogEventId = auditLogEventRepository.GetPurchaseDeletedEventId(),
+                UserAccountId = model.LoggedInUserId,
+                Notes = auditLogRefNum
+            };
+
+            return auditLog;
+        }
     }
 }

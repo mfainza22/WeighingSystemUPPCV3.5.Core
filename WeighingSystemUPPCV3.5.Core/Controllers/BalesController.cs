@@ -64,6 +64,39 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult BaleCount([FromQuery] BaleFilter parameters = null)
+        {
+            try
+            {
+                var baleCount = repository.Get(parameters).Count();
+                return Ok(baleCount);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.GetExceptionMessages());
+                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
+            }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult LastBaleNum([FromQuery] DateTime dt,[FromQuery] long categoryId)
+        {
+            try
+            {
+                var baleNum = repository.GetLastBaleNum(dt,categoryId);
+                return Ok(baleNum);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.GetExceptionMessages());
+                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
+            }
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
@@ -216,6 +249,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
         }
+
+       
 
 
         [HttpPost]

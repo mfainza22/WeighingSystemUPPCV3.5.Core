@@ -31,7 +31,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public IQueryable<AuditLog> Get(AuditLogFilter parameters = null)
         {
             var sqlRawParams = GetSqlRawParameter(parameters);
-            if (sqlRawParams.SqlParameters.Count == 0) return dbContext.AuditLogs.AsNoTracking();
+            if (sqlRawParams.SqlParameters.Count == 0) return dbContext.AuditLogs.Include(a=>a.UserAccount).AsNoTracking();
             return dbContext.AuditLogs.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).AsNoTracking();
         }
 

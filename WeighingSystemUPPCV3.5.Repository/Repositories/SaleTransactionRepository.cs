@@ -25,6 +25,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IProductRepository productRepository;
         private readonly IMoistureReaderRepository moistureReaderRepository;
         private readonly IMoistureSettingsRepository mcRepository;
+        private readonly IAuditLogEventRepository auditLogEventRepository;
+        private readonly IAuditLogRepository auditLogRepository;
         private readonly ILogger<SaleTransactionRepository> logger;
         private readonly IBalingStationRepository balingStationRepository;
         private readonly IUserAccountRepository userAccountRepository;
@@ -40,7 +42,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IHaulerRepository haulerRepository,
             IProductRepository productRepository,
             IMoistureReaderRepository moistureReaderRepository,
-            IMoistureSettingsRepository moistureSettingsRepository
+            IMoistureSettingsRepository moistureSettingsRepository,
+            IAuditLogEventRepository auditLogEventRepository,
+            IAuditLogRepository auditLogRepository
             )
         {
             this.dbContext = dbContext;
@@ -52,6 +56,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.productRepository = productRepository;
             this.moistureReaderRepository = moistureReaderRepository;
             this.mcRepository = moistureSettingsRepository;
+            this.auditLogEventRepository = auditLogEventRepository;
+            this.auditLogRepository = auditLogRepository;
             this.logger = logger;
             this.balingStationRepository = balingStationRepository;
             this.userAccountRepository = userAccountRepository;
@@ -96,8 +102,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             {
                 throw new Exception("Selected Record does not exists.");
             }
+            var auditLog = initAuditLogUpdate(entity,modifiedSale);
 
             updateRelatedTableColumns(ref modifiedSale);
+
 
             var correctedMC = mcRepository.GetCorrectedMC(modifiedSale.MC, entity.NetWt);
 
@@ -134,6 +142,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.SaleTransactions.Update(entity);
             dbContext.SaveChanges();
+
+            if (auditLog != null) auditLogRepository.Create(auditLog);
+
             return entity;
         }
 
@@ -141,7 +152,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             dbContext.SaleTransactions.Remove(model);
             dbContext.SaveChanges();
+
+            var auditLog = initAuditLogDelete(model);
+            if (auditLog != null) auditLogRepository.Create(auditLog);
+
             baleRepository.CheckAndCreateBaleOverageReminder();
+
             return true;
         }
 
@@ -501,6 +517,121 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             model.WeigherOutName = userAccountRepository.Get().Where(a => a.UserAccountId == userAccountId)
                 .Select(a => a.FullName).FirstOrDefault();
 
+        }
+
+        public AuditLog initAuditLogUpdate(SaleTransaction previousModel, SaleTransaction updatedModel)
+        {
+            var auditLogNotes = new StringBuilder();
+            var auditLogRefNum = "";
+
+            if (previousModel.BaleCount != updatedModel.BaleCount)
+            {
+                auditLogNotes.AppendLine($"Bale Count: {previousModel.BaleCount} => {updatedModel.BaleCount}");
+            }
+
+            if (previousModel.BaleTypeDesc != updatedModel.BaleTypeDesc)
+            {
+                auditLogNotes.AppendLine($"Bale Type: {previousModel.BaleTypeDesc} => {updatedModel.BaleTypeDesc}");
+            }
+
+            if (previousModel.CustomerName != updatedModel.CustomerName)
+            {
+                auditLogNotes.AppendLine($"Customer: {previousModel.CustomerName} => {updatedModel.CustomerName}");
+            }
+
+
+            if (previousModel.DriverName != updatedModel.DriverName)
+            {
+                auditLogNotes.AppendLine($"Driver: {previousModel.DriverName} => {updatedModel.DriverName}");
+            }
+
+            if (previousModel.HaulerName != updatedModel.HaulerName)
+            {
+                auditLogNotes.AppendLine($"Hauler: {previousModel.HaulerName} => {updatedModel.HaulerName}");
+            }
+
+            if (previousModel.MC != updatedModel.MC)
+            {
+                auditLogNotes.AppendLine($"MC: {previousModel.MC} => {updatedModel.MC}");
+            }
+
+            if (previousModel.MoistureReaderDesc != updatedModel.MoistureReaderDesc)
+            {
+                auditLogNotes.AppendLine($"Moisture Reader: {previousModel.MoistureReaderDesc} => {updatedModel.MoistureReaderDesc}");
+            }
+
+            if (previousModel.OT != updatedModel.OT)
+            {
+                auditLogNotes.AppendLine($"OT: {previousModel.OT} => {updatedModel.OT}");
+            }
+
+            if (previousModel.PM != updatedModel.PM)
+            {
+                auditLogNotes.AppendLine($"PM: {previousModel.PM} => {updatedModel.PM}");
+            }
+
+            if (previousModel.ProductDesc != updatedModel.ProductDesc)
+            {
+                auditLogNotes.AppendLine($"Product: {previousModel.ProductDesc} => {updatedModel.ProductDesc}");
+            }
+
+            if (previousModel.Remarks != updatedModel.Remarks)
+            {
+                auditLogNotes.AppendLine($"Remarks: {previousModel.Remarks} => {updatedModel.Remarks}");
+            }
+
+            if (previousModel.SealNum != updatedModel.SealNum)
+            {
+                auditLogNotes.AppendLine($"Seal Number: {previousModel.SealNum} => {updatedModel.SealNum}");
+            }
+
+
+            if (previousModel.Trip != updatedModel.Trip)
+            {
+                auditLogNotes.AppendLine($"Trip: {previousModel.Trip} => {updatedModel.Trip}");
+            }
+
+            if (previousModel.VehicleNum != updatedModel.VehicleNum)
+            {
+                auditLogNotes.AppendLine($"Vehicle Number: {previousModel.VehicleNum} => {updatedModel.VehicleNum}");
+            }
+
+            if (previousModel.WeigherInName != updatedModel.WeigherInName)
+            {
+                auditLogNotes.AppendLine($"Weigher-In : {previousModel.WeigherInName} => {updatedModel.WeigherInName}");
+            }
+
+            if (previousModel.WeigherOutName != updatedModel.WeigherOutName)
+            {
+                auditLogNotes.AppendLine($"Weigher-Out : {previousModel.WeigherOutName} => {updatedModel.WeigherOutName}");
+            }
+
+            if (auditLogNotes.Length == 0) return null;
+
+            auditLogRefNum = $"Reference Num: D{previousModel.BalingStationNum}{previousModel.ReceiptNum}";
+
+            var auditLog = new AuditLog()
+            {
+                AuditLogEventId = auditLogEventRepository.GetSaleModifiedEventId(),
+                UserAccountId = updatedModel.LoggedInUserId,
+                Notes = auditLogRefNum + Environment.NewLine + auditLogNotes.ToString()
+            };
+
+            return auditLog;
+        }
+
+        public AuditLog initAuditLogDelete(SaleTransaction model)
+        {
+            var auditLogRefNum = $"Reference Num: D{model.BalingStationNum}{model.ReceiptNum}";
+
+            var auditLog = new AuditLog()
+            {
+                AuditLogEventId = auditLogEventRepository.GetSaleDeletedEventId(),
+                UserAccountId = model.LoggedInUserId,
+                Notes = auditLogRefNum
+            };
+
+            return auditLog;
         }
     }
 }

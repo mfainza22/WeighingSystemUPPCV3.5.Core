@@ -72,7 +72,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return entity;
         }
 
-
         public bool ValidateName(CalibrationType model)
         {
             var existing = Get().FirstOrDefault(a => a.CalibrationTypeDesc == model.CalibrationTypeDesc);

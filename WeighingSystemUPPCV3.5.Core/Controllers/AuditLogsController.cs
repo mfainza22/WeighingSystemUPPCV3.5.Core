@@ -26,7 +26,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             this.logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
             try
@@ -46,7 +46,17 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.Get(parameters);
+                var model2 = repository.Get(parameters).ToList();
+
+                var model = repository.Get(parameters).Select(a=>new
+                {
+                    a.AuditLogId,
+                    a.AuditLogEventId,
+                    a.AuditLogEventDesc,
+                    a.DTLog,
+                    UserAccountFullName = a.UserAccount != null ? a.UserAccount.FullName : "",
+                    a.Notes
+                });
                 return Ok(model);
             }
             catch (Exception ex)

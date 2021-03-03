@@ -330,6 +330,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             a.CategoryId == categoryId).OrderByDescending(a => a.BaleNum).Select(a => a.BaleNum).FirstOrDefault();
         }
 
+    
         public bool ValidateCode(Bale model)
         {
             var existing = Get().FirstOrDefault(a => a.BaleCode == model.BaleCode);

@@ -100,6 +100,13 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 if (!validateEntity(model)) return InvalidModelStateResult();
+                var modelStateDic = repository.ValidateEntity(model);
+                if (modelStateDic.Count > 0)
+                {
+                    ModelState.AddModelErrors(modelStateDic);
+                    return InvalidModelStateResult();
+                }
+
                 return Accepted(repository.Create(model));
             }
             catch (Exception ex)
@@ -118,6 +125,12 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             {
                 if (!ModelState.IsValid) return InvalidModelStateResult();
                 if (!validateEntity(model)) return InvalidModelStateResult();
+                var modelStateDic = repository.ValidateEntity(model);
+                if (modelStateDic.Count > 0)
+                {
+                    ModelState.AddModelErrors(modelStateDic);
+                    return InvalidModelStateResult();
+                }
                 if (repository.Get().Count(a => a.CalibrationId.Equals(model.CalibrationId)) == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 return Accepted(repository.Update(model));
 
@@ -190,6 +203,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
 
         private bool validateEntity(Calibration model)
         {
+            var modelStateDict = repository.ValidateEntity(model);
             return (ModelState.ErrorCount == 0);
         }
 

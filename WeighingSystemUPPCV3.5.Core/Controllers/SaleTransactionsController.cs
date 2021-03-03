@@ -137,9 +137,10 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
 
                 if (model == null)
                 {
-                    return BadRequest(Constants.ErrorMessages.NotFoundEntity);
+                    return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 }
-
+                var userId = HttpContext.Request.Cookies["UID"];
+                model.LoggedInUserId = userId;
                 repository.Delete(model);
 
                 return Accepted(Constants.ErrorMessages.DeleteSucess(1));

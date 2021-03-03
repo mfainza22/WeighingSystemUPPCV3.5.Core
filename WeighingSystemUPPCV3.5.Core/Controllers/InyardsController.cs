@@ -98,7 +98,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 var modelStateDic = transValRepository.ValidateInyardWeighing(model);
                 if (modelStateDic.Count > 0)
                 {
-                    ModelState.AddModelErrors(transValRepository.ValidateInyardWeighing(model));
+                    ModelState.AddModelErrors(modelStateDic);
                     return InvalidModelStateResult();
                 }
 

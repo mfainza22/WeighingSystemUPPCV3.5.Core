@@ -190,5 +190,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public DateTime DateOut { get; set; }
 
         public virtual RawMaterial RawMaterial { get; set; }
+
+        [NotMapped]
+        public string LoggedInUserId { get; set; }
     }
 }
