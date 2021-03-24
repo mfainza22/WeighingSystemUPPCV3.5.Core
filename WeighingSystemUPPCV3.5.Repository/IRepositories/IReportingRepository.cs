@@ -5,7 +5,7 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 {
     public interface IReportingRepository
     {
-        ReportDataSet FillReportDataSet(ReportParameters reportParameters);
+        DataSet FillReportDataSet(ReportParameters reportParameters);
 
         void SetReportDaysWeekNum();
 

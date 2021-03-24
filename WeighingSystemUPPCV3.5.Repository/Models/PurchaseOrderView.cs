@@ -14,6 +14,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public long SupplierId { get; set; }
         public long RawMaterialId { get; set; }
         public string PONum { get; set; }
+        public decimal Price { get; set; }
         public decimal BalanceTotalKg { get; set; }
         public string POType { get; set; }
         public string Remarks { get; set; }

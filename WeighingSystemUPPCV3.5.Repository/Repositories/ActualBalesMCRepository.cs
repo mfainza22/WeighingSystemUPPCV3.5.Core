@@ -69,6 +69,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             entity.CategoryId = model.CategoryId;
             entity.MC = model.MC;
+            entity.DT = model.DT;
 
             dbContext.ActualBalesMCs.Update(entity);
             dbContext.SaveChanges();

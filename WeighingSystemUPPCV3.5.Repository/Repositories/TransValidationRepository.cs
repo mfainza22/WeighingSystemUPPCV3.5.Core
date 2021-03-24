@@ -27,13 +27,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IReferenceNumberRepository refNumRepository;
         private readonly IVehicleRepository vehicleRepository;
         private readonly IUserAccountRepository userAccountRepository;
+        private readonly IMoistureSettingsRepository moistureSettingsRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly IProductRepository productRepository;
         private readonly IHaulerRepository haulerRepository;
         private readonly IBaleTypeRepository baleTypeRepository;
         private readonly ISourceRepository sourceRepository;
-        private readonly ISourceCategoryRepository sourceCategoryRepository;
-        private readonly ISubSupplierRepository subSupplierRepository;
         private readonly IRawMaterialRepository rawMaterialRepository;
 
         public TransValidationRepository(DatabaseContext dbContext,
@@ -54,10 +53,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IPurchaseGrossWtRestrictionRepository purchaseGrossWtRestrictionRepository,
             IPurchaseOrderRepository purchaseOrderRepository,
             IReferenceNumberRepository refNumRepository,
-            IPurchaseTransactionRepository purchaseTransactionRepository,
-            ISaleTransactionRepository saleTransactionRepository,
             IVehicleRepository vehicleRepository,
-            IUserAccountRepository userAccountRepository)
+            IUserAccountRepository userAccountRepository,
+            IMoistureSettingsRepository moistureSettingsRepository)
         {
             this.dbContext = dbContext;
             this.balingStationRepository = balingStationRepository;
@@ -71,13 +69,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.refNumRepository = refNumRepository;
             this.vehicleRepository = vehicleRepository;
             this.userAccountRepository = userAccountRepository;
+            this.moistureSettingsRepository = moistureSettingsRepository;
             this.categoryRepository = categoryRepository;
             this.productRepository = productRepository;
             this.haulerRepository = haulerRepository;
             this.baleTypeRepository = baleTypeRepository;
             this.sourceRepository = sourceRepository;
-            this.sourceCategoryRepository = sourceCategoryRepository;
-            this.subSupplierRepository = subSupplierRepository;
             this.rawMaterialRepository = rawMaterialRepository;
         }
 
@@ -147,6 +144,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public Dictionary<string, string> ValidateInyardWeighing(Inyard model)
         {
+           
+
             var modelStateDict = new Dictionary<string, string>();
 
             if (model.TransactionProcess == SysUtility.Enums.TransactionProcess.WEIGH_IN ||
@@ -172,7 +171,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 #endregion
 
                 if (modelStateDict.Count > 0) return modelStateDict;
-            } else 
+            }
+            else
             {
                 #region VALIDATE INSPECTOR/WEIGHER
                 if (model.WeigherOutId.IsNull()) modelStateDict.Add(nameof(model.WeigherOutId), ValidationMessages.Required("Inspector is required."));
@@ -201,6 +201,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     if (model.MC == 0) modelStateDict.Add(nameof(model.MC), ValidationMessages.Required("MC"));
                     if (model.TareWt == 0 || model.NetWt == 0) { modelStateDict.Add(nameof(model.TareWt), ValidationMessages.InvalidWeight); }
 
+                    var corrected10 = 0M; 
+                    if (model.MC != 0 & model.NetWt != 0)
+                    {
+                        var correctedMC = moistureSettingsRepository.GetCorrectedMC(model.MC, model.NetWt);
+                        corrected10 = correctedMC.Corrected10;
+                    }
+
                     #region VALIDATE RECEIPT NUM
                     //var receiptNum = refNumRepository.Get().FirstOrDefault().PurchaseReceiptNum;
                     if (dbContext.PurchaseTransactions.AsNoTracking().Count(a => a.ReceiptNum == model.InyardNum) > 0)
@@ -213,7 +220,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     #endregion
 
                     #region VALIDATE MC FILE
-                    if (ValidateMCFile(model)==false) modelStateDict.Add(nameof(model.MC),ValidationMessages.MCFileInvalid );
+                    if (ValidateMCFile(model) == false) modelStateDict.Add(nameof(model.MC), ValidationMessages.MCFileInvalid);
                     #endregion
                 }
 
@@ -236,9 +243,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 #endregion
 
                 #region VALIDATE PO
-                var po = purchaseOrderRepository.ValidatePO(new PurchaseOrder() { PONum = model.PONum });
-                if (po == null) modelStateDict.Add(nameof(model.PONum), ValidationMessages.POInvalid);
-                else if (po.BalanceRemainingKg < -5000) modelStateDict.Add(nameof(model.PONum), ValidationMessages.PORemainingBalanceInvalid);
+
+                var po = purchaseOrderRepository.ValidatePO(new PurchaseOrder() { PurchaseOrderId = model.PurchaseOrderId??0});
+                if (po == null) modelStateDict.Add(nameof(model.PurchaseOrderId), ValidationMessages.POInvalid);
+                else if (po.BalanceRemainingKg < -5000) modelStateDict.Add(nameof(model.PurchaseOrderId), ValidationMessages.PORemainingBalanceInvalid);
+
                 #endregion
             }
 
@@ -273,12 +282,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 #region VALIDATE CUSTOMER / HAULER
                 if (model.ClientId.IsNullOrZero() && model.HaulerId.IsNullOrZero()) modelStateDict.Add(nameof(model.ClientId), ValidationMessages.Required("Customer/Hauler"));
                 if (model.ClientId.IsNullOrZero() == false) if (CustomerExists(model.ClientId) == false) modelStateDict.Add(nameof(model.ClientId), ValidationMessages.CustomerNotExists);
-                if (model.HaulerId.IsNullOrZero() == false) if (HaulerExists(model.HaulerId??0) == false) modelStateDict.Add(nameof(model.HaulerId), ValidationMessages.HaulerNotExists);
+                if (model.HaulerId.IsNullOrZero() == false) if (HaulerExists(model.HaulerId ?? 0) == false) modelStateDict.Add(nameof(model.HaulerId), ValidationMessages.HaulerNotExists);
                 #endregion
 
                 #region VALIDATE PRODUCT
                 if (model.CommodityId.IsNullOrZero()) modelStateDict.Add(nameof(model.CommodityId), ValidationMessages.Required("Product"));
-                else if (ProductExists(model.CommodityId) ==false) modelStateDict.Add(nameof(model.CommodityId), ValidationMessages.ProductNotExists);
+                else if (ProductExists(model.CommodityId) == false) modelStateDict.Add(nameof(model.CommodityId), ValidationMessages.ProductNotExists);
                 #endregion
 
                 #region VALIDATE BALES
@@ -298,7 +307,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             return modelStateDict;
         }
-   
+
         public Dictionary<string, string> ValidatePurchase(PurchaseTransaction model)
         {
             var modelStateDict = new Dictionary<string, string>();
@@ -314,28 +323,33 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             #region VALIDATE SUPPLIER
             if (model.SupplierId.IsNullOrZero()) modelStateDict.Add(nameof(model.SupplierId), ValidationMessages.Required("Supplier"));
-            else if (SupplierExists(model.SupplierId)==false) modelStateDict.Add(nameof(model.SupplierId), ValidationMessages.SupplierNotExists);
+            else if (SupplierExists(model.SupplierId) == false) modelStateDict.Add(nameof(model.SupplierId), ValidationMessages.SupplierNotExists);
             #endregion
 
             #region VALIDATE MATERIAL
             if (model.RawMaterialId.IsNullOrZero()) modelStateDict.Add(nameof(model.RawMaterialId), ValidationMessages.Required("Material"));
-            else if (RawMaterialExists(model.RawMaterialId)==false) modelStateDict.Add(nameof(model.RawMaterialId), ValidationMessages.RawMaterialNotExists);
+            else if (RawMaterialExists(model.RawMaterialId) == false) modelStateDict.Add(nameof(model.RawMaterialId), ValidationMessages.RawMaterialNotExists);
             #endregion
 
             #region VALIDATE SOURCE
             if (model.SourceId.IsNullOrZero()) modelStateDict.Add(nameof(model.SourceId), ValidationMessages.Required("Source"));
-            else if (SourceExists(model.SourceId)==false) modelStateDict.Add(nameof(model.SourceId), ValidationMessages.SourceNotExists);
+            else if (SourceExists(model.SourceId) == false) modelStateDict.Add(nameof(model.SourceId), ValidationMessages.SourceNotExists);
             #endregion
 
             #region VALIDATE PO
-            var po = purchaseOrderRepository.ValidatePO(new PurchaseOrder() { PONum = model.PONum });
-            if (po == null) modelStateDict.Add(nameof(model.PONum), ValidationMessages.POInvalid);
-            else if (po.BalanceRemainingKg < -5000) modelStateDict.Add(nameof(model.PONum), ValidationMessages.PORemainingBalanceInvalid);
+            var poModified = dbContext.PurchaseTransactions.AsNoTracking().Where(a => a.PurchaseId == model.PurchaseId).Select(a => a.PurchaseOrderId != model.PurchaseOrderId).FirstOrDefault();
+
+            if (poModified)
+            {
+                var po = purchaseOrderRepository.ValidatePO(new PurchaseOrder() { PurchaseOrderId = model.PurchaseOrderId??0 });
+                if (po == null) modelStateDict.Add(nameof(model.PurchaseOrderId), ValidationMessages.POInvalid);
+                else if (po.BalanceRemainingKg < -5000) modelStateDict.Add(nameof(model.PurchaseOrderId), ValidationMessages.PORemainingBalanceInvalid);
+            }
             #endregion
 
             #region VALIDATE MOISTURE READER
             if (model.MoistureReaderId.IsNullOrZero()) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.Required("Moisture Reader"));
-            else if (MoistureReaderExists(model.MoistureReaderId ?? 0)==false) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.MoistureReaderNotExists);
+            else if (MoistureReaderExists(model.MoistureReaderId ?? 0) == false) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.MoistureReaderNotExists);
             #endregion
 
             #region VALIDATE INSPECTOR/WEIGHER
@@ -353,12 +367,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             #region VALIDATE CUSTOMER / HAULER
             if (model.CustomerId.IsNullOrZero() && model.HaulerId.IsNullOrZero()) modelStateDict.Add(nameof(model.CustomerId), ValidationMessages.Required("Customer/Hauler"));
             if (model.CustomerId.IsNullOrZero() == false) if (CustomerExists(model.CustomerId) == false) modelStateDict.Add(nameof(model.CustomerId), ValidationMessages.CustomerNotExists);
-            if (model.HaulerId.IsNullOrZero() == false) if (HaulerExists(model.HaulerId) ==false) modelStateDict.Add(nameof(model.HaulerId), ValidationMessages.HaulerNotExists);
+            if (model.HaulerId.IsNullOrZero() == false) if (HaulerExists(model.HaulerId) == false) modelStateDict.Add(nameof(model.HaulerId), ValidationMessages.HaulerNotExists);
             #endregion
 
             #region VALIDATE PRODUCT
             if (model.ProductId.IsNullOrZero()) modelStateDict.Add(nameof(model.ProductId), ValidationMessages.Required("Product"));
-            else if (ProductExists(model.ProductId) ==false) modelStateDict.Add(nameof(model.ProductId), ValidationMessages.ProductNotExists);
+            else if (ProductExists(model.ProductId) == false) modelStateDict.Add(nameof(model.ProductId), ValidationMessages.ProductNotExists);
 
             #endregion
 
@@ -377,7 +391,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             #region VALIDATE MOISTURE READER
             if (model.MoistureReaderId.IsNullOrZero()) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.Required("Moisture Reader"));
-            else if (MoistureReaderExists(model.MoistureReaderId ?? 0) ==false) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.MoistureReaderNotExists);
+            else if (MoistureReaderExists(model.MoistureReaderId ?? 0) == false) modelStateDict.Add(nameof(model.MoistureReaderId), ValidationMessages.MoistureReaderNotExists);
             #endregion
 
             #region VALIDATE INSPECTOR/WEIGHER
@@ -390,10 +404,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public bool ValidateMCFile(Inyard model)
         {
-            if (model.IsOfflineOut??false) return true;
+            if (model.IsOfflineOut ?? false) return true;
             if (appConfigRepository.AppConfig.TransactionOption.MCInput != SysUtility.Config.Enums.MCInputOption.TESTER_FILE) return true;
             if (appConfigRepository.AppConfig.TransactionOption.ValidateMCFileDate == false) return true;
-           
+
             if (model.MoistureReaderLogs?.Count > 0)
             {
                 var dtLog = model.MoistureReaderLogs.FirstOrDefault().DTLog;
@@ -401,8 +415,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     dtLog > model.DateTimeOut) return false;
             }
 
-            return true;    
+            return true;
         }
-    
+
     }
 }

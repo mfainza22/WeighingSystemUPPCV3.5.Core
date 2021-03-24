@@ -106,6 +106,15 @@ namespace WeighingSystemUPPCV3_5_Repository
         {
             modelBuilder.Entity<RawMaterial>().Property(a => a.Price).HasPrecision(8, 3);
             modelBuilder.Entity<PurchaseTransaction>().Property(a => a.Price).HasPrecision(8, 3);
+            modelBuilder.Entity<PurchaseOrder>().Property(a => a.Price).HasPrecision(8, 3);
+            modelBuilder.Entity<PurchaseOrderView>().Property(a => a.Price).HasPrecision(8, 3);
+
+            //modelBuilder.Entity<Inyard>()
+            //    .HasOne(a => a.PurchaseOrder)
+            //    .WithMany(a=>a.Inyards)
+            //    .HasPrincipalKey(a => a.PONum)
+            //    .HasForeignKey(a => a.PONum);
+
             //modelBuilder.Entity<BalingStation>()
             //    .HasMany(a => a.BusinessLicences)
             //    .WithOne(a => a.BalingStation)

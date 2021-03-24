@@ -57,24 +57,43 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public async Task<PurchaseOrderView> UpdateAsync(PurchaseOrder model)
         {
-            var entity = await dbContext.PurchaseOrders.FindAsync(model.PurchaseOrderId);
-
             var transaction = await dbContext.Database.BeginTransactionAsync();
             try
             {
+                var entity = await dbContext.PurchaseOrders.Where(a => a.PurchaseOrderId == model.PurchaseOrderId).AsNoTracking().FirstOrDefaultAsync();
+
+                var poModified = false;
+
+                poModified = entity.POType != model.POType || entity.PONum != model.PONum ||
+                    entity.Price != model.Price;
+
+                //dbContext.Database.ExecuteSqlRaw(UpdateInyards(entity.PONum,model.PONum,model.POType));
+
                 entity.DTEffectivity = model.DTEffectivity;
+                entity.DTModified = DateTime.Now;
                 entity.PONum = model.PONum;
                 entity.BalanceTotalKg = model.BalanceTotalKg;
                 entity.POType = model.POType;
                 entity.Remarks = model.Remarks;
+                entity.Price = model.Price;
                 dbContext.PurchaseOrders.Update(entity);
                 await dbContext.SaveChangesAsync();
 
                 dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType));
 
-                dbContext.Database.ExecuteSqlRaw(ActivateLatestPOQuery(model.SupplierId, model.RawMaterialId, model.POType));
+                //dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType));
+
+                var latestPOQuery = ActivateLatestPOQuery(model.SupplierId, model.RawMaterialId, model.POType);
+                dbContext.Database.ExecuteSqlRaw(latestPOQuery);
 
                 await transaction.CommitAsync();
+
+                if (poModified)
+                {
+                    dbContext.Database.ExecuteSqlRaw(UpdateInyards(model.PurchaseOrderId, entity));
+
+                    dbContext.Database.ExecuteSqlRaw(UpdatePurchaseTransactions(model.PurchaseOrderId, entity));
+                }
 
                 return dbContext.PurchaseOrderViews.FirstOrDefault(a => a.PurchaseOrderId == model.PurchaseOrderId); ;
 
@@ -90,7 +109,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 throw new Exception(ex.GetExceptionMessages());
             }
         }
-
 
         public bool Delete(PurchaseOrder model)
         {
@@ -136,6 +154,16 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             }
         }
 
+        public PurchaseOrderView GetViewById(long purchaseOrderId)
+        {
+            return dbContext.PurchaseOrderViews.AsNoTracking().Where(a => a.PurchaseOrderId == purchaseOrderId).FirstOrDefault();
+        }
+
+        public PurchaseOrder GetById(long purchaseOrderId)
+        {
+            return dbContext.PurchaseOrders.AsNoTracking().Where(a => a.PurchaseOrderId == purchaseOrderId).FirstOrDefault();
+        }
+
         public IQueryable<PurchaseOrder> Get(PurchaseOrder parameters = null)
         {
             var sqlRawParams = GetSqlRawParameter(parameters);
@@ -151,7 +179,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public PurchaseOrderView ValidatePO(PurchaseOrder parameters = null)
         {
-            return dbContext.PurchaseOrderViews.Where(a => a.PONum == parameters.PONum).AsNoTracking().FirstOrDefault();
+            return dbContext.PurchaseOrderViews.Where(a => a.PurchaseOrderId == parameters.PurchaseOrderId).AsNoTracking().FirstOrDefault();
         }
 
         public SqlRawParameter GetSqlRawParameter(PurchaseOrder parameters)
@@ -290,7 +318,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     {nameof(PurchaseOrder.SupplierId)}= {supplierId} AND
                     {nameof(PurchaseOrder.RawMaterialId)}= {rawMaterialId} AND
                     {nameof(PurchaseOrder.POType)}= '{POType}' 
-                    ORDER BY {nameof(PurchaseOrder.DTEffectivity)} DESC
+                    ORDER BY {nameof(PurchaseOrder.DTEffectivity)} DESC, 
+                            {nameof(PurchaseOrder.DTCreated)} DESC
                     )";
         }
 
@@ -300,6 +329,31 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     WHERE {nameof(PurchaseOrder.SupplierId)} = {supplierId} AND
                           {nameof(PurchaseOrder.RawMaterialId)} = {rawMaterialId} AND
                           {nameof(PurchaseOrder.POType)} = '{poType}'";
+        }
+   
+
+        private string UpdateInyards(long purchaseOrderId, PurchaseOrder updatedPurchaseOrder)
+        {
+            return @$"UPDATE Inyards SET 
+                {nameof(Inyard.PONum)} = '{updatedPurchaseOrder.PONum}' ,
+                {nameof(Inyard.POType)} = '{updatedPurchaseOrder.POType}' 
+                WHERE {nameof(Inyard.PurchaseOrderId)} = '{updatedPurchaseOrder.PurchaseOrderId}'";
+        }
+
+        private string UpdatePurchaseTransactions(long oldPurchaseOrderId, PurchaseOrder updatedPurchaseOrder)
+        {
+            return @$"UPDATE PurchaseTransactions SET 
+                {nameof(PurchaseTransaction.PONum)} = '{updatedPurchaseOrder.PONum}' ,
+                {nameof(PurchaseTransaction.POType)} = '{updatedPurchaseOrder.POType}' ,
+                {nameof(PurchaseTransaction.Price)} = '{updatedPurchaseOrder.Price}' 
+                WHERE {nameof(PurchaseTransaction.PurchaseOrderId)} = '{updatedPurchaseOrder.PurchaseOrderId}'";
+        }
+
+        private string UpdatePONum(long purchaseOrderId, string newPONum)
+        {
+            return @$"UPDATE PurchaseOrders SET 
+                {nameof(PurchaseOrder.PONum)} = '{newPONum}' 
+                WHERE {nameof(PurchaseOrder.PONum)} = '{purchaseOrderId}'";
         }
     }
 }

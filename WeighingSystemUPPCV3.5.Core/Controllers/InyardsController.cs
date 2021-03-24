@@ -34,6 +34,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             try
             {
                 var model = repository.Get(parameters);
+                var modelList = model.ToList();
                 return Ok(model);
             }
             catch (Exception ex)

@@ -31,6 +31,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             try
             {
                 var model = repository.GetView(parameters);
+                var modelList = model.ToList();
                 return Ok(model);
             }
             catch (Exception ex)
@@ -45,7 +46,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.Get().FirstOrDefault(a => a.PurchaseOrderId == id);
+                var model = repository.GetViewById(id);
                 if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
                 return Ok(model);
             }
@@ -54,7 +55,22 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
             }
+        }
 
+        [HttpGet("[action]/{poNum}")]
+        public IActionResult GetByPONum(string poNum)
+        {
+            try
+            {
+                var model = repository.Get().FirstOrDefault(a => a.PONum == poNum);
+                if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.GetExceptionMessages());
+                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
+            }
         }
 
         [HttpPost]
@@ -79,8 +95,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 logger.LogError(ex.GetExceptionMessages());
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.CreateError);
             }
-
-
         }
 
         [HttpPut("{id}")]
@@ -110,7 +124,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
 
         }
 
-
         [HttpDelete]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
@@ -133,7 +146,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
-
 
         [HttpDelete("{name}/{ids}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
@@ -168,8 +180,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             if (result) return Accepted(true);
             else return UnprocessableEntity(Constants.ErrorMessages.EntityExists("P.O. Number"));
         }
-
-
 
         [HttpGet]
         [Route("[action]")]

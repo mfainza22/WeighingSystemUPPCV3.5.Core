@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +23,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [Required(ErrorMessage = " P.O. number is required ", AllowEmptyStrings = false)]
         [MaxLength(20, ErrorMessage = "P.O. number length must not exceed to 20 characters")]
+        
         public string PONum { get; set; }
+
+        public decimal Price { get; set; }
 
         [DefaultValue(0)]
         [Range(1, 9999999999, ErrorMessage = "Total Balance(Kg) is required")]
@@ -52,6 +56,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string RawMaterialDesc { get; set; }
 
 
+        public virtual PurchaseOrderView PurchaseOrderView { get; set; }
+
+        //[ForeignKey("PurchaseOrderId")]
+        //public virtual ICollection<Inyard> Inyards { get; set; }
+
+        //[ForeignKey("PurchaseOrderId")]
+        //public virtual ICollection<PurchaseTransaction> PurchaseTransactions{ get; set; }
 
     }
 }

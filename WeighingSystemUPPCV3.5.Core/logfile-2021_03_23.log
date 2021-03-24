@@ -1,0 +1,220 @@
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-03-23T02:35:29.0452116Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-03-23T02:35:29.0504447Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-03-23T02:35:29.0553258Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-03-23T02:35:29.0602861Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-03-23T02:35:29.0654439Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Config
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:35:56.1365719Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/BalingStations/selected
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:35:56.6270125Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/MoistureSettings
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:02.5112470Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/TransactionTypes
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:02.6722975Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/MoistureReaders
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:02.7357170Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/BaleTypes
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:02.8212448Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Sources
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:02.9224866Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SourceCategories
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.0298952Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Customers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.0896879Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Suppliers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.1587847Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/RawMaterials
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.2195840Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Products
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.3514649Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Categories
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.4348086Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Haulers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.4956093Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Vehicles
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.5529779Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/VehicleTypes
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.7559806Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SubSuppliers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.8285175Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SaleTransactions
+Body: 
+Query: ?Returned=false
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:03.8952788Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/UserAccounts/UserAccountDetails
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:04.0426612Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Reminders
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:04.1355013Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Signatories
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:04.2181764Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/UserAccounts/LogIn
+Body: {"userName":"TSI","userPwd":"1"}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:06.7152146Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseTransactions
+Body: 
+Query: ?TransactionId=0&ReceiptNum=&DTFrom=3%2f23%2f2021%2010%3a36%3a08%20AM&DTTo=3%2f23%2f2021%2010%3a36%3a08%20AM
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:08.4467713Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseTransactions
+Body: 
+Query: ?TransactionId=0&ReceiptNum=&DTFrom=3%2f1%2f2021%2010%3a36%3a08%20AM&DTTo=3%2f23%2f2021%2010%3a36%3a08%20AM
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:11.9015074Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/UserAccounts/LogIn
+Body: {"userName":"TSI","userPwd":"1"}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:16.7301125Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Suppliers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:19.0464622Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders
+Body: 
+Query: ?PurchaseOrderId=0&DTEffectivity=1%2f1%2f0001%2012%3a00%3a00%20AM&SupplierId=40000002&RawMaterialId=70000003&PONum=&Price=0&BalanceTotalKg=0&POType=&Remarks=&DTCreated=1%2f1%2f0001%2012%3a00%3a00%20AM&CreatedById=&DTModified=&ModifiedById=&IsActive=&Locked=&RawMaterialDesc=&BalanceRemainingKg=&BalanceDeliveredKg=&PurchaseOrderView=
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:22.0641093Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders
+Body: 
+Query: ?PurchaseOrderId=0&DTEffectivity=1%2f1%2f0001%2012%3a00%3a00%20AM&SupplierId=40000002&RawMaterialId=70000013&PONum=&Price=0&BalanceTotalKg=0&POType=&Remarks=&DTCreated=1%2f1%2f0001%2012%3a00%3a00%20AM&CreatedById=&DTModified=&ModifiedById=&IsActive=&Locked=&RawMaterialDesc=&BalanceRemainingKg=&BalanceDeliveredKg=&PurchaseOrderView=
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:22.4643335Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders
+Body: 
+Query: ?PurchaseOrderId=0&DTEffectivity=1%2f1%2f0001%2012%3a00%3a00%20AM&SupplierId=40000002&RawMaterialId=70000006&PONum=&Price=0&BalanceTotalKg=0&POType=&Remarks=&DTCreated=1%2f1%2f0001%2012%3a00%3a00%20AM&CreatedById=&DTModified=&ModifiedById=&IsActive=&Locked=&RawMaterialDesc=&BalanceRemainingKg=&BalanceDeliveredKg=&PurchaseOrderView=
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:22.7949420Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders/429
+Body: {"purchaseOrderId":429,"dtEffectivity":"2021-03-17T00:00:00","supplierId":40000002,"rawMaterialId":70000006,"poNum":"1221","price":4.232,"balanceTotalKg":1210000.00,"poType":"BASE","dtCreated":"2021-03-17T11:34:07.807","createdById":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","isActive":true,"balanceRemainingKg":1210.0,"balanceDeliveredKg":0.0}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:36:36.8694286Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders/429
+Body: {"purchaseOrderId":429,"dtEffectivity":"2021-03-17T00:00:00","supplierId":40000002,"rawMaterialId":70000006,"poNum":"1221","price":4.234,"balanceTotalKg":1210000.00,"poType":"BASE","dtCreated":"2021-03-17T11:34:07.807","createdById":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","dtModified":"2021-03-23T10:36:37.027","isActive":true,"balanceRemainingKg":1210.0,"balanceDeliveredKg":0.0}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:37:12.2487426Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-03-23T02:37:56.1915102Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-03-23T02:37:56.1979899Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-03-23T02:37:56.2038392Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-03-23T02:37:56.2089561Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-03-23T02:37:56.2141306Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders/429
+Body: {"purchaseOrderId":429,"dtEffectivity":"2021-03-17T00:00:00","supplierId":40000002,"rawMaterialId":70000006,"poNum":"1221","price":4.234,"balanceTotalKg":1210000.00,"poType":"BASE","dtCreated":"2021-03-17T11:34:07.807","createdById":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","dtModified":"2021-03-23T10:36:37.027","isActive":true,"balanceRemainingKg":1210.0,"balanceDeliveredKg":0.0}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-03-23T02:38:12.6903455Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders
+Body: 
+Query: ?PurchaseOrderId=0&DTEffectivity=1%2f1%2f0001%2012%3a00%3a00%20AM&SupplierId=40000002&RawMaterialId=70000006&PONum=&Price=0&BalanceTotalKg=0&POType=&Remarks=&DTCreated=1%2f1%2f0001%2012%3a00%3a00%20AM&CreatedById=&DTModified=&ModifiedById=&IsActive=&Locked=&RawMaterialDesc=&BalanceRemainingKg=&BalanceDeliveredKg=&PurchaseOrderView=
+Client IP: ::1
+
+    DateTime=2021-03-23T02:38:36.5742078Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-03-23T02:39:06.7937999Z

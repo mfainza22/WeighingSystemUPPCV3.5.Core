@@ -5,6 +5,7 @@
     <AssemblyName>WeighingSystemUPPCV3.5.Core</AssemblyName>
     <RootNamespace>WeighingSystemUPPCV3_5_Core</RootNamespace>
     <Platforms>AnyCPU;x86</Platforms>
+    <UserSecretsId>ae4de87d-0db5-4eed-a4d3-2cff8e1b4d92</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

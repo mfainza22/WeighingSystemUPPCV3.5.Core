@@ -45,8 +45,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DefaultValue(0)]
         public int BaleCount { get; set; }
 
+        [Range(1, 999999999, ErrorMessage = "Purchase Order is required ")]
+        public Nullable<long> PurchaseOrderId { get; set; }
+
         [MaxLength(15, ErrorMessage = "P.O. Number length must not exceed to 15 characters")]
         public string PONum { get; set; }
+
+        public string POType { get; set; }
 
         [MaxLength(15, ErrorMessage = "D.R Number length must not exceed to 15 characters")]
         public string DRNum { get; set; }
@@ -97,10 +102,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public long? MoistureReaderId { get; set; }
 
-        [Required(ErrorMessage = " SourceId is required ", AllowEmptyStrings = false)]
+        [Range(1, 999999999, ErrorMessage = "Source  is required ")]
         public long SourceId { get; set; }
 
-        [Required(ErrorMessage = " SourceCategoryId is required ", AllowEmptyStrings = false)]
+        [Range(1, 999999999, ErrorMessage = "Source Category is required ")]
         public long SourceCategoryId { get; set; }
 
         [Required(ErrorMessage = " Time zone in is required ", AllowEmptyStrings = false)]
@@ -152,6 +157,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(50, ErrorMessage = "Raw Material Description length must not exceed to 50 characters")]
         public string RawMaterialDesc { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public string RawMaterialDescPOType { get; set; }
+
         [MaxLength(50, ErrorMessage = "Category Descriptin length must not exceed to 50 characters")]
         public string CategoryDesc { get; set; }
 
@@ -170,11 +178,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(3, ErrorMessage = "Baling Station Num length must not exceed to 50 characters")]
         public string BalingStationNum { get; set; }
         [MaxLength(50, ErrorMessage = "Baling Station Code length must not exceed to 50 characters")]
-        public string BalingStationCode{ get; set; }
+        public string BalingStationCode { get; set; }
 
         [MaxLength(50, ErrorMessage = "Baling Station Name length must not exceed to 50 characters")]
         public string BalingStationName { get; set; }
-        
+
         public Nullable<DateTime> MCDate { get; set; }
 
         [NotMapped]
@@ -191,7 +199,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public virtual RawMaterial RawMaterial { get; set; }
 
+        [ForeignKey("PurchaseOrderId")]
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
+
         [NotMapped]
         public string LoggedInUserId { get; set; }
-    }
+
+
+}
 }

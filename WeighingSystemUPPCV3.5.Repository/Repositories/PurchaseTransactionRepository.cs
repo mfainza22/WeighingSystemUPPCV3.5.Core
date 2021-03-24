@@ -31,6 +31,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository;
         private readonly IAuditLogEventRepository auditLogEventRepository;
         private readonly IAuditLogRepository auditLogRepository;
+        private readonly IPurchaseOrderRepository purchaseOrderRepository;
 
         public PurchaseTransactionRepository(DatabaseContext dbContext,
             IAppConfigRepository appConfigRepository,
@@ -46,7 +47,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IBaleTypeRepository baleTypeRepository,
             IVehicleDeliveryRestrictionRepository vehicleDeliveryRestrictionRepository,
             IAuditLogEventRepository auditLogEventRepository,
-            IAuditLogRepository auditLogRepository)
+            IAuditLogRepository auditLogRepository,
+            IPurchaseOrderRepository purchaseOrderRepository)
         {
             this.dbContext = dbContext;
             this.appConfigRepository = appConfigRepository;
@@ -63,18 +65,20 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.vehicleDeliveryRestrictionRepository = vehicleDeliveryRestrictionRepository;
             this.auditLogEventRepository = auditLogEventRepository;
             this.auditLogRepository = auditLogRepository;
+            this.purchaseOrderRepository = purchaseOrderRepository;
         }
 
         public IQueryable<PurchaseTransaction> Get(PurchaseTransaction parameters = null) => throw new NotImplementedException();
 
         public PurchaseTransaction GetById(long id)
         {
-            return dbContext.PurchaseTransactions.Find(id);
+            return dbContext.PurchaseTransactions.Include(a=>a.PurchaseOrder).AsNoTracking()
+                .Include(a=>a.PurchaseOrder).ThenInclude(a=>a.PurchaseOrderView).FirstOrDefault(a=>a.PurchaseId == id);
         }
-
+   
         public PurchaseTransaction GetByReceiptNum(string receiptNum)
         {
-            return dbContext.PurchaseTransactions.Where(a => a.ReceiptNum == receiptNum).FirstOrDefault();
+            return dbContext.PurchaseTransactions.Include(a => a.PurchaseOrder).ThenInclude(a => a.PurchaseOrderView).FirstOrDefault(a => a.ReceiptNum == receiptNum);
         }
 
         public PurchaseTransaction Update(PurchaseTransaction modifiedPurchase)
@@ -107,7 +111,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.MoistureReaderDesc = modifiedPurchase.MoistureReaderDesc;
             entity.OT = modifiedPurchase.OT;
             entity.PM = modifiedPurchase.PM;
+            entity.PurchaseOrderId = modifiedPurchase.PurchaseOrderId;
             entity.PONum = modifiedPurchase.PONum;
+            entity.POType = modifiedPurchase.POType;
+            entity.Price = modifiedPurchase.Price;
             entity.RawMaterialId = modifiedPurchase.RawMaterialId;
             entity.RawMaterialDesc = modifiedPurchase.RawMaterialDesc;
             entity.Remarks = modifiedPurchase.Remarks;
@@ -132,12 +139,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             if (modifiedPurchase.MoistureReaderLogsModified)
             {
                 dbContext.RemoveRange(dbContext.moistureReaderLogs.Where(a => a.TransactionId == modifiedPurchase.PurchaseId));
-                //foreach (var moistureReaderLog in modifiedPurchase.MoistureReaderLogs)
-                //{
-                //    moistureReaderLog.TransactionId = modifiedPurchase.PurchaseId;
-                //};
-
-                //dbContext.AddRange(modifiedPurchase.MoistureReaderLogs);
             }
             
             dbContext.SaveChanges();
@@ -152,7 +153,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public decimal UpdatePrice(long transactionId)
         {
             var purchase = dbContext.PurchaseTransactions.AsNoTracking().FirstOrDefault(a => a.PurchaseId == transactionId);
-            var updatedPrice = dbContext.RawMaterials.Where(a => a.RawMaterialId == purchase.RawMaterialId).Select(a => a.Price).FirstOrDefault();
+            var updatedPrice = dbContext.PurchaseOrders.Where(a => a.PONum == purchase.PONum).Select(a => a.Price).FirstOrDefault();
             dbContext.Database.ExecuteSqlRaw($"Update PurchaseTransactions set Price = {updatedPrice} where PurchaseId = {updatedPrice}");
             return updatedPrice;
         }
@@ -276,7 +277,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public PurchaseTransaction GetByIdWithMCReaderLogs(long id)
         {
-            return dbContext.PurchaseTransactions.Include(a => a.MoistureReaderLogs).AsNoTracking().FirstOrDefault(a => a.PurchaseId == id);
+            return dbContext.PurchaseTransactions.Include(a => a.MoistureReaderLogs)
+                .Include(a=>a.PurchaseOrder).ThenInclude(a=>a.PurchaseOrderView).AsNoTracking().Where(a => a.PurchaseId == id).FirstOrDefault();
         }
 
         public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
@@ -462,6 +464,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             model.RawMaterialDesc = material?.RawMaterialDesc;
             model.CategoryId = material?.CategoryId ?? 0;
             model.CategoryDesc = material?.CategoryDesc;
+
+            var purchaseOrderId = model.PurchaseOrderId;
+            var poDetails = purchaseOrderRepository.Get()
+    .Where(a => a.PurchaseOrderId == purchaseOrderId).Select(a => new { a.PONum, a.Price, a.POType }).FirstOrDefault();
+
+            model.PONum = poDetails?.PONum??String.Empty;
+            model.Price = poDetails?.Price ?? 0;
+            model.POType = poDetails?.POType;
 
             var sourceId = model.SourceId;
             var source = sourceRepository.Get()

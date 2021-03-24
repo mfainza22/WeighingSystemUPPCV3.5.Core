@@ -39,6 +39,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly ISourceRepository sourceRepository;
         private readonly ICustomerRepository customerRepository;
         private readonly IBaleRepository baleRepository;
+        private readonly IPurchaseOrderRepository purchaseOrderRepository;
 
         public InyardRepository(DatabaseContext dbContext,
             IBalingStationRepository balingStationRepository,
@@ -60,7 +61,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IBaleTypeRepository baleTypeRepository,
             ISourceRepository sourceRepository,
             ICustomerRepository customerRepository,
-            IBaleRepository baleRepository )
+            IBaleRepository baleRepository,
+            IPurchaseOrderRepository purchaseOrderRepository)
         {
             this.dbContext = dbContext;
             this.balingStationRepository = balingStationRepository;
@@ -83,6 +85,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.sourceRepository = sourceRepository;
             this.customerRepository = customerRepository;
             this.baleRepository = baleRepository;
+            this.purchaseOrderRepository = purchaseOrderRepository;
         }
 
         public Inyard WeighIn(Inyard model)
@@ -113,6 +116,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 GrossWt = model.GrossWt,
                 HaulerId = model.HaulerId,
                 InyardNum = model.InyardNum,
+
                 IsOfflineIn = model.IsOfflineIn,
                 IsOfflineOut = model.IsOfflineOut,
                 MC = model.MC,
@@ -127,7 +131,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 PlantNetWt = model.PlantNetWt,
                 PlantTruckOrigin = model.PlantTruckOrigin?.ToUpper(),
                 PM = model.PM,
+                PurchaseOrderId = model.PurchaseOrderId,
                 PONum = model.PONum,
+                POType = model.POType,
                 Price = model.Price,
                 Remarks = model.Remarks?.ToUpper(),
                 SealNum = model.SealNum?.ToUpper(),
@@ -238,7 +244,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 OT = model.OT,
                 NetWt = model.NetWt,
                 PM = model.PM,
+                PurchaseOrderId = model.PurchaseOrderId,
                 PONum = model.PONum,
+                POType = model.POType,
                 Price = model.Price,
                 PrintCount = 0,
                 RawMaterialDesc = model.CommodityDesc,
@@ -471,7 +479,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.BaleTypeId = model.BaleTypeId;
             entity.HaulerId = model.HaulerId;
             entity.HaulerName = model.HaulerName;
-
+            entity.PurchaseOrderId = model.PurchaseOrderId;
+            entity.PONum = model.PONum;
+            entity.POType = model.POType;
+            entity.Price = model.Price;
             entity.DriverName = model.DriverName?.ToUpper();
             entity.DRNum = model.DRNum?.ToUpper(); ;
             entity.PlantTruckOrigin = model.PlantTruckOrigin?.ToUpper();
@@ -564,10 +575,20 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     .Include(a => a.Category).DefaultIfEmpty()
                     .Select(a => new { a.RawMaterialDesc, a.Price,a.CategoryId, CategoryDesc = a.Category == null ? null : a.Category.CategoryDesc })
                     .FirstOrDefault();
+                var poNum = outModifiedInyard.PONum;
+
                 outModifiedInyard.CommodityDesc = material?.RawMaterialDesc;
                 outModifiedInyard.CategoryId = material?.CategoryId ?? 0;
                 outModifiedInyard.CategoryDesc = material?.CategoryDesc;
                 outModifiedInyard.Price = material?.Price ?? 0;
+
+                var purchaseOrderId = outModifiedInyard.PurchaseOrderId;
+                var poDetails = purchaseOrderRepository.Get()
+        .Where(a => a.PurchaseOrderId == purchaseOrderId).Select(a => new { a.PONum, a.Price, a.POType }).FirstOrDefault();
+
+                outModifiedInyard.PONum = poDetails?.PONum ?? String.Empty;
+                outModifiedInyard.Price = poDetails?.Price ?? 0;
+                outModifiedInyard.POType = poDetails?.POType;
 
                 var sourceId = outModifiedInyard.SourceId;
                 var source = sourceRepository.Get()

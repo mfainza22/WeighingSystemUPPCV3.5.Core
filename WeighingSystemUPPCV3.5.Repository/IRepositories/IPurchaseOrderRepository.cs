@@ -16,6 +16,10 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 
         Task<bool> BulkDelete(string[] id);
 
+        PurchaseOrder GetById(long purchaseOrderId);
+
+        PurchaseOrderView GetViewById(long purchaseOrderId);
+
         IQueryable<PurchaseOrder> Get(PurchaseOrder parameters = null);
 
         IQueryable<PurchaseOrderView> GetView(PurchaseOrder parameters = null);

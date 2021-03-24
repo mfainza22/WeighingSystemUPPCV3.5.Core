@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using SysUtility;
 using SysUtility.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,13 +40,16 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                     a.VehicleNum,
                     a.SupplierName,
                     a.RawMaterialDesc,
+                    a.RawMaterialDescPOType,
+                    a.PONum,
+                    a.POType,
                     a.GrossWt,
                     a.TareWt,
                     a.NetWt,
                     a.MC,
                     a.SourceCategoryDesc,
                     a.DriverName,
-                    a.WeigherOutName
+                    a.WeigherOutName,
                 });
                 return Ok(model);
             }
@@ -61,11 +65,16 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = includeMCReaderLogs ? repository.GetByIdWithMCReaderLogs(id) : repository.GetById(id);
-                model.MoistureReaderLogs = model.MoistureReaderLogs.OrderBy(a => a.LogNum).ToList();
-
+                var model = repository.GetByFilter().Where(a => a.PurchaseId == id);
                 if (model == null) return NotFound(Constants.ErrorMessages.NotFoundEntity);
-                return Ok(model);
+                if (includeMCReaderLogs)
+                {
+                    model = model.Include(a => a.MoistureReaderLogs);
+                }
+
+                var result = model.Include(a => a.PurchaseOrder).ThenInclude(a => a.PurchaseOrderView).FirstOrDefault();
+
+                return Ok(result);
             }
             catch (Exception ex)
             {

@@ -45,13 +45,15 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                         a.DT,
                         a.DTCreated,
                         a.FIFORemarks,
-                        InStock = a.BaleInventoryView.InStock,
-                        InventoryAge = a.BaleInventoryView.InventoryAge,
+                        InStock = a.BaleInventoryView != null ? a.BaleInventoryView.InStock : false,
+                        InventoryAge = a.BaleInventoryView != null ? a.BaleInventoryView.InventoryAge : 0,
                         a.IsReject,
                         a.ProductId,
                         a.ProductDesc,
                         a.Remarks
-                    }); return Ok(modelAsList.ToList());
+                    }).ToList();
+                    
+                    return Ok(modelAsList);
                 }
 
                 return Ok(model.ToList());
@@ -224,7 +226,26 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 filterParameters.BaleStatus = searchBaleModel.BaleStatus;
                 filterParameters.ProductId = searchBaleModel.ProductId;
                 var model = repository.Get(filterParameters);
-                return Ok(model);
+                var modelAsList = model.Select(a => new
+                {
+                    a.BaleId,
+                    a.BaleCode,
+                    a.BaleNum,
+                    a.BaleWt,
+                    a.BaleWt10,
+                    a.CategoryId,
+                    a.CategoryDesc,
+                    a.DT,
+                    a.DTCreated,
+                    a.FIFORemarks,
+                    InStock = a.BaleInventoryView.InStock,
+                    InventoryAge = a.BaleInventoryView.InventoryAge,
+                    a.IsReject,
+                    a.ProductId,
+                    a.ProductDesc,
+                    a.Remarks
+                }).ToList(); 
+                return Ok(modelAsList);
             }
             catch (Exception ex)
             {

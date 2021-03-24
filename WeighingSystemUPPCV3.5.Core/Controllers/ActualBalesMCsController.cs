@@ -7,8 +7,6 @@ using System;
 using SysUtility;
 using SysUtility.Extensions;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WeighingSystemUPPCV3_5_Core.Controllers
 {
     [Route("api/[controller]")]
@@ -97,7 +95,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
 
         }
 
-
         [HttpDelete]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status400BadRequest)]
@@ -122,7 +119,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
         }
-
 
         private IActionResult InvalidModelStateResult()
         {   

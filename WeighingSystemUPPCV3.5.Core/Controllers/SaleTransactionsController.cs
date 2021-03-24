@@ -133,7 +133,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         {
             try
             {
-                var model = repository.GetById(id);
+                var model = repository.GetById(id,true);
 
                 if (model == null)
                 {
@@ -173,11 +173,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                 logger.LogDebug(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.DeleteError);
             }
-        }
-
-        private bool validateEntity(SaleTransaction model)
-        {
-            return (ModelState.ErrorCount == 0);
         }
 
         private bool validateReturnedVehicle(ReturnedVehicle model)

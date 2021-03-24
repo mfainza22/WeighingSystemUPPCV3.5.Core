@@ -62,10 +62,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public int BaleCount { get; set; }
 
+        public Nullable<long> PurchaseOrderId { get; set; }
 
         [MaxLength(15, ErrorMessage = "P.O. Number length must not exceed to 15 characters")]
         public string PONum { get; set; }
 
+        public string POType { get; set; }
 
         [MaxLength(15, ErrorMessage = "D.R. Number length must not exceed to 15 characters")]
         public string DRNum { get; set; }
@@ -196,6 +198,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string SourceName { get; set; }
         public string SourceCategoryDesc { get; set; }
         public string CommodityDesc { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public string CommodityDescPOType { get; set; }
         public string ClientName { get; set; }
         public string HaulerName { get; set; }
         public string BaleTypeDesc { get; set; }
@@ -213,6 +218,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [NotMapped]
         public TransactionProcess TransactionProcess { get; set; }
+
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
 
         public object Clone()
         {

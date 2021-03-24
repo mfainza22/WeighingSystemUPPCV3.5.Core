@@ -73,13 +73,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public SaleTransaction GetById(long id,bool includeBales = false)
         {
             var model = dbContext.SaleTransactions.AsNoTracking().Where(a => a.SaleId == id);
-            if (includeBales) model = model.Include(a => a.SaleBales).ThenInclude(a => a.Bale);
-            model = model.Include(a => a.ReturnedVehicle);
-            var result = model.FirstOrDefault();
+            if (includeBales) model = model.Include(a => a.SaleBales).ThenInclude(a => a.Bale).ThenInclude(a=>a.BaleInventoryView);
+            var result = model.Include(a => a.ReturnedVehicle).FirstOrDefault();
+
             if (result != null)
             {
                 result.SaleBales = result?.SaleBales == null ? new List<SaleBale>() : result.SaleBales;
                 result.SaleBales = result.SaleBales.Where(a => a.Bale != null).ToList();
+      
             }
    
             return result;
@@ -151,6 +152,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         public bool Delete(SaleTransaction model)
         {
             dbContext.SaleTransactions.Remove(model);
+            dbContext.SaleBales.RemoveRange(model.SaleBales);
             dbContext.SaveChanges();
 
             var auditLog = initAuditLogDelete(model);

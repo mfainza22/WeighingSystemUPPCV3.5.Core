@@ -353,13 +353,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             return dbContext.Bales.Include(a => a.BaleInventoryView)
                 .Count(a => a.BaleInventoryView.InventoryAge >= baleInventoryAgeWarning &&
-                a.BaleInventoryView.InventoryAge <= baleInventoryAgeDanger);
+                a.BaleInventoryView.InventoryAge <= baleInventoryAgeDanger && a.BaleInventoryView.InStock == true);
         }
 
         public int GetDangerBaleOverage()
         {
             return dbContext.Bales.Include(a => a.BaleInventoryView)
-               .Count(a => a.BaleInventoryView.InventoryAge > baleInventoryAgeDanger);
+               .Count(a => a.BaleInventoryView.InventoryAge > baleInventoryAgeDanger && a.BaleInventoryView.InStock == true);
         }
 
         public int GetInStockBaleWtTotal()
