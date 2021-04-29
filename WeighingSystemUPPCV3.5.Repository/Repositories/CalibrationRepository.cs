@@ -106,6 +106,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.DTReminder = model.DTReminder;
             entity.Owner = model.Owner;
             entity.CalibratedBy = model.CalibratedBy;
+            entity.ShowInReport = model.ShowInReport;
             dbContext.Calibrations.Update(entity);
             dbContext.SaveChanges();
 

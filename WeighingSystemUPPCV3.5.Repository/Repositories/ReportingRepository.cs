@@ -43,7 +43,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     case ReportType.PURCHASE_SUPPLIER02:
                         fillPurchaseTransactionsDataTable(sqlConn, serverDataSet, reportParameters);
 
-
                         poNumbers = serverDataSet.Tables[nameof(dbContext.PurchaseTransactions)].Rows.Cast<DataRow>()
              .Select(a => a.Field<string>(nameof(PurchaseTransaction.PONum))).Distinct().ToList();
 
@@ -85,11 +84,15 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                         fillPurchaseOrderViewsDataTable(sqlConn, serverDataSet, poNumbers);
                         break;
+                    case ReportType.PURCHASE_PRICE_AVERAGE:
+                        fillPurchasePriceAverageDatatable(sqlConn, serverDataSet, reportParameters);
+                        break;
                     case ReportType.PURCHASE_MITIGATING_MC_DEDUCTION:
                         purchaseIds = fillPurchaseTransactionsDataTable(sqlConn, serverDataSet, reportParameters);
                         categoryIds = serverDataSet.Tables[nameof(dbContext.PurchaseTransactions)].Rows.Cast<DataRow>()
                        .Select(a => a.Field<long>(nameof(PurchaseTransaction.CategoryId))).Distinct().ToList();
                         fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
+                        fillPurchasePriceAverageDatatable(sqlConn, serverDataSet, reportParameters);
                         break;
                     case ReportType.SALE_GENERAL:
                     case ReportType.SALE_MOISTURE:
@@ -107,9 +110,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                         categoryIds = serverDataSet.Tables[nameof(dbContext.SaleTransactions)].Rows.Cast<DataRow>()
                        .Select(a => a.Field<long>(nameof(PurchaseTransaction.CategoryId))).Distinct().ToList();
                         fillCategoriesDataTable(sqlConn, serverDataSet, categoryIds);
+                        fillPurchasePriceAverageDatatable(sqlConn, serverDataSet, reportParameters);
                         break;
                     case ReportType.SALE_PLANT_COMPARISON:
                         saleIds = fillSaleTransactionsDataTable(sqlConn, serverDataSet, reportParameters);
+                        fillCalibrationDataTable(sqlConn, serverDataSet);
                         fillReturnedVehicleDataTable(sqlConn, serverDataSet, saleIds);
                         break;
                     case ReportType.SALE_BALE_LOADING_FORM:
@@ -339,9 +344,28 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             query = null;
         }
 
+        /// <summary>
+        /// Fill WeightedAverage DataTable and returns a list PurchaseId queried.
+        /// </summary>
+        /// <param name="sqlConn"></param>
+        /// <param name="dataSet"></param>
+        /// <param name="reportParameters"></param>
+        /// <returns></returns>
+        private void fillPurchasePriceAverageDatatable(SqlConnection sqlConn, DataSet dataSet, ReportParameters reportParameters)
+        {
+            reportParameters.DTFrom = reportParameters.DTFrom.Date;
+            reportParameters.DTTo = reportParameters.DTTo.Date + new TimeSpan(23, 59, 59);
+
+            var query = dbContext.PurchasePriceAverageViews
+                      .Where(a => (a.DT >= reportParameters.DTFrom && a.DT >= reportParameters.DTFrom)).ToQueryString();
+
+            var sa = new SqlDataAdapter(query.ToString(), sqlConn);
+            sa.Fill(dataSet, "PurchasePriceAverageViews");
+            sa.Dispose();
+            query = null;
+        }
 
         private void fillReportDaysDataTable(SqlConnection sqlConn, DataSet dataSet, ReportParameters reportParameters)
-
         {
             var query = dbContext.ReportDays
                     .Where(a => a.DT.Value.Date >= reportParameters.DTFrom.Date
@@ -486,6 +510,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         }
 
+        private void fillCalibrationDataTable(SqlConnection sqlConn, DataSet dataSet)
+        {
+            var query = dbContext.Calibrations.ToQueryString();
+            var sa = new SqlDataAdapter(query.ToString(), sqlConn);
+            sa.Fill(dataSet, nameof(dbContext.Calibrations));
+            sa.Dispose();
+            query = null;
+        }
 
         /// <summary>
         /// Populate Days in Reportdays Table

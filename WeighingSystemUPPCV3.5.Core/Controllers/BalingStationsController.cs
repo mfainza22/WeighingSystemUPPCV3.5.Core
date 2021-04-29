@@ -30,9 +30,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             try
             {
                 var model = repository.Get(parameters);
-
                 return Ok(model);
-            }
+            }   
             catch (Exception ex)
             {
                 logger.LogError(ex.GetExceptionMessages());

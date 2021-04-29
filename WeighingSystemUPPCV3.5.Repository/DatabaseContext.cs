@@ -18,6 +18,7 @@ namespace WeighingSystemUPPCV3_5_Repository
       });
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+        public DbSet<Models.PurchaseTransaction> PurchaseTransactions { get; set; }
 
         public DbSet<Models.Customer> Customers { get; set; }
         public DbSet<Models.Supplier> Suppliers { get; set; }
@@ -52,7 +53,7 @@ namespace WeighingSystemUPPCV3_5_Repository
         public DbSet<Models.TransactionType> TransactionTypes { get; set; }
 
         public DbSet<Models.MoistureReader> MoistureReaders { get; set; }
-        public DbSet<Models.PurchaseTransaction> PurchaseTransactions { get; set; }
+        public DbSet<Models.PurchasePriceAverageView> PurchasePriceAverageViews { get; set; }
 
         public DbSet<Models.MoistureReaderLogPivotView> MoistureReaderLogPivotViews { get; set; }
 

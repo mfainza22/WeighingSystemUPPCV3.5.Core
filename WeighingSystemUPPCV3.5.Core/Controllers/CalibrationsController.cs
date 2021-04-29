@@ -44,7 +44,8 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
                     a.DTReminder,
                     a.Frequency,
                     a.ItemNum,
-                    a.Owner
+                    a.Owner,
+                    a.ShowInReport
                 });
 
                 if (model.Count() == 0) return NotFound(Constants.ErrorMessages.NotFoundEntity);

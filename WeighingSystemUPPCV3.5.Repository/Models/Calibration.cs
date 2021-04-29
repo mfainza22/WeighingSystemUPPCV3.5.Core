@@ -43,7 +43,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [MaxLength(100, ErrorMessage = "CalibratedBy length must not exceed to 100 characters")]
         public string CalibratedBy { get; set; }
 
+        public bool ShowInReport { get; set; }
+
         public virtual CalibrationType CalibrationType { get; set; }
+
 
         [NotMapped]
         public CalibrationLog LastLog { get; set; }
