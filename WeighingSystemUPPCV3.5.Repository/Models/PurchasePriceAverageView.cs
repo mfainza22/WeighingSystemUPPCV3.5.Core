@@ -16,6 +16,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public string RawMaterialDesc { get; set; }
 
+        public long CategoryId { get; set; }
+
         public int RecordCount { get; set; }
 
         public decimal NetWtTotal { get; set; }
@@ -25,6 +27,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public decimal WeightedPriceAvg { get; set; }
 
         public decimal StraightAvg { get; set; }
+
+        public int DTYear { get; set; }
+
+        public int DTMonth { get; set; }
 
     }
 }

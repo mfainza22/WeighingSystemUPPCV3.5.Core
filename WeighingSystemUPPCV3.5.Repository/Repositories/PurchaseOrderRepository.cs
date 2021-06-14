@@ -164,14 +164,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.PurchaseOrders.AsNoTracking().Where(a => a.PurchaseOrderId == purchaseOrderId).FirstOrDefault();
         }
 
-        public IQueryable<PurchaseOrder> Get(PurchaseOrder parameters = null)
+        public IQueryable<PurchaseOrder> Get(PurchaseOrderFilter parameters = null)
         {
             var sqlRawParams = GetSqlRawParameter(parameters);
 
             return dbContext.PurchaseOrders.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).AsNoTracking();
         }
 
-        public IQueryable<PurchaseOrderView> GetView(PurchaseOrder parameters = null)
+        public IQueryable<PurchaseOrderView> GetView(PurchaseOrderFilter parameters = null)
         {
             var sqlRawParams = GetSqlRawParameter(parameters);
             return dbContext.PurchaseOrderViews.FromSqlRaw(sqlRawParams.SqlQuery, sqlRawParams.SqlParameters.ToArray()).AsNoTracking();
@@ -182,7 +182,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return dbContext.PurchaseOrderViews.Where(a => a.PurchaseOrderId == parameters.PurchaseOrderId).AsNoTracking().FirstOrDefault();
         }
 
-        public SqlRawParameter GetSqlRawParameter(PurchaseOrder parameters)
+        public SqlRawParameter GetSqlRawParameter(PurchaseOrderFilter parameters)
         {
             var sqlrawParams = new SqlRawParameter();
 
@@ -205,6 +205,13 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             }
             else
             {
+                if (parameters.DTEffectivity.HasValue)
+                {
+                    sqlParams.Add(new SqlParameter(nameof(parameters.DTEffectivity).Parametarize(), parameters.DTEffectivity));
+                    whereClauses.Add($"Year({nameof(parameters.DTEffectivity)}) = Year({nameof(parameters.DTEffectivity).Parametarize()})");
+                    whereClauses.Add($"Month({nameof(parameters.DTEffectivity)}) = Month({nameof(parameters.DTEffectivity).Parametarize()})");
+                }
+
                 if (parameters.SupplierId > 0)
                 {
                     sqlParams.Add(new SqlParameter(nameof(parameters.SupplierId).Parametarize(), parameters.SupplierId));

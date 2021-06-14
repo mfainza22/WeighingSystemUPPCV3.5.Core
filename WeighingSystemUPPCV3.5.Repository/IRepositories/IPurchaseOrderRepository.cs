@@ -20,9 +20,9 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 
         PurchaseOrderView GetViewById(long purchaseOrderId);
 
-        IQueryable<PurchaseOrder> Get(PurchaseOrder parameters = null);
+        IQueryable<PurchaseOrder> Get(PurchaseOrderFilter parameters = null);
 
-        IQueryable<PurchaseOrderView> GetView(PurchaseOrder parameters = null);
+        IQueryable<PurchaseOrderView> GetView(PurchaseOrderFilter parameters = null);
 
         PurchaseOrderView ValidatePO(PurchaseOrder parameters = null);
 

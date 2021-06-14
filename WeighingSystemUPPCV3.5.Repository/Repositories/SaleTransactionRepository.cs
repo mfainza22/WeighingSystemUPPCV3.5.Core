@@ -305,6 +305,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var newBales = newSaleBales.Select(a => a.BaleId).Except(entity.SaleBales.Select(a => a.BaleId))
                 .Select(a => new SaleBale() { BaleId = a, SaleId = entity.SaleId }).ToList();
 
+            entity.BaleCount = newBales.Count();
+
             for (var i = 0; i <= newBales.Count() - 1; i++)
                 entity.SaleBales.Add(newBales[i]);
 

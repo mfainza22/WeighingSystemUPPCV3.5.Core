@@ -357,7 +357,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             reportParameters.DTTo = reportParameters.DTTo.Date + new TimeSpan(23, 59, 59);
 
             var query = dbContext.PurchasePriceAverageViews
-                      .Where(a => (a.DT >= reportParameters.DTFrom && a.DT >= reportParameters.DTFrom)).ToQueryString();
+                      .Where(a => 
+                      (a.DT.Year >= reportParameters.DTFrom.Year && a.DT.Month >= reportParameters.DTFrom.Month) &&
+                      (a.DT.Year <= reportParameters.DTTo.Year && a.DT.Month <= reportParameters.DTTo.Month)).ToQueryString();
 
             var sa = new SqlDataAdapter(query.ToString(), sqlConn);
             sa.Fill(dataSet, "PurchasePriceAverageViews");

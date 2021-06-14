@@ -1,0 +1,278 @@
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::]:44386
+    DateTime=2021-04-29T04:20:59.4205342Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::]:44385
+    DateTime=2021-04-29T04:20:59.4261490Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-04-29T04:20:59.4308151Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-04-29T04:20:59.4354154Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-04-29T04:20:59.4400902Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Config
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:21:20.5643336Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/BalingStations/selected
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:21:20.8425765Z
+WeighingSystemUPPCV3_5_Core.Controllers.BalingStationsController Error: 0 : The wait operation timed out.
+    DateTime=2021-04-29T04:21:52.2528591Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Config
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:22:21.9359530Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/BalingStations/selected
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:22:22.0419589Z
+WeighingSystemUPPCV3_5_Core.Controllers.BalingStationsController Error: 0 : The wait operation timed out.
+    DateTime=2021-04-29T04:22:58.5594377Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Config
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:29.0398608Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/BalingStations/selected
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:29.1956828Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/MoistureSettings
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:31.5227680Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/TransactionTypes
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:31.7393169Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/MoistureReaders
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:31.8470063Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/BaleTypes
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:31.9862066Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Sources
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.1196280Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SourceCategories
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.2637759Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Customers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.3671515Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Suppliers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.5189267Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/RawMaterials
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.6456434Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Products
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.8431820Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Categories
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:32.9889819Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Haulers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:33.1066590Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Vehicles
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:33.2290139Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/VehicleTypes
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:33.4723511Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SubSuppliers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:33.5906636Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SaleTransactions
+Body: 
+Query: ?Returned=false
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:33.7452001Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/UserAccounts/UserAccountDetails
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:34.0287634Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Reminders
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:34.1999199Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Signatories
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T04:26:34.3731968Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/UserAccounts/LogIn
+Body: {"userName":"TSI","userPwd":"1"}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:00:59.8046204Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders
+Body: 
+Query: ?PurchaseOrderId=0&DTEffectivity=1%2f1%2f0001%2012%3a00%3a00%20AM&SupplierId=0&RawMaterialId=0&PONum=&Price=0&BalanceTotalKg=0&POType=&Remarks=&DTCreated=1%2f1%2f0001%2012%3a00%3a00%20AM&CreatedById=&DTModified=&ModifiedById=&IsActive=True&Locked=&RawMaterialDesc=&BalanceRemainingKg=&BalanceDeliveredKg=&PurchaseOrderView=
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:04.9245034Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Reminders/Count
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:05.4532514Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Inyards
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:05.5676416Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/ReferenceNumbers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:07.5712157Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/ReferenceNumbers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:21.9265091Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Inyards/Validate
+Body: {"inyardId":0,"inyardNum":"0002916","transactionTypeCode":"I","dateTimeIn":"2021-04-29T13:01:44.7521709+08:00","vehicleNum":"ABC-322","trip":"SPECIAL TRIP","clientId":40000002,"commodityId":70000006,"baleTypeId":1,"baleCount":0,"purchaseOrderId":418,"poNum":"6366008392","poType":"SPOT","drNum":"","remarks":"","factoryWt":0.0,"initialWt":0.0,"grossWt":3220.0,"tareWt":0.0,"netWt":0.0,"price":8.400,"mc":0.0,"pm":0.0,"ot":0.0,"mcStatus":12,"haulerId":0,"driverName":"","plantNetWt":0.0,"plantMC":0.0,"isOfflineIn":false,"weigherInId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","weigherOutId":"","subSupplierName":"123","sourceId":7,"sourceCategoryId":0,"moistureReaderId":1,"signatoryId":0,"moistureSettingsId":0,"moistureReaderProcess":"AUTO","transactionProcess":1,"transactionStatus":0,"moistureReaderLogs":[],"bales":[]}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:44.8257818Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Inyards/Validate
+Body: {"inyardId":0,"inyardNum":"0002916","transactionTypeCode":"I","dateTimeIn":"2021-04-29T13:01:47.6168221+08:00","vehicleNum":"ABC-322","trip":"SPECIAL TRIP","clientId":40000002,"commodityId":70000006,"baleTypeId":1,"baleCount":0,"purchaseOrderId":418,"poNum":"6366008392","poType":"SPOT","drNum":"3122","remarks":"","factoryWt":0.0,"initialWt":0.0,"grossWt":3220.0,"tareWt":0.0,"netWt":0.0,"price":8.400,"mc":0.0,"pm":0.0,"ot":0.0,"mcStatus":12,"haulerId":0,"driverName":"","plantNetWt":0.0,"plantMC":0.0,"isOfflineIn":false,"weigherInId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","weigherOutId":"","subSupplierName":"123","sourceId":7,"sourceCategoryId":0,"moistureReaderId":1,"signatoryId":0,"moistureSettingsId":0,"moistureReaderProcess":"AUTO","transactionProcess":1,"transactionStatus":0,"moistureReaderLogs":[],"bales":[]}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:47.6526674Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Inyards/WeighIn
+Body: {"inyardId":0,"inyardNum":"0002916","transactionTypeCode":"I","dateTimeIn":"2021-04-29T13:01:47.6168221+08:00","vehicleNum":"ABC-322","trip":"SPECIAL TRIP","clientId":40000002,"commodityId":70000006,"baleTypeId":1,"baleCount":0,"purchaseOrderId":418,"poNum":"6366008392","poType":"SPOT","drNum":"3122","remarks":"","factoryWt":0.0,"initialWt":0.0,"grossWt":3220.0,"tareWt":0.0,"netWt":0.0,"price":8.400,"mc":0.0,"pm":0.0,"ot":0.0,"mcStatus":12,"haulerId":0,"driverName":"","plantNetWt":0.0,"plantMC":0.0,"isOfflineIn":false,"weigherInId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","weigherOutId":"","subSupplierName":"123","sourceId":7,"sourceCategoryId":0,"moistureReaderId":1,"signatoryId":0,"moistureSettingsId":0,"moistureReaderProcess":"AUTO","transactionProcess":1,"transactionStatus":0,"moistureReaderLogs":[],"bales":[]}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:48.8366573Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SubSuppliers/CheckAndAdd
+Body: "123"
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:49.7410629Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Vehicles
+Body: 
+Query: ?VehicleId=0&VehicleNum=ABC-322&VehicleTypeId=&VehicleTypeCode=&CustomerId=&SupplierId=&HaulerId=&IsActive=False&VehicleType=&Customer=&Supplier=&Hauler=
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:49.8219281Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Vehicles
+Body: {"vehicleId":0,"vehicleNum":"ABC-322","vehicleTypeId":5,"supplierId":40000002,"isActive":false}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:52.0192576Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/ReferenceNumbers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:01:57.1289013Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/ReferenceNumbers
+Body: 
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:02:01.5445680Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Inyards/Validate
+Body: {"inyardId":92,"inyardNum":"0049389","transactionTypeCode":"I","dateTimeIn":"2021-04-29T13:01:48.8787362+08:00","dateTimeOut":"2021-04-29T13:02:30.6550558+08:00","vehicleNum":"ABC-322","trip":"SPECIAL TRIP","clientId":40000002,"commodityId":70000006,"baleTypeId":1,"baleCount":0,"purchaseOrderId":418,"poNum":"6366008392","poType":"SPOT","drNum":"3122","remarks":"","factoryWt":0.0,"initialWt":3220.0,"grossWt":3220.0,"tareWt":220.0,"netWt":3000.0,"price":8.400,"mc":11.9,"pm":0.0,"ot":0.0,"mcStatus":12,"haulerId":0,"driverName":"","plantNetWt":0.0,"plantMC":0.0,"isOfflineIn":false,"isOfflineOut":false,"weigherInId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","weigherOutId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","subSupplierName":"123","vehicleTypeId":0,"sourceId":7,"sourceCategoryId":1,"moistureReaderId":1,"signatoryId":1,"moistureSettingsId":1,"timeZoneIn":"GMT+08:00 PH","moistureReaderProcess":"AUTO","moistureReaderDesc":"EMCO","balingStationCode":"TSIBS","balingStationName":"PARANAQUE","sourceName":"OTHERS","sourceCategoryDesc":"MODERN TRADE","commodityDesc":"LOCC-OB POST-CRM","clientName":"EARTHBUDDY INC.","baleTypeDesc":"LOOSE BALE","weigherInName":"TERRINIEL SCALES INC.","transactionProcess":2,"transactionStatus":0,"moistureReaderLogs":[{"moistureReaderLogId":0,"transactionId":0,"logNum":1,"dtLog":"2021-02-02T07:20:00","mc":8.8},{"moistureReaderLogId":0,"transactionId":0,"logNum":2,"dtLog":"2021-02-02T07:20:00","mc":8.7},{"moistureReaderLogId":0,"transactionId":0,"logNum":3,"dtLog":"2021-02-02T07:20:00","mc":10.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":4,"dtLog":"2021-02-02T07:20:00","mc":8.1},{"moistureReaderLogId":0,"transactionId":0,"logNum":5,"dtLog":"2021-02-02T07:20:00","mc":7.7},{"moistureReaderLogId":0,"transactionId":0,"logNum":6,"dtLog":"2021-02-02T07:20:00","mc":7.8},{"moistureReaderLogId":0,"transactionId":0,"logNum":7,"dtLog":"2021-02-02T07:21:00","mc":7.6},{"moistureReaderLogId":0,"transactionId":0,"logNum":8,"dtLog":"2021-02-02T07:21:00","mc":8.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":9,"dtLog":"2021-02-02T07:21:00","mc":17.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":10,"dtLog":"2021-02-02T07:21:00","mc":18.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":11,"dtLog":"2021-02-02T07:21:00","mc":15.7},{"moistureReaderLogId":0,"transactionId":0,"logNum":12,"dtLog":"2021-02-02T07:21:00","mc":15.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":13,"dtLog":"2021-02-02T07:21:00","mc":16.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":14,"dtLog":"2021-02-02T07:21:00","mc":16.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":15,"dtLog":"2021-02-02T07:21:00","mc":17.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":16,"dtLog":"2021-02-02T07:22:00","mc":11.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":17,"dtLog":"2021-02-02T07:22:00","mc":12.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":18,"dtLog":"2021-02-02T07:22:00","mc":11.2},{"moistureReaderLogId":0,"transactionId":0,"logNum":19,"dtLog":"2021-02-02T07:22:00","mc":9.4},{"moistureReaderLogId":0,"transactionId":0,"logNum":20,"dtLog":"2021-02-02T07:22:00","mc":9.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":21,"dtLog":"2021-02-02T07:22:00","mc":9.6},{"moistureReaderLogId":0,"transactionId":0,"logNum":22,"dtLog":"2021-02-02T07:23:00","mc":13.8},{"moistureReaderLogId":0,"transactionId":0,"logNum":23,"dtLog":"2021-02-02T07:23:00","mc":14.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":24,"dtLog":"2021-02-02T07:23:00","mc":14.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":25,"dtLog":"2021-02-02T07:23:00","mc":12.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":26,"dtLog":"2021-02-02T07:23:00","mc":11.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":27,"dtLog":"2021-02-02T07:23:00","mc":17.2},{"moistureReaderLogId":0,"transactionId":0,"logNum":28,"dtLog":"2021-02-02T07:23:00","mc":8.5},{"moistureReaderLogId":0,"transactionId":0,"logNum":29,"dtLog":"2021-02-02T07:23:00","mc":9.6},{"moistureReaderLogId":0,"transactionId":0,"logNum":30,"dtLog":"2021-02-02T07:24:00","mc":7.8}],"bales":[],"commodityDescPOType":"LOCC-OB POST-CRM (SP)"}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:02:30.6866629Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/Inyards/WeighOut
+Body: {"inyardId":92,"inyardNum":"0049389","transactionTypeCode":"I","dateTimeIn":"2021-04-29T13:01:48.8787362+08:00","dateTimeOut":"2021-04-29T13:01:01.7851404+08:00","vehicleNum":"ABC-322","trip":"SPECIAL TRIP","clientId":40000002,"commodityId":70000006,"baleTypeId":1,"baleCount":0,"purchaseOrderId":418,"poNum":"6366008392","poType":"SPOT","drNum":"3122","remarks":"","factoryWt":0.0,"initialWt":3220.0,"grossWt":3220.0,"tareWt":220.0,"netWt":3000.0,"price":8.400,"mc":11.9,"pm":0.0,"ot":0.0,"mcStatus":12,"haulerId":0,"driverName":"","plantNetWt":0.0,"plantMC":0.0,"isOfflineIn":false,"isOfflineOut":false,"weigherInId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","weigherOutId":"5463107b-5fbf-43a0-9fb2-c2037bb9a306","subSupplierName":"123","vehicleTypeId":0,"sourceId":7,"sourceCategoryId":1,"moistureReaderId":1,"signatoryId":1,"moistureSettingsId":1,"timeZoneIn":"GMT+08:00 PH","moistureReaderProcess":"AUTO","moistureReaderDesc":"EMCO","balingStationCode":"TSIBS","balingStationName":"PARANAQUE","sourceName":"OTHERS","sourceCategoryDesc":"MODERN TRADE","commodityDesc":"LOCC-OB POST-CRM","clientName":"EARTHBUDDY INC.","baleTypeDesc":"LOOSE BALE","weigherInName":"TERRINIEL SCALES INC.","transactionProcess":2,"transactionStatus":0,"moistureReaderLogs":[{"moistureReaderLogId":0,"transactionId":0,"logNum":1,"dtLog":"2021-02-02T07:20:00","mc":8.8},{"moistureReaderLogId":0,"transactionId":0,"logNum":2,"dtLog":"2021-02-02T07:20:00","mc":8.7},{"moistureReaderLogId":0,"transactionId":0,"logNum":3,"dtLog":"2021-02-02T07:20:00","mc":10.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":4,"dtLog":"2021-02-02T07:20:00","mc":8.1},{"moistureReaderLogId":0,"transactionId":0,"logNum":5,"dtLog":"2021-02-02T07:20:00","mc":7.7},{"moistureReaderLogId":0,"transactionId":0,"logNum":6,"dtLog":"2021-02-02T07:20:00","mc":7.8},{"moistureReaderLogId":0,"transactionId":0,"logNum":7,"dtLog":"2021-02-02T07:21:00","mc":7.6},{"moistureReaderLogId":0,"transactionId":0,"logNum":8,"dtLog":"2021-02-02T07:21:00","mc":8.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":9,"dtLog":"2021-02-02T07:21:00","mc":17.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":10,"dtLog":"2021-02-02T07:21:00","mc":18.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":11,"dtLog":"2021-02-02T07:21:00","mc":15.7},{"moistureReaderLogId":0,"transactionId":0,"logNum":12,"dtLog":"2021-02-02T07:21:00","mc":15.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":13,"dtLog":"2021-02-02T07:21:00","mc":16.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":14,"dtLog":"2021-02-02T07:21:00","mc":16.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":15,"dtLog":"2021-02-02T07:21:00","mc":17.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":16,"dtLog":"2021-02-02T07:22:00","mc":11.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":17,"dtLog":"2021-02-02T07:22:00","mc":12.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":18,"dtLog":"2021-02-02T07:22:00","mc":11.2},{"moistureReaderLogId":0,"transactionId":0,"logNum":19,"dtLog":"2021-02-02T07:22:00","mc":9.4},{"moistureReaderLogId":0,"transactionId":0,"logNum":20,"dtLog":"2021-02-02T07:22:00","mc":9.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":21,"dtLog":"2021-02-02T07:22:00","mc":9.6},{"moistureReaderLogId":0,"transactionId":0,"logNum":22,"dtLog":"2021-02-02T07:23:00","mc":13.8},{"moistureReaderLogId":0,"transactionId":0,"logNum":23,"dtLog":"2021-02-02T07:23:00","mc":14.3},{"moistureReaderLogId":0,"transactionId":0,"logNum":24,"dtLog":"2021-02-02T07:23:00","mc":14.0},{"moistureReaderLogId":0,"transactionId":0,"logNum":25,"dtLog":"2021-02-02T07:23:00","mc":12.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":26,"dtLog":"2021-02-02T07:23:00","mc":11.9},{"moistureReaderLogId":0,"transactionId":0,"logNum":27,"dtLog":"2021-02-02T07:23:00","mc":17.2},{"moistureReaderLogId":0,"transactionId":0,"logNum":28,"dtLog":"2021-02-02T07:23:00","mc":8.5},{"moistureReaderLogId":0,"transactionId":0,"logNum":29,"dtLog":"2021-02-02T07:23:00","mc":9.6},{"moistureReaderLogId":0,"transactionId":0,"logNum":30,"dtLog":"2021-02-02T07:24:00","mc":7.8}],"bales":[],"commodityDescPOType":"LOCC-OB POST-CRM (SP)"}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:02:34.1767990Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseOrders
+Body: 
+Query: ?PurchaseOrderId=0&DTEffectivity=1%2f1%2f0001%2012%3a00%3a00%20AM&SupplierId=0&RawMaterialId=0&PONum=6366008392&Price=0&BalanceTotalKg=0&POType=&Remarks=&DTCreated=1%2f1%2f0001%2012%3a00%3a00%20AM&CreatedById=&DTModified=&ModifiedById=&IsActive=&Locked=&RawMaterialDesc=&BalanceRemainingKg=&BalanceDeliveredKg=&PurchaseOrderView=
+Client IP: ::1
+
+    DateTime=2021-04-29T05:02:35.0137926Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/SubSuppliers/CheckAndAdd
+Body: "123"
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:02:35.1788376Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/PurchaseTransactions/PrintReceipt/10049354
+Body: {"transactionId":10049354,"transactionTypeCode":"I","receiptNum":"0049389","isReprinted":false}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-04-29T05:02:38.2135531Z

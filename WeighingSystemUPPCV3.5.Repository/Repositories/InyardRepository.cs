@@ -191,6 +191,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 {
                     AuditLogEventId = auditLogEventRepository.GetOfflineInEventId(),
                     UserAccountId = model.WeigherInId,
+                    AuditLogEventDesc = String.Empty,
                     Notes = formatOfflineInEvent(model)
                 };
                 auditLogRepository.Create(auditLog);

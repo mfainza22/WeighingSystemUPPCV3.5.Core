@@ -197,6 +197,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateOut { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int DTYear { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int DTMonth { get; set; }
+
         public virtual RawMaterial RawMaterial { get; set; }
 
         [ForeignKey("PurchaseOrderId")]

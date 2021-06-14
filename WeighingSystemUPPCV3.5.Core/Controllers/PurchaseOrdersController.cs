@@ -26,7 +26,7 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] PurchaseOrder parameters = null,[FromQuery] bool includeTotals = false)
+        public IActionResult Get([FromQuery] PurchaseOrderFilter parameters = null)
         {
             try
             {
