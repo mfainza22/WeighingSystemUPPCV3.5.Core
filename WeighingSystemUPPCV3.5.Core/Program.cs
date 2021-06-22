@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Net;
+using WeighingSystemUPPCV3_5_Core.Extensions;
 
 namespace WeighingSystemUPPCV3_5_Core
 {
@@ -55,9 +56,18 @@ namespace WeighingSystemUPPCV3_5_Core
                           //    serverOptions.Limits.RequestHeadersTimeout =
                           //        TimeSpan.FromMinutes(1);
                           //});
-                         // webBuilder.UseKestrel();
-                         webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
-                          webBuilder.UseUrls(config.GetSection("urls").Value);
+                          webBuilder.UseKestrel(a => a.ConfigureEndpoints());
+                          webBuilder.UseContentRoot(Directory.GetCurrentDirectory());              webBuilder.UseUrls(config.GetSection("urls").Value);
+                          webBuilder.UseIISIntegration();
+                          // //
+                          //webBuilder.ConfigureKestrel(serverOptions =>
+                          //{
+                          //    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+                          //    {
+                          //        // certificate is an X509Certificate2
+                          //        listenOptions.ServerCertificate = certificate;
+                          //    });
+                          //});
                           webBuilder.UseStartup<Startup>();
                       });
             }

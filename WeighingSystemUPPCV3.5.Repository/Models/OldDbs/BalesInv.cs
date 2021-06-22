@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace WeighingSystemUPPCV3_5_Repository.Models
+#nullable disable
+
+namespace WeighingSystemUPPCV3_5_Repository.Models.OldDbs
 {
     [Table("BalesInv")]
     public class BalesInv
@@ -19,7 +21,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public string CatId { get; set; }
 
       
-        public string? ProductId { get; set; }
+        public string ProductId { get; set; }
 
         public DateTime? FirstDay { get; set; }
 

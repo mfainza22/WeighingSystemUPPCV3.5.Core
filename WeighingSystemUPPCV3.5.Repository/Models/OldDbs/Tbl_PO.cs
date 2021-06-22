@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace WeighingSystemUPPCV3_5_Repository.Models
+namespace WeighingSystemUPPCV3_5_Repository.Models.OldDbs
 {
 
     [Table("Tbl_PO")]

@@ -140,5 +140,24 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
             return (ModelState.ErrorCount == 0);
         }
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult MigrateOldDb([FromBody] MigrationDateRange migrationDateRange)
+        {
+            try
+            {
+                if (migrationDateRange.DtFrom == null || migrationDateRange.DtTo == null) return
+                        BadRequest("Invalid");
+
+                repository.MigrateOldDb(migrationDateRange.DtFrom.Value, migrationDateRange.DtTo.Value);
+                return Ok("MERGE COMPLETE");
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.GetExceptionMessages());
+                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
+            }
+        }
     }
 }

@@ -78,5 +78,36 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             }
             return modelErrors;
         }
+
+        public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
+        {
+
+            var categories = dbContext.Categories.AsNoTracking().ToList();
+            dtFrom = dtFrom.Date;
+            dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
+            var oldInTheMachines = dbContext.InTheMachines.AsNoTracking().ToList();
+            foreach (var oldIntTheMachine in oldInTheMachines)
+            {
+
+                var category = categories.FirstOrDefault(a => a.CategoryIdOld == oldIntTheMachine.CATID);
+
+                var weekDetail = new WeekDetail(oldIntTheMachine.DT);
+
+                var newMachineUnBaledWaste = new MachineUnBaledWaste()
+                {
+                    CategoryId = category?.CategoryId ?? 0,
+                    DT = oldIntTheMachine.DT,
+                    FirstDay = weekDetail.FirstDay,
+                    LastDay = weekDetail.LastDay,
+                    MC = oldIntTheMachine.MC,
+                    WeekDay = weekDetail.WeekDay,
+                    WeekNum = weekDetail.WeekNum,
+                    Wt = (int)oldIntTheMachine.ITHWeight
+                };
+
+                dbContext.MachineUnBaledWastes.Add(newMachineUnBaledWaste);
+                dbContext.SaveChanges();
+            };
+        }
     }
 }

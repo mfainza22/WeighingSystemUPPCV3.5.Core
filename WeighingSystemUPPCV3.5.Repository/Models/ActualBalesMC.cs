@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+#nullable disable
+
 namespace WeighingSystemUPPCV3_5_Repository.Models
 {
     [Table("ActualBalesMCs")]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace WeighingSystemUPPCV3_5_Repository.Models
+namespace WeighingSystemUPPCV3_5_Repository.Models.OldDbs
 {
     [Table("Purchases")]
     public class Purchase
@@ -100,7 +100,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public string SubSupplier { get; set; }
 
-        public decimal? DDay { get; set; }
+        public string DDay { get; set; }
 
 
         public string DYR { get; set; }

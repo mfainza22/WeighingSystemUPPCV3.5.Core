@@ -328,13 +328,16 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             return UnprocessableEntity(jsonModelState);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
-        public IActionResult MigrateOldDb([FromQuery] DateTime dtFrom, [FromQuery] DateTime dtTo)
+        public IActionResult MigrateOldDb([FromBody] MigrationDateRange migrationDateRange)
         {
             try
             {
-                repository.MigrateOldDb(dtFrom, dtTo);
+                if (migrationDateRange.DtFrom == null || migrationDateRange.DtTo == null) return
+                      BadRequest("Invalid");
+
+                repository.MigrateOldDb(migrationDateRange.DtFrom.Value , migrationDateRange.DtTo.Value);
                 return Ok("MERGE COMPLETE");
             }
             catch (Exception ex)

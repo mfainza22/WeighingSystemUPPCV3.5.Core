@@ -136,9 +136,8 @@ namespace WeighingSystemUPPCV3_5_Core
                 //});
 
 
-
                 app.UseEndpoints(endpoints =>
-                {
+                {  
                     endpoints.MapControllers();
                 });
             }

@@ -87,5 +87,35 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return modelErrors;
         }
 
+        public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
+        {
+
+            var categories = dbContext.Categories.AsNoTracking().ToList();
+            dtFrom = dtFrom.Date;
+            dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
+            var oldABMCs = dbContext.ABMCs.AsNoTracking().ToList();
+            foreach (var oldABMC in oldABMCs)
+            {
+
+                var category = categories.FirstOrDefault(a => a.CategoryIdOld == oldABMC.CATID);
+
+                var weekDetail = new WeekDetail(oldABMC.DT);
+
+                var newActualBaleMC = new ActualBalesMC()
+                {
+                    CategoryId = category?.CategoryId ?? 0,
+                    DT = oldABMC.DT,
+                    FirstDay = weekDetail.FirstDay,
+                    LastDay = weekDetail.LastDay,
+                    MC = oldABMC.MC,
+                    WeekDay = weekDetail.WeekDay,
+                    WeekNum = weekDetail.WeekNum
+                };
+
+                dbContext.ActualBalesMCs.Add(newActualBaleMC);
+                dbContext.SaveChanges();
+            };
+        }
+
     }
 }

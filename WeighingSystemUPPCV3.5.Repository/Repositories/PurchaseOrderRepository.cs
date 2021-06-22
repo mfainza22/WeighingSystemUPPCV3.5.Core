@@ -130,8 +130,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 dbContext.PurchaseOrders.RemoveRange(entitiesToDelete);
                 dbContext.SaveChanges();
 
-                var groups = entitiesToDelete.Where(a=>a.IsActive==true).GroupBy(a => new { a.SupplierId, a.RawMaterialId, a.POType }).Select(a=> new { a.Key.SupplierId,a.Key.RawMaterialId,a.Key.POType});
-                foreach(var group in groups)
+                var groups = entitiesToDelete.Where(a => a.IsActive == true).GroupBy(a => new { a.SupplierId, a.RawMaterialId, a.POType }).Select(a => new { a.Key.SupplierId, a.Key.RawMaterialId, a.Key.POType });
+                foreach (var group in groups)
                 {
                     dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(group.SupplierId, group.RawMaterialId, group.POType));
                     dbContext.Database.ExecuteSqlRaw(ActivateLatestPOQuery(group.SupplierId, group.RawMaterialId, group.POType));
@@ -265,57 +265,70 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             return modelStateDict;
         }
 
-        public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
-        {
-            var suppliers = dbContext.Suppliers.AsNoTracking().ToList();
-            var rawMaterials = dbContext.RawMaterials.AsNoTracking().ToList();
-            var weighers = dbContext.UserAccounts.AsNoTracking().ToList();
-
-            dtFrom = dtFrom.Date;
-            dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
-            var oldPOS = dbContext.Tbl_POs.Where(a => a.PODate >= dtFrom && a.PODate <= dtTo).AsNoTracking().ToList();
-            foreach (var oldPO in oldPOS)
+            public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
             {
-                var exist = dbContext.PurchaseOrders.Where(a => a.PONum == oldPO.PONo).AsNoTracking().Count();
-                if (exist > 0) continue;
+                var suppliers = dbContext.Suppliers.AsNoTracking().ToList();
+                var rawMaterials = dbContext.RawMaterials.AsNoTracking().ToList();
+                var materials = dbContext.Materials.AsNoTracking().ToList();
+                var weighers = dbContext.UserAccounts.AsNoTracking().ToList();
 
-                var purchaseOrder = new PurchaseOrder();
-                purchaseOrder.BalanceTotalKg = (oldPO.TotalBal ?? 0);
-                var weigher = weighers.FirstOrDefault(a => a.UserAccountIdOld == oldPO.CreatedBy);
-                if (weigher != null)
+                dtFrom = dtFrom.Date;
+                dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
+                var oldPOS = dbContext.Tbl_POs.Where(a => a.PODate >= dtFrom && a.PODate <= dtTo).AsNoTracking().ToList();
+                foreach (var oldPO in oldPOS)
                 {
-                    purchaseOrder.CreatedById = weigher.UserAccountId;
-                }
-                else
-                {
-                    purchaseOrder.CreatedById = "5463107b-5fbf-43a0-9fb2-c2037bb9a306";
-                }
+                    var exist = dbContext.PurchaseOrders.Where(a => a.PONum == oldPO.PONo).AsNoTracking().Count();
+                    if (exist > 0) continue;
 
-                purchaseOrder.DTCreated = oldPO.PODate ?? DateTime.Now;
-                purchaseOrder.DTEffectivity = oldPO.PODate ?? DateTime.Now;
-                purchaseOrder.DTModified = oldPO.PODateMod;
-                purchaseOrder.IsActive = oldPO.Selected;
-                purchaseOrder.Locked = true;
-                purchaseOrder.PONum = oldPO.PONo;
-                purchaseOrder.POType = "BASE";
+                    var purchaseOrder = new PurchaseOrder();
+                    purchaseOrder.BalanceTotalKg = (oldPO.TotalBal ?? 0);
+                    var weigher = weighers.FirstOrDefault(a => a.UserAccountIdOld == oldPO.CreatedBy);
+                    if (weigher != null)
+                    {
+                        purchaseOrder.CreatedById = weigher.UserAccountId;
+                    }
+                    else
+                    {
+                        purchaseOrder.CreatedById = "5463107b-5fbf-43a0-9fb2-c2037bb9a306";
+                    }
 
-                var material = rawMaterials.FirstOrDefault(a => a.RawMaterialIdOld == oldPO.MaterialId);
-                if (material != null)
-                {
-                    purchaseOrder.RawMaterialId = material.RawMaterialId;
-                    purchaseOrder.RawMaterialDesc = material.RawMaterialDesc;
-                }
+                    purchaseOrder.DTCreated = oldPO.PODate ?? DateTime.Now;
+                    purchaseOrder.DTEffectivity = oldPO.PODate ?? DateTime.Now;
+                    purchaseOrder.DTModified = oldPO.PODateMod;
+                    purchaseOrder.IsActive = oldPO.Selected;
+                    purchaseOrder.Locked = true;
+                    purchaseOrder.PONum = oldPO.PONo;
+                    purchaseOrder.POType = oldPO.POType;
 
-                var supplier = suppliers.FirstOrDefault(a => a.SupplierIdOld == oldPO.SupplierId);
-                if (supplier != null)
-                {
-                    purchaseOrder.SupplierId = supplier.SupplierId;
-                }
+                    var material = materials.FirstOrDefault(a => a.MaterialID == oldPO.MaterialId);
+                    if (material != null)
+                    {
+                        var rawMaterial = rawMaterials.Where(a => a.RawMaterialId == material.RawMaterialId).FirstOrDefault();
+                        if (rawMaterial != null)
+                        {
+                            purchaseOrder.RawMaterialId = rawMaterial.RawMaterialId;
+                            purchaseOrder.RawMaterialDesc = rawMaterial.RawMaterialDesc;
+                        }
+                    }
 
-                dbContext.PurchaseOrders.Add(purchaseOrder);
-                dbContext.SaveChanges();
-            };
-        }
+
+                    //var rawMaterial = rawMaterials.FirstOrDefault(a => a.RawMaterialIdOld == oldPO.MaterialId);
+                    //if (rawMaterial != null)
+                    //{
+                    //    purchaseOrder.RawMaterialId = rawMaterial.RawMaterialId;
+                    //    purchaseOrder.RawMaterialDesc = rawMaterial.RawMaterialDesc;
+                    //}
+
+                    var supplier = suppliers.FirstOrDefault(a => a.SupplierIdOld == oldPO.SupplierId);
+                    if (supplier != null)
+                    {
+                        purchaseOrder.SupplierId = supplier.SupplierId;
+                    }
+
+                    dbContext.PurchaseOrders.Add(purchaseOrder);
+                    dbContext.SaveChanges();
+                };
+            }
 
         private string ActivateLatestPOQuery(long supplierId, long rawMaterialId, string POType)
         {
@@ -337,7 +350,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                           {nameof(PurchaseOrder.RawMaterialId)} = {rawMaterialId} AND
                           {nameof(PurchaseOrder.POType)} = '{poType}'";
         }
-   
+
 
         private string UpdateInyards(long purchaseOrderId, PurchaseOrder updatedPurchaseOrder)
         {

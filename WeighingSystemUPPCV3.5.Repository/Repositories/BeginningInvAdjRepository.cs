@@ -90,5 +90,42 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             a.CategoryId == categoryId &&
             a.BaleInventoryView.InStock == true).Sum(a => a.BaleWt);
         }
+
+
+        public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
+        {
+           
+            var categories = dbContext.Categories.AsNoTracking().ToList();
+            dtFrom = dtFrom.Date;
+            dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
+            var oldBeginningAdjs = dbContext.Beginning_Adjustments.AsNoTracking().ToList();
+            foreach (var oldBeginningAdj in oldBeginningAdjs)
+            {
+
+                var category = categories.FirstOrDefault(a => a.CategoryIdOld == oldBeginningAdj.CatId);
+
+                var dt = new DateTime(Convert.ToInt32(oldBeginningAdj.AdjYear), Convert.ToInt32(oldBeginningAdj.AdjMonth),1);
+                var weekDetail = new WeekDetail(dt);
+
+                var newBegginingAdj = new BeginningInvAdj()
+                {
+                    BaleCount = Convert.ToInt32(oldBeginningAdj.AdjustedBales),
+                    CategoryId = category?.CategoryId ?? 0,
+                    DMonth = dt.Month,
+                    DT = dt,
+                    DYear = dt.Year,
+                    FirstDay = weekDetail.FirstDay,
+                    LastDay = weekDetail.LastDay,
+                    WeekDay = weekDetail.WeekDay,
+                    WeekNum = weekDetail.WeekNum,
+                    Wt = Convert.ToInt32(oldBeginningAdj.AdjustedVal),
+                    Wt10 = Convert.ToInt32(oldBeginningAdj.Adjusted10)
+                };
+
+                dbContext.BeginningInvAdjs.Add(newBegginingAdj);
+                dbContext.SaveChanges();
+            };
+        }
+
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace WeighingSystemUPPCV3_5_Repository.Models
+namespace WeighingSystemUPPCV3_5_Repository.Models.OldDbs
 {
     [Table("Sales")]
     public class Sale

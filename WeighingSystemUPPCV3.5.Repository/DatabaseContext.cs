@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using WeighingSystemUPPCV3_5_Repository.Models;
+using WeighingSystemUPPCV3_5_Repository.Models.OldDbs;
 
 namespace WeighingSystemUPPCV3_5_Repository
 {
@@ -83,16 +84,23 @@ namespace WeighingSystemUPPCV3_5_Repository
         public DbSet<Models.TVFInventory> TVFInventories { get; set; }
         public DbSet<Models.AuditLog> AuditLogs { get; set; }
         public DbSet<Models.AuditLogEvent> AuditLogEvents { get; set; }
+
+        public DbSet<Models.SaleBale> SaleBales { get; set; }
+
+
         /// <summary>
         /// OLD Tables
         /// </summary>
-        public DbSet<Models.Purchase> Purchases { get; set; }
-        public DbSet<Models.Sale> Sales { get; set; }
-        public DbSet<Models.SaleBale> SaleBales{ get; set; }
-
-        public DbSet<Models.Tbl_PO> Tbl_POs { get; set; }
-        public DbSet<Models.BalesInv> BalesInvs { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<Material> Materials { get; set; }
+        public DbSet<Tbl_PO> Tbl_POs { get; set; }
+        public DbSet<BalesInv> BalesInvs { get; set; }
         public DbSet<Models.Truck> Trucks { get; set; }
+        public DbSet<Beginning_Adjustment> Beginning_Adjustments { get; set; }
+        public DbSet<LOOSE> LOOSEs { get; set; }
+        public DbSet<InTheMachine> InTheMachines { get; set; }
+        public DbSet<ABMC> ABMCs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
