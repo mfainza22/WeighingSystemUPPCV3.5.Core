@@ -5,6 +5,6 @@ namespace WeighingSystemUPPCV3_5_Repository.IRepositories
 {
     public interface IHaulerRepository : IDbRepository<Hauler>
     {
-
+        void MigrateOldDb();
     }
 }

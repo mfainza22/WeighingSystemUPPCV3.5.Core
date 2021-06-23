@@ -101,7 +101,11 @@ namespace WeighingSystemUPPCV3_5_Repository
         public DbSet<LOOSE> LOOSEs { get; set; }
         public DbSet<InTheMachine> InTheMachines { get; set; }
         public DbSet<ABMC> ABMCs { get; set; }
+        public DbSet<Models.OldDbs.Hauler> HaulersOld { get; set; }
 
+        public DbSet<Models.OldDbs.Customer> CustomersOld { get; set; }
+        public DbSet<Models.OldDbs.Supplier> SuppliersOld { get; set; }
+        public DbSet<Models.OldDbs.TruckClassification> TruckClassificationsOld { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLoggerFactory(logger);

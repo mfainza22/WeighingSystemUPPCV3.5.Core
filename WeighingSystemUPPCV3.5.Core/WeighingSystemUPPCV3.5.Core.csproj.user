@@ -5,6 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>WeghingSystemUPPCV3.5.Core</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>UPPC_CORE_x64</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>UPPC_CORE_x86</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

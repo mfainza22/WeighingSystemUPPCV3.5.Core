@@ -324,6 +324,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
         {
+            var bs = dbContext.BalingStations.Where(a => a.IsActive ?? true).AsNoTracking().FirstOrDefault();
+
             dtFrom = dtFrom.Date;
             dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
 
@@ -397,8 +399,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 BaleCount = Convert.ToInt32(a.sale.NoOfBales ?? 0),
                 BaleTypeId = a.baleType == null ? 0 : a.baleType.BaleTypeId,
                 BaleTypeDesc = a.baleType == null ? null : a.baleType.BaleTypeDesc,
-                BalingStationCode = null,
-                BalingStationName = null,
+                BalingStationNum = bs.BalingStationNum,
+                BalingStationCode = bs.BalingStationCode,
+                BalingStationName = bs.BalingStationName,
                 CategoryId = a.product == null ? 0 : a.product.CategoryId,
                 CategoryDesc = a.product == null ? null : a.product.Category == null ? null : a.product.Category.CategoryDesc,
                 Corrected10 = a.sale.Corrected_10 ?? 0,

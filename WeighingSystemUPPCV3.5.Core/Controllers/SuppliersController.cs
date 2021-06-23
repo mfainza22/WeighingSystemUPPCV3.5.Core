@@ -186,5 +186,22 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             if (General.IsDevelopment) logger.LogDebug(jsonModelState);
             return UnprocessableEntity(jsonModelState);
         }
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult MigrateOldDb()
+        {
+            try
+            {
+
+
+                repository.MigrateOldDb();
+                return Ok("MERGE COMPLETE");
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.GetExceptionMessages());
+                return StatusCode(StatusCodes.Status500InternalServerError, Constants.ErrorMessages.FetchError);
+            }
+        }
     }
 }

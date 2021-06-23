@@ -23,7 +23,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             this.logger = logger;
         }
 
-
         [Route("[action]")]
         public IActionResult ReportDataSet([FromQuery] ReportParameters reportParameters)
         {

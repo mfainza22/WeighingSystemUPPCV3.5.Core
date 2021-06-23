@@ -134,6 +134,29 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             return Get().FirstOrDefault(a => a.HaulerName == name.DefaultIfEmpty());
         }
+        public void MigrateOldDb()
+        {
+
+            var oldHaulers = dbContext.HaulersOld.AsNoTracking().ToList();
+            foreach (var oldHauler in oldHaulers)
+            {
+
+                var hauler = new Hauler()
+                {
+                    IsActive = oldHauler.Status,
+                    ContactNum = oldHauler.ContactNo,
+                    ContactPerson = oldHauler.ContactPerson,
+                    HaulerCode = oldHauler.HaulerCode,
+                    HaulerIdOld = oldHauler.HaulerID,
+                    HaulerName = oldHauler.HaulerName,
+                    Location = oldHauler.HaulerName,
+                };
+
+                dbContext.Haulers.Add(hauler);
+                dbContext.SaveChanges();
+            };
+        }
+
     }
 
 

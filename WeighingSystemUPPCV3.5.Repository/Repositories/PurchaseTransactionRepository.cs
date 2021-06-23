@@ -283,12 +283,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
         public void MigrateOldDb(DateTime dtFrom, DateTime dtTo)
         {
+            var bs = dbContext.BalingStations.Where(a => a.IsActive ?? true).AsNoTracking().FirstOrDefault();
+
             dtFrom = dtFrom.Date;
             dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
             var purchases = dbContext.Purchases.Where(a => a.DateTimeIn >= dtFrom && a.DateTimeIn <= dtTo).OrderBy(a => a.ReceiptNo)
-                .GroupJoin(dbContext.RawMaterials.Include(a => a.Category).Where(a => a.RawMaterialIdOld != null),
+                .GroupJoin(dbContext.Materials.Where(a => a.RawMaterialId != null),
                     purchase => purchase.MaterialId,
-                    material => material.RawMaterialIdOld,
+                    material => material.MaterialID,
                     (purchase, material) => new { purchase, material })
                 .SelectMany(a => a.material.DefaultIfEmpty(),
                 (purchase, material) => new { purchase.purchase, material })
@@ -328,6 +330,12 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     (purchase, vehicle) => new { purchase.purchase, purchase.material, purchase.supplier, purchase.source, purchase.userIn, purchase.userOut, purchase.baleType, vehicle })
                  .SelectMany(a => a.vehicle.DefaultIfEmpty(),
                 (purchase, vehicle) => new { purchase.purchase, purchase.material, purchase.supplier, purchase.source, purchase.userIn, purchase.userOut, purchase.baleType, vehicle })
+                 .GroupJoin(dbContext.Categories,
+                    t => t.purchase.CategoryId,
+                    category => category.CategoryIdOld,
+                    (purchase, category) => new { purchase.purchase, purchase.material, purchase.supplier, purchase.source, purchase.userIn, purchase.userOut, purchase.baleType, purchase.vehicle, category })
+                 .SelectMany(a => a.category.DefaultIfEmpty(),
+                (purchase, category) => new { purchase.purchase, purchase.material, purchase.supplier, purchase.source, purchase.userIn, purchase.userOut, purchase.baleType, purchase.vehicle, category })
                  .Where(a => dbContext.PurchaseTransactions.Select(a => a.ReceiptNum).Contains(a.purchase.ReceiptNo) == false)
                  .AsNoTracking().ToList();
 
@@ -337,10 +345,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 BaleCount = Convert.ToInt32(a.purchase.NoOfBales ?? 0),
                 BaleTypeId = a.baleType == null ? 0 : a.baleType.BaleTypeId,
                 BaleTypeDesc = a.baleType == null ? null : a.baleType.BaleTypeDesc,
-                BalingStationCode = null,
-                BalingStationName = null,
-                CategoryId = a.material == null ? 0 : a.material.CategoryId,
-                CategoryDesc = a.material == null ? null : a.material.Category == null ? null : a.material.Category.CategoryDesc,
+                BalingStationNum = bs.BalingStationNum,
+                BalingStationCode = bs.BalingStationCode,
+                BalingStationName = bs.BalingStationName,
+                CategoryId = a.category == null ? 0 : a.category.CategoryId,
+                CategoryDesc = a.category == null ? null : a.category.CategoryDesc,
                 Corrected10 = a.purchase.Corrected_10 ?? 0,
                 Corrected12 = a.purchase.Corrected_12 ?? 0,
                 Corrected14 = a.purchase.Corrected_14 ?? 0,
@@ -363,13 +372,14 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                         15,
                 MoistureReaderDesc = null,
                 MoistureSettingsId = 1,
+                MoistureReaderProcess = "AUTO",
                 NetWt = a.purchase.net ?? 0,
                 OT = a.purchase.OutThrow ?? 0,
                 PM = a.purchase.PM ?? 0,
                 PONum = a.purchase.PoNo,
                 PrintCount = Convert.ToInt32(a.purchase.NoOfPrinting ?? 0),
                 Price = a.purchase.Price ?? 0,
-                RawMaterialId = a.material == null ? 0 : a.material.RawMaterialId,
+                RawMaterialId = a.material == null ? 0 : a.material.RawMaterialId??0,
                 RawMaterialDesc = a.material == null ? "" : a.material.RawMaterialDesc,
                 ReceiptNum = a.purchase.ReceiptNo,
                 Remarks = a.purchase.Remarks,

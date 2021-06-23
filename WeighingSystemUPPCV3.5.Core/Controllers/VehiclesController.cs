@@ -209,16 +209,6 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("[action]")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status202Accepted)]
-        [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status422UnprocessableEntity)]
-        public IActionResult MigrateOldDb()
-        {
-            repository.MigrateOldDb();
-            return Accepted(true);
-        }
-
         private bool validateEntity(Vehicle model)
         {
             var validCode = repository.ValidateName(model);
@@ -231,6 +221,17 @@ namespace WeighingSystemUPPCV3_5_Core.Controllers
             var jsonModelState = ModelState.ToJson();
             if (General.IsDevelopment) logger.LogDebug(jsonModelState);
             return UnprocessableEntity(jsonModelState);
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(StatusCodes), StatusCodes.Status422UnprocessableEntity)]
+        public IActionResult MigrateOldDb()
+        {
+            repository.MigrateOldDb();
+            return Accepted(true);
         }
 
     }

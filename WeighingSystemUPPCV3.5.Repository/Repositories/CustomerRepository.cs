@@ -138,5 +138,28 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             return Get().FirstOrDefault(a => a.CustomerName == name.DefaultIfEmpty());
         }
+
+        public void MigrateOldDb()
+        {
+
+            var oldCustomers = dbContext.CustomersOld.AsNoTracking().ToList();
+            foreach (var oldCustomer in oldCustomers)
+            {
+
+                var customer = new Customer()
+                {
+                    IsActive = oldCustomer.Status,
+                    ContactNum = oldCustomer.ContactNo,
+                    ContactPerson = oldCustomer.ContactPerson,
+                    CustomerCode = oldCustomer.CustomerCode,
+                    CustomerIdOld = oldCustomer.CustomerID,
+                    CustomerName = oldCustomer.CustomerName,
+                    Location = oldCustomer.CustomerName,
+                };
+
+                dbContext.Customers.Add(customer);
+                dbContext.SaveChanges();
+            };
+        }
     }
 }

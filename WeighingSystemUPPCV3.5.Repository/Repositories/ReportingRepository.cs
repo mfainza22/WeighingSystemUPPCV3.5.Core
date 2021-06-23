@@ -414,7 +414,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             // SET DateFrom to Firstday of the month
             reportParameters.DTFrom = new DateTime(dtFrom.Year, dtFrom.Month, 1);
             // SET DateTo to Last of the month
-            var dtTo = reportParameters.DTTo;
+            var dtTo = reportParameters.DTFrom;
             reportParameters.DTTo = new DateTime(dtTo.Year, dtTo.Month, DateTime.DaysInMonth(dtTo.Year, dtTo.Month));
             var query = $@" DECLARE @DTFrom DATETIME; SET @DTFrom = CAST('{reportParameters.DTFrom}' AS DATE)
                                 DECLARE @DTTo DATETIME; SET @DTTo = CAST('{reportParameters.DTTo}' AS DATE)

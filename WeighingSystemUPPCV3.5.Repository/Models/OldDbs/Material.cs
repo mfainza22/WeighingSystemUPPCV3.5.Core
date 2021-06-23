@@ -27,6 +27,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models.OldDbs
         public long? SeqNo { get; set; }
 
         public long? RawMaterialId { get; set; }
+        public string RawMaterialDesc{ get; set; }
 
     }
 }

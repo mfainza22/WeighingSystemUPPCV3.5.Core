@@ -125,5 +125,24 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         {
             return Get().FirstOrDefault(a => a.VehicleTypeDesc == name.DefaultIfEmpty());
         }
+
+        public void MigrateOldDb()
+        {
+
+            var oldTruckClasses = dbContext.TruckClassificationsOld.AsNoTracking().ToList();
+            foreach (var oldTruckClass in oldTruckClasses)
+            {
+
+                var vehicleType = new VehicleType()
+                {
+                    IsActive = true,
+                    VehicleTypeCode = oldTruckClass.TruckCode,
+                    VehicleTypeDesc = oldTruckClass.Description
+                };
+
+                dbContext.VehicleTypes.Add(vehicleType);
+                dbContext.SaveChanges();
+            };
+        }
     }
 }

@@ -281,7 +281,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     if (exist > 0) continue;
 
                     var purchaseOrder = new PurchaseOrder();
-                    purchaseOrder.BalanceTotalKg = (oldPO.TotalBal ?? 0);
+                    purchaseOrder.BalanceTotalKg = (oldPO.TotalBal ?? 0) * 1000;
                     var weigher = weighers.FirstOrDefault(a => a.UserAccountIdOld == oldPO.CreatedBy);
                     if (weigher != null)
                     {
