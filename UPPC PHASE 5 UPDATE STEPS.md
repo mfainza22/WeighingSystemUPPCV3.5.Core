@@ -9,6 +9,24 @@ GO
 
 ```
 
+*** CLEAR SALESTRANSACTIONS ***
+
+```
+USE UPPC;  
+DELETE FROM SaleTransactions
+GO
+DELETE FROM SaleBales 
+GO
+DELETE FROM ReturnedVehicles
+GO  
+DBCC CHECKIDENT ('SaleTransactions', RESEED, 10000001);  
+GO
+DBCC CHECKIDENT ('SaleBales', RESEED, 1);  
+GO
+DBCC CHECKIDENT ('ReturnedVehicles', RESEED, 1);  
+GO
+```
+
 
 
 # UPPC PHASE 5 UPDATE STEPS
@@ -286,6 +304,10 @@ BalingStationNum = (Select Top 1 BalingStationNum from Balingstations where IsAc
 BalingStationCode = (Select Top 1 BalingStationCode from Balingstations where IsActive = 1),
 BalingStationName = (Select Top 1 BalingStationName from Balingstations whe
 re IsActive = 1)
+
+Update PurchaseTransactions
+set CategoryDesc = (Select top 1 Categories.CategoryDesc from Categories
+where Categories.CategoryId= PurchaseTransactions.CategoryId)
 
 select * from PurchaseTransactions order by datetimein desc
 ```

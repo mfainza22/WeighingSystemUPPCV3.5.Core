@@ -1787,3 +1787,103 @@ Query:
 Client IP: ::1
 
     DateTime=2021-06-23T08:10:54.5146334Z
+Microsoft.AspNetCore.Server.Kestrel Warning: 0 : Overriding address(es) 'https://*:44386, http://*:44385, http://0.0.0.0:44385, https://0.0.0.0:44386'. Binding to endpoints defined in UseKestrel() instead.
+    DateTime=2021-06-23T08:27:11.4256352Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::1]:44385
+    DateTime=2021-06-23T08:27:11.5493629Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://127.0.0.1:44385
+    DateTime=2021-06-23T08:27:11.5605515Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://0.0.0.0:44385
+    DateTime=2021-06-23T08:27:11.5716237Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::1]:44386
+    DateTime=2021-06-23T08:27:11.5860317Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://127.0.0.1:44386
+    DateTime=2021-06-23T08:27:11.5988258Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://0.0.0.0:44386
+    DateTime=2021-06-23T08:27:11.6121335Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-06-23T08:27:11.6241928Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-06-23T08:27:11.6348287Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-06-23T08:27:11.6434375Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/saletransactions/MigrateOldDb
+Body: {
+    dtFrom : '2012-6-23',
+    dtTo : '2021-12-31'
+}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-06-23T08:34:45.4821465Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/saletransactions/MigrateOldDb
+Body: {
+    dtFrom : '2021-6-23',
+    dtTo : '2021-6-31'
+}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-06-23T08:35:07.2890362Z
+WeighingSystemUPPCV3_5_Core.Controllers.SaleTransactionsController Error: 0 : Object reference not set to an instance of an object.
+    DateTime=2021-06-23T08:35:14.3968228Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/saletransactions/MigrateOldDb
+Body: {
+    dtFrom : '2021-06-23',
+    dtTo : '2021-06-23'
+}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-06-23T08:35:35.6257091Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-06-23T08:37:50.9676918Z
+Microsoft.AspNetCore.Server.Kestrel Warning: 0 : Overriding address(es) 'https://*:44386, http://*:44385, http://0.0.0.0:44385, https://0.0.0.0:44386'. Binding to endpoints defined in UseKestrel() instead.
+    DateTime=2021-06-23T08:40:34.0205972Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://[::1]:44385
+    DateTime=2021-06-23T08:40:34.1231402Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://127.0.0.1:44385
+    DateTime=2021-06-23T08:40:34.1324605Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: http://0.0.0.0:44385
+    DateTime=2021-06-23T08:40:34.1415307Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://[::1]:44386
+    DateTime=2021-06-23T08:40:34.1506401Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://127.0.0.1:44386
+    DateTime=2021-06-23T08:40:34.1596037Z
+Microsoft.Hosting.Lifetime Information: 0 : Now listening on: https://0.0.0.0:44386
+    DateTime=2021-06-23T08:40:34.1691259Z
+Microsoft.Hosting.Lifetime Information: 0 : Application started. Press Ctrl+C to shut down.
+    DateTime=2021-06-23T08:40:34.1793768Z
+Microsoft.Hosting.Lifetime Information: 0 : Hosting environment: Development
+    DateTime=2021-06-23T08:40:34.1888352Z
+Microsoft.Hosting.Lifetime Information: 0 : Content root path: D:\dir\tsi\UPPC\Phase 4\WeighingSystemUPPCV3.5\WeighingSystemUPPCV3.5.Core\WeighingSystemUPPCV3.5.Core
+    DateTime=2021-06-23T08:40:34.2001461Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/saletransactions/MigrateOldDb
+Body: {
+    dtFrom : '2012-01-1',
+    dtTo : '2016-12-31'
+}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-06-23T08:45:57.3007704Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/saletransactions/MigrateOldDb
+Body: {
+    dtFrom : '2017-01-1',
+    dtTo : '2018-12-31'
+}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-06-23T08:48:28.5598679Z
+WeighingSystemUPPCV3_5_Core.Startup Information: 0 : Path: localhost:44386//api/bales/MigrateOldDb
+Body: {
+    dtFrom : '2021-06-12',
+    dtTo : '2021-12-31'
+}
+Query: 
+Client IP: ::1
+
+    DateTime=2021-06-23T08:57:09.1451728Z
+Microsoft.Hosting.Lifetime Information: 0 : Application is shutting down...
+    DateTime=2021-06-23T08:58:08.2194260Z

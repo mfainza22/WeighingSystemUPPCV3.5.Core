@@ -391,6 +391,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     sale.vehicle,
                     plantUser
                 })
+                 .Where(a => dbContext.SaleTransactions.Select(a => a.ReceiptNum).Contains(a.sale.ReceiptNo) == false)
                  .AsNoTracking().ToList();
 
             var allSale = sales.Select(a => new SaleTransaction

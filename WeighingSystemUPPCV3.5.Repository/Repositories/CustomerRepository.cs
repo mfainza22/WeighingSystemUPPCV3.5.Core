@@ -85,6 +85,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.Customers.Update(entity);
             dbContext.SaveChanges();
+
+            dbContext.Database.ExecuteSqlRaw($"UPDATE SaleTransactions SET CustomerName = '{entity.CustomerName}' where CustomerId = {entity.CustomerId}");
             return entity;
         }
 

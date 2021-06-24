@@ -79,7 +79,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 dbContext.PurchaseOrders.Update(entity);
                 await dbContext.SaveChangesAsync();
 
-                dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType));
+                var deactivateAllQuery = DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType);
+                dbContext.Database.ExecuteSqlRaw(deactivateAllQuery);
 
                 //dbContext.Database.ExecuteSqlRaw(DeactivatePurchaseOrdersQuery(model.SupplierId, model.RawMaterialId, model.POType));
 
@@ -274,7 +275,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
                 dtFrom = dtFrom.Date;
                 dtTo = dtTo.Date + new TimeSpan(23, 59, 59);
-                var oldPOS = dbContext.Tbl_POs.Where(a => a.PODate >= dtFrom && a.PODate <= dtTo).AsNoTracking().ToList();
+                var oldPOS = dbContext.Tbl_POs.Where(a => a.PODate >= dtFrom && a.PODate <= dtTo && (dbContext.PurchaseOrders.Select(a=>a.PONum).Contains(a.PONo) == false)).AsNoTracking().ToList();
                 foreach (var oldPO in oldPOS)
                 {
                     var exist = dbContext.PurchaseOrders.Where(a => a.PONum == oldPO.PONo).AsNoTracking().Count();
@@ -337,7 +338,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                     SELECT TOP 1 {nameof(PurchaseOrder.PurchaseOrderId)} FROM purchaseOrders WHERE 
                     {nameof(PurchaseOrder.SupplierId)}= {supplierId} AND
                     {nameof(PurchaseOrder.RawMaterialId)}= {rawMaterialId} AND
-                    {nameof(PurchaseOrder.POType)}= '{POType}' 
+                    {nameof(PurchaseOrder.POType)}= '{POType}' AND 
+                    Datediff(day,{nameof(PurchaseOrder.DTEffectivity)},GETDATE()) < 365
                     ORDER BY {nameof(PurchaseOrder.DTEffectivity)} DESC, 
                             {nameof(PurchaseOrder.DTCreated)} DESC
                     )";

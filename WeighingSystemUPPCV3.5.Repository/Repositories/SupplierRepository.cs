@@ -78,6 +78,9 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
 
             dbContext.Suppliers.Update(entity);
             dbContext.SaveChanges();
+
+            dbContext.Database.ExecuteSqlRaw($"UPDATE PurchaseTransactions SET SupplierName = '{entity.SupplierName}' where SupplierId = {entity.SupplierId}");
+
             return entity;
         }
 
