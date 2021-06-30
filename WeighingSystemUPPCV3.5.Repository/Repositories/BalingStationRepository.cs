@@ -267,6 +267,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 sqlConn.Open();
                 var str = $@"DBCC SHRINKDATABASE(UPPC)";
                 var cmd = new SqlCommand(str, sqlConn);
+                cmd.CommandTimeout = 30000;
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
 

@@ -35,7 +35,7 @@ namespace WeighingSystemUPPCV3_5_Core
                       .ConfigureWebHostDefaults(webBuilder =>
                       {
                           //webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
-                          //webBuilder.UseConfiguration(config);
+                          webBuilder.UseConfiguration(config);
                           //webBuilder.UseIISIntegration();
                           //webBuilder.ConfigureKestrel(serverOptions =>
                           //{
@@ -57,7 +57,8 @@ namespace WeighingSystemUPPCV3_5_Core
                           //        TimeSpan.FromMinutes(1);
                           //});
                           webBuilder.UseKestrel(a => a.ConfigureEndpoints());
-                          webBuilder.UseContentRoot(Directory.GetCurrentDirectory());              webBuilder.UseUrls(config.GetSection("urls").Value);
+                          webBuilder.UseContentRoot(Directory.GetCurrentDirectory());             
+                          webBuilder.UseUrls(config.GetSection("urls").Value);
                           webBuilder.UseIISIntegration();
                           // //
                           //webBuilder.ConfigureKestrel(serverOptions =>

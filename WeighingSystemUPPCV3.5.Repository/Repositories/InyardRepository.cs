@@ -115,6 +115,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 DRNum = model.DRNum?.ToUpper(),
                 GrossWt = model.GrossWt,
                 HaulerId = model.HaulerId,
+                HaulerName = model.HaulerName,
                 InyardNum = model.InyardNum,
 
                 IsOfflineIn = model.IsOfflineIn,
