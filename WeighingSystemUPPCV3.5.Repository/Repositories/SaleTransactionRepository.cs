@@ -30,6 +30,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly ILogger<SaleTransactionRepository> logger;
         private readonly IBalingStationRepository balingStationRepository;
         private readonly IUserAccountRepository userAccountRepository;
+        private readonly IPaperMillRepository paperMillRepository;
 
         public SaleTransactionRepository(DatabaseContext dbContext,
             ILogger<SaleTransactionRepository> logger,
@@ -44,7 +45,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             IMoistureReaderRepository moistureReaderRepository,
             IMoistureSettingsRepository moistureSettingsRepository,
             IAuditLogEventRepository auditLogEventRepository,
-            IAuditLogRepository auditLogRepository
+            IAuditLogRepository auditLogRepository,
+            IPaperMillRepository paperMillRepository
             )
         {
             this.dbContext = dbContext;
@@ -61,6 +63,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.logger = logger;
             this.balingStationRepository = balingStationRepository;
             this.userAccountRepository = userAccountRepository;
+            this.paperMillRepository = paperMillRepository;
         }
 
         public IQueryable<SaleTransaction> Get(SaleTransaction parameters = null)
@@ -130,6 +133,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             entity.MoistureReaderDesc = modifiedSale.MoistureReaderDesc;
             entity.OT = modifiedSale.OT;
             entity.PM = modifiedSale.PM;
+            entity.PaperMillId = modifiedSale.PaperMillId;
+            entity.PaperMillCode = modifiedSale.PaperMillCode;
             entity.ProductId = modifiedSale.ProductId;
             entity.ProductDesc = modifiedSale.ProductDesc;
             entity.Remarks = modifiedSale.Remarks;

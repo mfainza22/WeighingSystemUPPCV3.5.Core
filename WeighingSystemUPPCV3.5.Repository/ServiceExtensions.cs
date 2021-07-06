@@ -48,6 +48,7 @@ namespace WeighingSystemUPPCV3_5_Repository
             services.AddTransient<ITransValidationRepository, TransValidationRepository>();
             services.AddTransient<ITransactionTypeRepository, TransactionTypeRepository>();
             services.AddTransient<IBaleRepository, BaleRepository>();
+            services.AddTransient<IPaperMillRepository, PaperMillRepository>();
             services.AddTransient<IPurchaseTransactionRepository, PurchaseTransactionRepository>();
             services.AddTransient<ISaleTransactionRepository, SaleTransactionRepository>();
             services.AddTransient<IReturnedVehicleRepository, ReturnedVehicleRepository>();

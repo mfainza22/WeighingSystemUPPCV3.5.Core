@@ -105,6 +105,10 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         public decimal Price { get; set; }
 
+        public long? PaperMillId { get; set; }
+
+        public string PaperMillCode { get; set; }
+
 
         [Required(ErrorMessage = " Driver Name is required ", AllowEmptyStrings = false)]
         [MaxLength(50, ErrorMessage = "Driver Name length must not exceed to 50 characters")]

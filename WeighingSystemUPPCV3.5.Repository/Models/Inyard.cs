@@ -83,6 +83,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
         public decimal InitialWt { get; set; }
 
 
+
         [DefaultValue(0)]
         public decimal GrossWt { get; set; }
 
@@ -114,6 +115,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Models
 
         [NotMapped]
         public int MCStatus { get; set; }
+
+
+        public long? PaperMillId { get; set; }
+
+        public string PaperMillCode { get; set; }
 
 
         public string DriverName { get; set; }

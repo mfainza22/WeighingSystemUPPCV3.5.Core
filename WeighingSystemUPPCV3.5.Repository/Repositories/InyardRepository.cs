@@ -40,6 +40,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
         private readonly ICustomerRepository customerRepository;
         private readonly IBaleRepository baleRepository;
         private readonly IPurchaseOrderRepository purchaseOrderRepository;
+        private readonly IPaperMillRepository paperMillRepository;
 
         public InyardRepository(DatabaseContext dbContext,
             IBalingStationRepository balingStationRepository,
@@ -62,7 +63,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             ISourceRepository sourceRepository,
             ICustomerRepository customerRepository,
             IBaleRepository baleRepository,
-            IPurchaseOrderRepository purchaseOrderRepository)
+            IPurchaseOrderRepository purchaseOrderRepository,
+            IPaperMillRepository paperMillRepository)
         {
             this.dbContext = dbContext;
             this.balingStationRepository = balingStationRepository;
@@ -86,6 +88,7 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             this.customerRepository = customerRepository;
             this.baleRepository = baleRepository;
             this.purchaseOrderRepository = purchaseOrderRepository;
+            this.paperMillRepository = paperMillRepository;
         }
 
         public Inyard WeighIn(Inyard model)
@@ -117,7 +120,6 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 HaulerId = model.HaulerId,
                 HaulerName = model.HaulerName,
                 InyardNum = model.InyardNum,
-
                 IsOfflineIn = model.IsOfflineIn,
                 IsOfflineOut = model.IsOfflineOut,
                 MC = model.MC,
@@ -132,6 +134,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 PlantNetWt = model.PlantNetWt,
                 PlantTruckOrigin = model.PlantTruckOrigin?.ToUpper(),
                 PM = model.PM,
+                PaperMillId = model.PaperMillId,
+                PaperMillCode = model.PaperMillCode,
                 PurchaseOrderId = model.PurchaseOrderId,
                 PONum = model.PONum,
                 POType = model.POType,
@@ -354,6 +358,8 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 OT = model.OT,
                 NetWt = model.NetWt,
                 PM = model.PM,
+                PaperMillId = model.PaperMillId,
+                PaperMillCode = model.PaperMillCode,
                 Price = model.Price,
                 PrintCount = 0,
                 ProductId = model.CommodityId,
@@ -473,20 +479,22 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
             var oldVehicleNum = entity.VehicleNum;
             var oldCommodityId = entity.CommodityId;
 
+            entity.BaleCount = model.BaleCount;
+            entity.BaleTypeId = model.BaleTypeId;
             entity.ClientId = model.ClientId;
             entity.ClientName = model.ClientName?.ToUpper();
             entity.CommodityId = model.CommodityId;
             entity.CommodityDesc = model.CommodityDesc;
-            entity.BaleCount = model.BaleCount;
-            entity.BaleTypeId = model.BaleTypeId;
+            entity.DriverName = model.DriverName?.ToUpper();
+            entity.DRNum = model.DRNum?.ToUpper(); ;
             entity.HaulerId = model.HaulerId;
             entity.HaulerName = model.HaulerName;
-            entity.PurchaseOrderId = model.PurchaseOrderId;
+            entity.PaperMillId = model.PaperMillId;
+            entity.PaperMillCode = model.PaperMillCode;
             entity.PONum = model.PONum;
             entity.POType = model.POType;
             entity.Price = model.Price;
-            entity.DriverName = model.DriverName?.ToUpper();
-            entity.DRNum = model.DRNum?.ToUpper(); ;
+            entity.PurchaseOrderId = model.PurchaseOrderId;
             entity.PlantTruckOrigin = model.PlantTruckOrigin?.ToUpper();
             entity.Remarks = model.Remarks?.ToUpper();
             entity.SealNum = model.SealNum?.ToUpper();
@@ -622,6 +630,11 @@ namespace WeighingSystemUPPCV3_5_Repository.Repositories
                 outModifiedInyard.CommodityDesc = product?.ProductDesc;
                 outModifiedInyard.CategoryId = product?.CategoryId ?? 0;
                 outModifiedInyard.CategoryDesc = product?.CategoyDesc;
+
+
+                var pmId = outModifiedInyard.PaperMillId;
+                outModifiedInyard.PaperMillCode = paperMillRepository.Get()
+                .Where(a => a.PaperMillId == pmId).Select(a => a.PaperMillCode).FirstOrDefault();
             }
 
             var msId = outModifiedInyard.MoistureReaderId;

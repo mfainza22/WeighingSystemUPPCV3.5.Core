@@ -87,6 +87,8 @@ namespace WeighingSystemUPPCV3_5_Repository
 
         public DbSet<Models.SaleBale> SaleBales { get; set; }
 
+        public DbSet<Models.PaperMill> PaperMills { get; set; }
+
 
         /// <summary>
         /// OLD Tables
